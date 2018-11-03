@@ -16,10 +16,10 @@
 
   <ItemGroup>
     <Reference Include="Oracle.ManagedDataAccess">
-      <HintPath>..\..\..\New folder\Demo\Demo\Demo\bin\Debug\netcoreapp2.1\Oracle.ManagedDataAccess.dll</HintPath>
+      <HintPath>..\References\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Packaging">
-      <HintPath>..\..\..\Work\Projects\Legend\References\System.IO.Packaging.dll</HintPath>
+      <HintPath>..\References\System.IO.Packaging.dll</HintPath>
     </Reference>
   </ItemGroup>
 
