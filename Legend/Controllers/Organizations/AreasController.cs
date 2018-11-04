@@ -60,6 +60,7 @@ namespace API.Controllers.Organizations
             {
                 return new ApiResult<List<Area>>() { Status = ApiResult<List<Area>>.ApiStatus.Success, Data = (List<Area>)result };
             }
+
         }
 
         [Route("Delete")]
