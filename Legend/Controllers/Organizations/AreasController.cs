@@ -58,8 +58,9 @@ namespace API.Controllers.Organizations
             }
             else
             {
-                return new ApiResult<List<MenuDetails>>() { Status = ApiResult<List<MenuDetails>>.ApiStatus.Success, Data = (List<MenuDetails>)result };
+                return new ApiResult<List<Area>>() { Status = ApiResult<List<Area>>.ApiStatus.Success, Data = (List<Area>)result };
             }
+
         }
 
         [Route("Delete")]
