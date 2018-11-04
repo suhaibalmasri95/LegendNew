@@ -55,5 +55,19 @@ namespace Infrastructure.DB
                 oracleCommand.Parameters.AddRange(oracleParameters.ToArray());
             }
         }
+
+        public T Get<T>(int index)
+        {
+            var val = oracleParameters[index].Value;
+            if (val == DBNull.Value)
+            {
+                if (default(T) != null)
+                {
+                    throw new ApplicationException("Attempting to cast a DBNull to a non nullable type!");
+                }
+                return default(T);
+            }
+            return (T)val;
+        }
     }
 }
