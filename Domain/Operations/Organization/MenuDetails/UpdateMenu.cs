@@ -17,7 +17,7 @@ namespace Domain.Operations.Organization.MenuDetails
             {
                 return validationResult;
             }
-            return await DBAreaSetup.AddUpdateMode(this);
+            return await DBMenuSetup.AddUpdateMode(this);
         }
 
         public IDTO Validate()

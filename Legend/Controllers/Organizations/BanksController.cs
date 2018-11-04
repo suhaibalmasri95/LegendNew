@@ -15,7 +15,7 @@ namespace API.Controllers.Organizations
     [Route("api/[controller]")]
     [ApiController]
     [ExceptionsHandling]
-    public class BacnksController : ControllerBase
+    public class BanksController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]
