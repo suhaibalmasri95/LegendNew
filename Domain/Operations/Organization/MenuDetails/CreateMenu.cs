@@ -1,13 +1,18 @@
 ﻿using Common.Interfaces;
+
 using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using Common.Extensions;
 using Common.Validations;
 using System.Threading.Tasks;
 using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 
-namespace Domain.Operations.Organization.Departments
+namespace Domain.Operations.Organization.MenuDetails
 {
-    public class DeleteDepartment : Department, IDelete
+    public class CreateMenu : Menu, ICreate
     {
         public async Task<IDTO> Execute()
         {
@@ -16,7 +21,7 @@ namespace Domain.Operations.Organization.Departments
             {
                 return validationResult;
             }
-            return await DBDeleteDepartmentSetup.DeleteDepartmentAsync(this);
+            return await DBMenuSetup.AddUpdateMode(this);
         }
 
         public IDTO Validate()
@@ -24,11 +29,13 @@ namespace Domain.Operations.Organization.Departments
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<Department>
+        public class Validation : AbstractValidator<CreateMenu>
         {
             public Validation()
             {
-                RuleFor(department => department.ID).NotNull();
+                RuleFor(area => area.Name).NotEmpty();
+                RuleFor(area => area.Name).MaximumLength(500);
+                RuleFor(area => area.Name2).MaximumLength(500);
             }
         }
     }

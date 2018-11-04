@@ -1,13 +1,20 @@
 ﻿using Common.Interfaces;
 using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using Common.Extensions;
 using Common.Validations;
 using System.Threading.Tasks;
+using Infrastructure.DB;
+using Oracle.ManagedDataAccess.Client;
+using System.Data;
 using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 
-namespace Domain.Operations.Organization.Departments
-{
-    public class DeleteDepartment : Department, IDelete
+namespace Domain.Operations.Organization.MenuDetails
+{   
+    public class DeleteMenus : Menu, IDelete
     {
         public async Task<IDTO> Execute()
         {
@@ -16,7 +23,7 @@ namespace Domain.Operations.Organization.Departments
             {
                 return validationResult;
             }
-            return await DBDeleteDepartmentSetup.DeleteDepartmentAsync(this);
+            throw new NotImplementedException();
         }
 
         public IDTO Validate()
@@ -24,11 +31,11 @@ namespace Domain.Operations.Organization.Departments
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<Department>
+        public class Validation : AbstractValidator<DeleteMenus>
         {
             public Validation()
             {
-                RuleFor(department => department.ID).NotNull();
+                RuleFor(area => area.ID).NotNull();
             }
         }
     }
