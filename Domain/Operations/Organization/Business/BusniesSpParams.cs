@@ -17,5 +17,6 @@ namespace Domain.Operations.Organization.Business
         public const string PARAMETER_STATUS = "ST_LOB.STATUS";
         public const string PARAMETER_STATUS_DATE = "ST_LOB.STATUS_DATE";
         public const string PARAMETER_LOC_MODULE = "ST_LOB.LOC_MODULE";
+
     }
 }

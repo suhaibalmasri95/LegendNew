@@ -8,6 +8,7 @@ namespace Domain.Entities.Organization
 {
     public class BusinesLine : IEntity
     {
+
         [DBFiledName("ID")]
         public long? ID { get; set; }
         [DBFiledName("NAME")]

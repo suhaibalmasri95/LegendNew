@@ -39,5 +39,6 @@ namespace Domain.Operations.Organization.Business
                 RuleFor(area => area.LangID).NotNull();
             }
         }
+
     }
 }
