@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -48,8 +50,34 @@ namespace Legend
             {
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+          Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Flags")),
+                RequestPath = "/Flags"
+            });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+       Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Documents")),
+                RequestPath = "/wwwroot/Documents"
+            });
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+         Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Flags")),
+                RequestPath = "/Flags"
+            });
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+      Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Documents")),
+                RequestPath = "/wwwroot/Documents"
+            });
+            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+               .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

@@ -16,13 +16,18 @@ namespace Legend.Controllers
     {
         [Route("Create")]
         [HttpGet]
-        public async Task<IEnumerable> CreateAsync()
+        public async void  CreateAsync()
         {
-            GetCities ex = new GetCities();
-         
+            CreateCountry ex = new CreateCountry();
+            ex.Name = "tessdsds";
+            ex.Nationality = "jod";
+            ex.CurrencyCode = "JOD";
+            ex.PhoneCode = "test";
+            ex.Status = 1;
+            await ex.Execute();
           
-            var ss = await ex.Query();
-            return ss;
+           
+            
         }
 
 

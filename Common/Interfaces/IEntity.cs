@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Common.Interfaces
 {
-    public interface IEntity : ILocalized 
+    public interface IEntity : ILocalized , IBase
     {
        
-        long? ID { get; set; }
+     
 
        
     }
