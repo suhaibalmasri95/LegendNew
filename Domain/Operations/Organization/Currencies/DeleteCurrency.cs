@@ -7,7 +7,7 @@ using Domain.Organization.Entities;
 
 namespace Domain.Operations.Organization.Currencies
 {
-    public class DeleteCity : Currency, IDelete
+    public class DeleteCurrency : Currency, IDelete
     {
         public async Task<IDTO> Execute()
         {
@@ -16,10 +16,7 @@ namespace Domain.Operations.Organization.Currencies
             {
                 return validationResult;
             }
-
-
             return await DBDeleteCurrencySetup.DeleteCurrencyAsync(this);
-
         }
 
         public IDTO Validate()
@@ -32,7 +29,6 @@ namespace Domain.Operations.Organization.Currencies
             public Validation()
             {
                 RuleFor(currency => currency.Code).NotNull();
-              
             }
         }
     }

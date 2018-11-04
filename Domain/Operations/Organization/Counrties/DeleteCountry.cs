@@ -16,10 +16,7 @@ namespace Domain.Operations.Organization.Counrties
             {
                 return validationResult;
             }
-
-
             return await DBDeleteCountrySetup.DeleteCountryAsync(this);
-
         }
 
         public IDTO Validate()
@@ -32,7 +29,6 @@ namespace Domain.Operations.Organization.Counrties
             public Validation()
             {
                 RuleFor(country => country.ID).NotNull();
-              
             }
         }
     }

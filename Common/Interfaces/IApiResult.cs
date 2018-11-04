@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Common.Interfaces
 {
-    public interface IDelete : IExecutable
+    public interface IApiResult
     {
     }
 }

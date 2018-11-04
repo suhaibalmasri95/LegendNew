@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Controllers;
+using Common.Interfaces;
+using Common.Validations;
+using Domain.Operations.Organization.Counrties;
+using Domain.Organization.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Legend.Controllers
@@ -16,7 +21,20 @@ namespace Legend.Controllers
         {
             return new string[] { "value1", "value2" };
         }
-
+        [Route("Create")]
+        [HttpPost]
+        public IApiResult Create(CreateCountry operation)
+        {
+            var result = operation.Execute().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
@@ -41,5 +59,6 @@ namespace Legend.Controllers
         public void Delete(int id)
         {
         }
+
     }
 }

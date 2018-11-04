@@ -7,7 +7,7 @@ using Domain.Organization.Entities;
 
 namespace Domain.Operations.Organization.CompanyBranches
 {
-    public class UpdateBank : CompanyBranch, IUpdate
+    public class UpdateCompanyBranch : CompanyBranch, IUpdate
     {
         public async Task<IDTO> Execute()
         {

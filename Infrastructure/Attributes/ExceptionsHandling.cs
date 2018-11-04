@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Oracle.ManagedDataAccess.Client;
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Infrastructure.Attributes
 {
     public class ExceptionsHandling : Attribute, IActionFilter
@@ -17,9 +14,6 @@ namespace Infrastructure.Attributes
             }
         }
 
-        public void OnActionExecuting(ActionExecutingContext context)
-        {
-            
-        }
+        public void OnActionExecuting(ActionExecutingContext context) { }
     }
 }

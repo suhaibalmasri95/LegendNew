@@ -7,7 +7,7 @@ using Domain.Organization.Entities;
 
 namespace Domain.Operations.Organization.LockUps
 {
-    public class UpdateLockUps : Lockup, IUpdate
+    public class UpdateLockUp : Lockup, IUpdate
     {
         public async Task<IDTO> Execute()
         {
