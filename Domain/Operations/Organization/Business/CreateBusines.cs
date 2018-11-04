@@ -1,15 +1,16 @@
-﻿using Common.Interfaces;
-using FluentValidation;
-using Common.Extensions;
+﻿using Common.Extensions;
+using Common.Interfaces;
 using Common.Validations;
-using System.Threading.Tasks;
-using Domain.Organization.Entities;
 using Domain.Entities.Organization;
-using Domain.Operations.Organization.Areas;
+using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Domain.Operations.Organization.MenuDetails
+namespace Domain.Operations.Organization.Business
 {
-    public class UpdateMenu : Menu, IUpdate
+    class CreateBusines : BusinesLine, ICreate
     {
         public async Task<IDTO> Execute()
         {
@@ -18,7 +19,7 @@ namespace Domain.Operations.Organization.MenuDetails
             {
                 return validationResult;
             }
-            return await DBMenuSetup.AddUpdateMode(this);
+            return await DBBusniesSetup.AddUpdateMode(this);
         }
 
         public IDTO Validate()
@@ -26,14 +27,16 @@ namespace Domain.Operations.Organization.MenuDetails
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<UpdateMenu>
+        public class Validation : AbstractValidator<CreateBusines>
         {
             public Validation()
             {
-                RuleFor(area => area.ID).NotNull();
                 RuleFor(area => area.Name).NotEmpty();
                 RuleFor(area => area.Name).MaximumLength(500);
                 RuleFor(area => area.Name2).MaximumLength(500);
+                RuleFor(area => area.Code).NotNull();
+                RuleFor(area => area.Module).NotNull();
+                RuleFor(area => area.LangID).NotNull();
             }
         }
     }

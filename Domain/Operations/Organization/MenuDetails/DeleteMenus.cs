@@ -14,15 +14,15 @@ using Domain.Entities.Organization;
 
 namespace Domain.Operations.Organization.MenuDetails
 {   
-    public class DeleteMenus : Menu, IDelete
+    public class DeleteMenus : Menu
     {
-        public async Task<IDTO> Execute()
+        public IDTO Execute()
         {
-            var validationResult = (ValidationsOutput)Validate();
-            if (!validationResult.IsValid)
-            {
-                return validationResult;
-            }
+            //var validationResult = (ValidationsOutput)Validate();
+            //if (!validationResult.IsValid)
+            //{
+            //    return validationResult;
+            //}
             throw new NotImplementedException();
         }
 
