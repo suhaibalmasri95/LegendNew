@@ -8,6 +8,11 @@ namespace Domain.Organization.Entities
 {
     public class Lockup : IEntity
     {
+        public Lockup()
+        {
+            ModificationDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+        }
         [DBFiledName("ID")]
         public long? ID { get; set; }
         [DBFiledName("NAME")]
@@ -21,7 +26,7 @@ namespace Domain.Organization.Entities
         [DBFiledName("MINOR_CODE")]
         public long MinorCode { get; set; }
         [DBFiledName("ST_LOCKUP_ID")]
-        public int? LockUpID { get; set; }
+        public long? LockUpID { get; set; }
         [DBFiledName("CREATED_BY")]
         public string CreatedBy { get; set; }
         [DBFiledName("CREATION_DATE")]
@@ -31,7 +36,7 @@ namespace Domain.Organization.Entities
         [DBFiledName("MODIFICATION_DATE")]
         public DateTime ModificationDate { get; set; }
         [DBFiledName("LOCKUP_TYPE")]
-        public int? LockUpType { get; set; }
+        public Int16? LockUpType { get; set; }
         [DBFiledName("REF_NO")]
         public string ReferenceNo { get; set; }
     }
