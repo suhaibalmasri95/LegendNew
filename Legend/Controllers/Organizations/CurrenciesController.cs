@@ -48,9 +48,15 @@ namespace API.Controllers.Organizations
         }
 
         [Route("Load")]
-        [HttpPost]
-        public IApiResult Load(GetCurrencies operation)
+        [HttpGet]
+        public IApiResult Load(string CurrencyCode, Int64? langId = 1)
         {
+            GetCurrencies operation = new GetCurrencies();
+            operation.Code = CurrencyCode;
+            if (langId.HasValue)
+                operation.LangID = langId;
+            else
+                operation.LangID = 1;
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {

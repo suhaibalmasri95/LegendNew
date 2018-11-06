@@ -5,6 +5,7 @@ using Domain.Operations.Organization.Counrties;
 using Domain.Organization.Entities;
 using Infrastructure.Attributes;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace API.Controllers.Organizations
@@ -46,8 +47,16 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult Load([FromBody]GetCountries operation)
+        public IApiResult Load(Int64? countryId, Int64? langId)
         {
+          
+            GetCountries operation = new GetCountries();
+            operation.ID = countryId;
+            if (langId.HasValue)
+                operation.LangID = langId;
+            else
+                operation.LangID = 1;
+
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {

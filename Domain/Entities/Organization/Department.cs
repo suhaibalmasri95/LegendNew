@@ -17,7 +17,7 @@ namespace Domain.Organization.Entities
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
         [DBFiledName("ST_COM_ID")]
-        public long CompanyID { get; set; }
+        public long? CompanyID { get; set; }
         [DBFiledName("ADDRESS")]
         public string Address { get; set; }
 

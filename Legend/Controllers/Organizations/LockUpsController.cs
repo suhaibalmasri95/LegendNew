@@ -49,11 +49,16 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult LoadLockUpStatus([FromBody]GetLockUps operation)
+        public IApiResult LoadLockUpStatus(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID)
         {
-            operation.MajorCode = 1;
-            operation.LangID = 1;
-         
+            GetLockUps operation = new GetLockUps();
+            operation.MajorCode = MajorCode;
+
+            if (languageID.HasValue)
+                operation.LangID = languageID;
+            else
+                operation.LangID = 1;
+
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
@@ -67,10 +72,19 @@ namespace API.Controllers.Organizations
             }
         }
         [Route("LoadLockUps")]
-        [HttpPost]
-        public IApiResult LoadLockUps(GetLockUps operation)
+        [HttpGet]
+        public IApiResult LoadLockUpsLoadLockUps(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID = 1)
         {
-           
+            GetLockUps operation = new GetLockUps();
+            operation.ID = ID;
+            operation.MajorCode = MajorCode;
+            operation.MajorCode = MinorCode;
+            operation.LockUpID = LockupParentID;
+
+            if (languageID.HasValue)
+                operation.LangID = languageID;
+            else
+                operation.LangID = 1;
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
@@ -83,10 +97,19 @@ namespace API.Controllers.Organizations
             }
         }
         [Route("LoadLockUpsMinorCode")]
-        [HttpPost]
-        public IApiResult LoadLockUpsMinorCode(GetLockUps operation)
+        [HttpGet]
+        public IApiResult LoadLockUpsMinorCode(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID)
         {
+            GetLockUps operation = new GetLockUps();
+            operation.ID = ID;
+            operation.MajorCode = MajorCode;
+            operation.MajorCode = MinorCode;
+            operation.LockUpID = LockupParentID;
 
+            if (languageID.HasValue)
+                operation.LangID = languageID;
+            else
+                operation.LangID = 1;
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {

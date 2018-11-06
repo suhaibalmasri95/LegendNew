@@ -48,9 +48,18 @@ namespace API.Controllers.Organizations
         }
 
         [Route("Load")]
-        [HttpPost]
-        public IApiResult Load(GetCities operation)
+        [HttpGet]
+        public IApiResult Load(long? cityId, long? countryId, long? langId)
         {
+            GetCities operation = new GetCities();
+            operation.ID = cityId;
+            operation.CountryID = countryId;
+
+            if (langId.HasValue)
+                operation.LangID = langId;
+            else
+                operation.LangID = 1;
+
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {

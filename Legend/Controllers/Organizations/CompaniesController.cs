@@ -44,9 +44,15 @@ namespace API.Controllers.Organizations
         }
 
         [Route("Load")]
-        [HttpPost]
-        public IApiResult Load(GetCompany operation)
+        [HttpGet]
+        public IApiResult Load(long? ID, long? languageID = 1)
         {
+            GetCompany operation = new GetCompany();
+            operation.ID = ID;
+            if (languageID.HasValue)
+                operation.LangID = languageID;
+            else
+                operation.LangID = 1;
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {

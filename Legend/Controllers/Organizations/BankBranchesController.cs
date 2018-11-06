@@ -48,9 +48,17 @@ namespace API.Controllers.Organizations
         }
 
         [Route("Load")]
-        [HttpPost]
-        public IApiResult Load(GetBankBranches operation)
+        [HttpGet]
+        public IApiResult Load(long? ID, long? BankId, long? languageID = 1)
         {
+            GetBankBranches operation = new GetBankBranches();
+            operation.ID = ID;
+            operation.BankID = BankId;
+
+            if (languageID.HasValue)
+                operation.LangID = languageID;
+            else
+                operation.LangID = 1;
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
