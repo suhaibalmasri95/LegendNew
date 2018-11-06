@@ -1,25 +1,22 @@
 ﻿using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Operations.Organization.Banks;
+using Domain.Operations.Organization.Counrties;
 using Domain.Organization.Entities;
 using Infrastructure.Attributes;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Controllers.Organizations
 {
     [Route("api/[controller]")]
     [ApiController]
     [ExceptionsHandling]
-    public class BacnksController : ControllerBase
+    public class CountriesController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]
-        public IApiResult Create(CreateBank operation)
+        public IApiResult Create(CreateCountry operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -34,7 +31,7 @@ namespace API.Controllers.Organizations
 
         [Route("Update")]
         [HttpPost]
-        public IApiResult Update(UpdateBank operation)
+        public IApiResult Update(UpdateCountry operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -49,7 +46,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpPost]
-        public IApiResult Load(GetBanks operation)
+        public IApiResult Load(GetCountries operation)
         {
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
@@ -58,13 +55,13 @@ namespace API.Controllers.Organizations
             }
             else
             {
-                return new ApiResult<List<Bank>>() { Status = ApiResult<List<Bank>>.ApiStatus.Success, Data = (List<Bank>)result };
+                return new ApiResult<List<Country>>() { Status = ApiResult<List<Country>>.ApiStatus.Success, Data = (List<Country>)result };
             }
         }
 
         [Route("Delete")]
         [HttpPost]
-        public IApiResult Delete(DeleteBank operation)
+        public IApiResult Delete(DeleteCountry operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)

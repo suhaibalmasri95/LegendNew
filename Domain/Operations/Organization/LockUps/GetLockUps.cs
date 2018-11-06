@@ -4,6 +4,7 @@ using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 
 using System.Threading.Tasks;
@@ -24,5 +25,6 @@ namespace Domain.Operations.Organization.LockUps
             dyParam.Add(LockUpSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
             return await QueryExecuter.ExecuteQueryAsync<Lockup>(LockUpSPName.SP_LOAD_LOCKUPS, dyParam);
         }
+
     }
 }
