@@ -51,30 +51,30 @@ namespace Legend
                 app.UseHsts();
             }
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-          Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Flags")),
-                RequestPath = "/Flags"
-            });
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-       Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Documents")),
-                RequestPath = "/wwwroot/Documents"
-            });
-            app.UseDirectoryBrowser(new DirectoryBrowserOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-         Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Flags")),
-                RequestPath = "/Flags"
-            });
-            app.UseDirectoryBrowser(new DirectoryBrowserOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-      Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Documents")),
-                RequestPath = "/wwwroot/Documents"
-            });
+          //  app.UseStaticFiles(new StaticFileOptions
+          //  {
+          //      FileProvider = new PhysicalFileProvider(
+          //Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Flags")),
+          //      RequestPath = "/Flags"
+          //  });
+       //     app.UseStaticFiles(new StaticFileOptions
+       //     {
+       //         FileProvider = new PhysicalFileProvider(
+       //Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Documents")),
+       //         RequestPath = "/wwwroot/Documents"
+       //     });
+      //      app.UseDirectoryBrowser(new DirectoryBrowserOptions
+      //      {
+      //          FileProvider = new PhysicalFileProvider(
+      //   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Flags")),
+      //          RequestPath = "/Flags"
+      //      });
+      //      app.UseDirectoryBrowser(new DirectoryBrowserOptions
+      //      {
+      //          FileProvider = new PhysicalFileProvider(
+      //Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Documents")),
+      //          RequestPath = "/wwwroot/Documents"
+      //      });
             app.UseCors(x => x.WithOrigins("http://localhost:4200")
                .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthentication();
