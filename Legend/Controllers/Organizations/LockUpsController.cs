@@ -52,6 +52,10 @@ namespace API.Controllers.Organizations
         public IApiResult LoadLockUpStatus(GetLockUps operation)
         {
             operation.MajorCode = 1;
+            operation.LangID = 1;
+            operation.MinorCode = null;
+            operation.ID = null;
+            operation.LockUpID = null;
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {

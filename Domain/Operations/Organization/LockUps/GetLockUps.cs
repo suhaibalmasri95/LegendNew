@@ -26,5 +26,6 @@ namespace Domain.Operations.Organization.LockUps
             return await QueryExecuter.ExecuteQueryAsync<Lockup>(LockUpSPName.SP_LOAD_LOCKUPS, dyParam);
         }
 
+
     }
 }

@@ -22,9 +22,9 @@ namespace Domain.Organization.Entities
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
         [DBFiledName("MAJOR_CODE")]
-        public long MajorCode { get; set; }
+        public long? MajorCode { get; set; }
         [DBFiledName("MINOR_CODE")]
-        public long MinorCode { get; set; }
+        public long? MinorCode { get; set; }
         [DBFiledName("ST_LOCKUP_ID")]
         public long? LockUpID { get; set; }
         [DBFiledName("CREATED_BY")]
