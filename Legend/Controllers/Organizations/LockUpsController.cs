@@ -48,8 +48,8 @@ namespace API.Controllers.Organizations
         }
 
         [Route("Load")]
-        [HttpPost]
-        public IApiResult LoadLockUpStatus(GetLockUps operation)
+        [HttpGet]
+        public IApiResult LoadLockUpStatus([FromBody]GetLockUps operation)
         {
             operation.MajorCode = 1;
             operation.LangID = 1;

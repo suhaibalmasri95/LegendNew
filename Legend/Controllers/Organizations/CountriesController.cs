@@ -45,8 +45,8 @@ namespace API.Controllers.Organizations
         }
 
         [Route("Load")]
-        [HttpPost]
-        public IApiResult Load(GetCountries operation)
+        [HttpGet]
+        public IApiResult Load([FromBody]GetCountries operation)
         {
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
