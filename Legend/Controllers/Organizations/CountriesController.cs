@@ -12,7 +12,7 @@ namespace API.Controllers.Organizations
     [Route("api/[controller]")]
     [ApiController]
     [ExceptionsHandling]
-    public class CounrtiesController : ControllerBase
+    public class CountriesController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]

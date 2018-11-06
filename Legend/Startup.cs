@@ -54,7 +54,7 @@ namespace Legend
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-          Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Flags")),
+          Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images")),
                 RequestPath = "/Flags"
             });
             app.UseStaticFiles(new StaticFileOptions
@@ -66,7 +66,7 @@ namespace Legend
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
                 FileProvider = new PhysicalFileProvider(
-         Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Flags")),
+         Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images")),
                 RequestPath = "/Flags"
             });
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
