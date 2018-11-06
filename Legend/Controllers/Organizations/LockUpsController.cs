@@ -49,8 +49,9 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpPost]
-        public IApiResult Load(GetLockUps operation)
+        public IApiResult LoadLockUpStatus(GetLockUps operation)
         {
+            operation.MajorCode = 1;
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
@@ -58,7 +59,48 @@ namespace API.Controllers.Organizations
             }
             else
             {
-                return new ApiResult<List<Lockup>>() { Status = ApiResult<List<Lockup>>.ApiStatus.Success, Data = (List<Lockup>)result };
+                var ReturnResult = (List<Lockup>)result;
+                ReturnResult.RemoveAt(0);
+                return new ApiResult<List<Lockup>>() { Status = ApiResult<List<Lockup>>.ApiStatus.Success, Data = ReturnResult };
+            }
+        }
+        [Route("LoadLockUps")]
+        [HttpPost]
+        public IApiResult LoadLockUps(GetLockUps operation)
+        {
+           
+            var result = operation.Query().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+              
+                return new ApiResult<List<Lockup>>() { Status = ApiResult<List<Lockup>>.ApiStatus.Success, Data = (List<Lockup>)result};
+            }
+        }
+        [Route("LoadLockUpsMinorCode")]
+        [HttpPost]
+        public IApiResult LoadLockUpsMinorCode(GetLockUps operation)
+        {
+
+            var result = operation.Query().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                var ReturnResult = (List<Lockup>)result;
+                List<Lockup> ReturnedLockups = new List<Lockup>();
+                foreach (var item in ReturnResult)
+                {
+                    if (item.MinorCode != 0)
+                        ReturnedLockups.Add(item);
+                }
+
+                return new ApiResult<List<Lockup>>() { Status = ApiResult<List<Lockup>>.ApiStatus.Success, Data = ReturnedLockups };
             }
         }
 
