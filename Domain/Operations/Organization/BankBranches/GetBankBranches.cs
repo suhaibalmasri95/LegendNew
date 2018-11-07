@@ -12,7 +12,7 @@ namespace Domain.Operations.Organization.BankBranches
 {
     public class GetBankBranches : BankBranch, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var dyParam = new OracleDynamicParameters();
             

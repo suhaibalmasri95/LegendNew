@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.UserGroups
 {
    public  class GetUserGroups : UserGroup, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var dyParam = new OracleDynamicParameters();
 
