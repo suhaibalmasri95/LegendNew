@@ -67,7 +67,7 @@ namespace API.Controllers.Organizations
             else
             {
                 var ReturnResult = (List<Lockup>)result;
-                ReturnResult.RemoveAt(0);
+              
                 return Ok(ReturnResult);
             }
         }
