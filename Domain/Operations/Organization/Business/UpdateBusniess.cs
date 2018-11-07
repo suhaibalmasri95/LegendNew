@@ -3,11 +3,14 @@ using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.Organization;
 using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Operations.Organization.Business
 {
-    public class CreateBusines : BusinesLine, ICreate
+    public class UpdateBusniess : BusinesLine, IUpdate
     {
         public async Task<IDTO> Execute()
         {
@@ -24,7 +27,7 @@ namespace Domain.Operations.Organization.Business
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<CreateBusines>
+        public class Validation : AbstractValidator<UpdateBusniess>
         {
             public Validation()
             {
