@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.Reports
 {
     public class GetReport : Report, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var @params = new OracleDynamicParameters();
 

@@ -57,7 +57,7 @@ namespace API.Controllers.Organizations
                 operation.LangID = languageID;
             else
                 operation.LangID = 1;
-            var result = operation.Query().Result;
+            var result = operation.QueryAsync().Result;
             if (result is ValidationsOutput)
             {
                 return Ok( new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });

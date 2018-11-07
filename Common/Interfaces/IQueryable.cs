@@ -8,6 +8,6 @@ namespace Common.Interfaces
 {
     public interface IQueryable
     {
-        Task<IEnumerable> Query();
+        Task<IEnumerable> QueryAsync();
     }
 }

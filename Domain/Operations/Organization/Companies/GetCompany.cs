@@ -12,7 +12,7 @@ namespace Domain.Operations.Organization.Companies
 {
     public class GetCompany : Company, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var dyParam = new OracleDynamicParameters();
             

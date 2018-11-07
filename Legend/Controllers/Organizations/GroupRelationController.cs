@@ -1,25 +1,24 @@
-﻿using Common.Controllers;
-using Common.Interfaces;
-using Common.Validations;
-using Domain.Operations.Organization.Cities;
-using Domain.Organization.Entities;
-using Infrastructure.Attributes;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Controllers;
+using Common.Interfaces;
+using Common.Validations;
+using Domain.Entities.Organization;
+using Domain.Operations.Organization.GroupRelations;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Organizations
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ExceptionsHandling]
-    public class CitiesController : ControllerBase
+    public class GroupRelationController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]
-        public IApiResult Create(CreateCity operation)
+        public IApiResult Create(CreateGroupRelation operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -34,7 +33,7 @@ namespace API.Controllers.Organizations
 
         [Route("Update")]
         [HttpPost]
-        public IApiResult Update(UpdateCity operation)
+        public IApiResult Update(UpdateGroupRelation operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -49,11 +48,12 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? cityId, long? countryId, long? langId)
+        public IActionResult Load(Int64 ID ,Int64? groupID, Int64? langId)
         {
-            GetCities operation = new GetCities();
-            operation.ID = cityId;
-            operation.CountryID = countryId;
+
+            GetGroupRelation operation = new GetGroupRelation();
+
+            operation.ID = groupID;
 
             if (langId.HasValue)
                 operation.LangID = langId;
@@ -67,13 +67,14 @@ namespace API.Controllers.Organizations
             }
             else
             {
-                return Ok( (List<City>)result);
+                return Ok((List<GroupRelation>)result);
             }
+
         }
 
         [Route("Delete")]
         [HttpPost]
-        public IApiResult Delete(DeleteCity operation)
+        public IApiResult Delete(DeleteGroupRelation operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)

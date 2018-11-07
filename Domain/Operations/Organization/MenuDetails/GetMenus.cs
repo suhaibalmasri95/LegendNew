@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.MenuDetails
 {
     public class GetMenus : Menu, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var dyParam = new OracleDynamicParameters();
             dyParam.Add(MenuSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ID ?? DBNull.Value);

@@ -48,7 +48,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Load(GetReport operation)
         {
-            var result = operation.Query().Result;
+            var result = operation.QueryAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };

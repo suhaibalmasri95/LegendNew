@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.LockUps
 {
     public class GetLockUps : Lockup, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var dyParam = new OracleDynamicParameters();
 

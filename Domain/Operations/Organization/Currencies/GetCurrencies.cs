@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.Currencies
 {
     public class GetCurrencies : Currency, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var dyParam = new OracleDynamicParameters();
             dyParam.Add(CurrencySpParams.PARAMETER_CURRENCY_CODE, OracleDbType.Int64, ParameterDirection.Input, (object)this.Code ?? DBNull.Value);

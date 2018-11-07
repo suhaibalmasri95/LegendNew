@@ -12,7 +12,7 @@ namespace Domain.Operations.Organization.Areas
 {
     public class GetAreas : Area, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var dyParam = new OracleDynamicParameters();
             dyParam.Add(AreaSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ID ?? DBNull.Value);
