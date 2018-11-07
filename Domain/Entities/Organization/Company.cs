@@ -24,21 +24,21 @@ namespace Domain.Organization.Entities
         [DBFiledName("ContactPerson")]
         public string ContactPerson { get; set; }
         [DBFiledName("PASS_MLENGHT")]
-        public int PasswordMinLength { get; set; }
+        public long PasswordMinLength { get; set; }
         [DBFiledName("PASS_MUPPER")]
-        public int PasswordMinUpperCase { get; set; }
+        public long PasswordMinUpperCase { get; set; }
         [DBFiledName("PASS_MLOWER")]
-        public int PasswordMinLowerCase { get; set; }
+        public long PasswordMinLowerCase { get; set; }
         [DBFiledName("PASS_MDIGITS")]
-        public int PasswordMinNumbers { get; set; }
+        public long PasswordMinNumbers { get; set; }
         [DBFiledName("PASS_MSPECIAL")]
-        public int PasswordMinSpecialCharacters { get; set; }
+        public long PasswordMinSpecialCharacters { get; set; }
         [DBFiledName("PASS_EXPIRY_PERIOD")]
-        public int PasswordExpiryDays { get; set; }
+        public long PasswordExpiryDays { get; set; }
         [DBFiledName("PASS_LOGATTEMPTS")]
-        public int PasswordFailedLoginAttempts { get; set; }
+        public long PasswordFailedLoginAttempts { get; set; }
         [DBFiledName("PASS_REPEAT")]
-        public int PasswordRepeats { get; set; }
+        public long PasswordRepeats { get; set; }
         [DBFiledName("LOGO")]
         public string Logo { get; set; }
 
