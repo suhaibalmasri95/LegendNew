@@ -49,7 +49,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult Load(long? cityId, long? countryId, long? langId)
+        public IActionResult Load(long? cityId, long? countryId, long? langId)
         {
             GetCities operation = new GetCities();
             operation.ID = cityId;
@@ -63,11 +63,11 @@ namespace API.Controllers.Organizations
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return new ApiResult<List<City>>() { Status = ApiResult<List<City>>.ApiStatus.Success, Data = (List<City>)result };
+                return Ok( (List<City>)result);
             }
         }
 

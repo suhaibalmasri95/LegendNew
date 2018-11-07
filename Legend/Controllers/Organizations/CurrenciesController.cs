@@ -49,7 +49,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult Load(string CurrencyCode, Int64? langId = 1)
+        public IActionResult Load(string CurrencyCode, Int64? langId = 1)
         {
             GetCurrencies operation = new GetCurrencies();
             operation.Code = CurrencyCode;
@@ -60,11 +60,11 @@ namespace API.Controllers.Organizations
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return new ApiResult<List<Currency>>() { Status = ApiResult<List<Currency>>.ApiStatus.Success, Data = (List<Currency>)result };
+                return Ok( (List<Currency>)result);
             }
         }
 

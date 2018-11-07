@@ -49,7 +49,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult Load(long? ID, long? BankId, long? languageID = 1)
+        public IActionResult Load(long? ID, long? BankId, long? languageID = 1)
         {
             GetBankBranches operation = new GetBankBranches();
             operation.ID = ID;
@@ -62,11 +62,11 @@ namespace API.Controllers.Organizations
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok( new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return new ApiResult<List<BankBranch>>() { Status = ApiResult<List<BankBranch>>.ApiStatus.Success, Data = (List<BankBranch>)result };
+                return Ok(new ApiResult<List<BankBranch>>() { Status = ApiResult<List<BankBranch>>.ApiStatus.Success, Data = (List<BankBranch>)result });
             }
         }
 

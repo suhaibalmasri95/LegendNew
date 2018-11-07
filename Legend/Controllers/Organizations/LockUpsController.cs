@@ -49,7 +49,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult LoadLockUpStatus(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID)
+        public IActionResult LoadLockUpStatus(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID)
         {
             GetLockUps operation = new GetLockUps();
             operation.MajorCode = MajorCode;
@@ -62,18 +62,18 @@ namespace API.Controllers.Organizations
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
                 var ReturnResult = (List<Lockup>)result;
                 ReturnResult.RemoveAt(0);
-                return new ApiResult<List<Lockup>>() { Status = ApiResult<List<Lockup>>.ApiStatus.Success, Data = ReturnResult };
+                return Ok(ReturnResult);
             }
         }
         [Route("LoadLockUps")]
         [HttpGet]
-        public IApiResult LoadLockUps(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID = 1)
+        public IActionResult LoadLockUps(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID = 1)
         {
             GetLockUps operation = new GetLockUps();
             operation.ID = ID;
@@ -88,17 +88,17 @@ namespace API.Controllers.Organizations
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok( new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
               
-                return new ApiResult<List<Lockup>>() { Status = ApiResult<List<Lockup>>.ApiStatus.Success, Data = (List<Lockup>)result};
+                return Ok((List<Lockup>)result);
             }
         }
         [Route("LoadLockUpsMinorCode")]
         [HttpGet]
-        public IApiResult LoadLockUpsMinorCode(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID)
+        public IActionResult LoadLockUpsMinorCode(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID)
         {
             GetLockUps operation = new GetLockUps();
             operation.ID = ID;
@@ -113,7 +113,7 @@ namespace API.Controllers.Organizations
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
@@ -125,7 +125,7 @@ namespace API.Controllers.Organizations
                         ReturnedLockups.Add(item);
                 }
 
-                return new ApiResult<List<Lockup>>() { Status = ApiResult<List<Lockup>>.ApiStatus.Success, Data = ReturnedLockups };
+                return Ok( ReturnedLockups);
             }
         }
 

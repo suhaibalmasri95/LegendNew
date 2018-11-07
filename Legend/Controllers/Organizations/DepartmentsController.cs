@@ -46,7 +46,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult Load(long? ID, long? CompanyId, long? languageID = 1)
+        public IActionResult Load(long? ID, long? CompanyId, long? languageID = 1)
         {
             GetDepartment operation = new GetDepartment();
             operation.ID = ID;
@@ -58,11 +58,11 @@ namespace API.Controllers.Organizations
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return new ApiResult<List<Department>>() { Status = ApiResult<List<Department>>.ApiStatus.Success, Data = (List<Department>)result };
+                return Ok( (List<Department>)result);
             }
         }
 

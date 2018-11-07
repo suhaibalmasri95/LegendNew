@@ -47,7 +47,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult Load(Int64? countryId, Int64? langId)
+        public IActionResult Load(Int64? countryId, Int64? langId)
         {
           
             GetCountries operation = new GetCountries();
@@ -60,11 +60,11 @@ namespace API.Controllers.Organizations
             var result = operation.Query().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return new ApiResult<List<Country>>() { Status = ApiResult<List<Country>>.ApiStatus.Success, Data = (List<Country>)result };
+                return Ok((List<Country>)result);
             }
         }
 
