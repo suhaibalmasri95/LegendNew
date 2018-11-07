@@ -66,7 +66,7 @@ namespace API.Controllers.Organizations
             }
             else
             {
-                return Ok(new ApiResult<List<BankBranch>>() { Status = ApiResult<List<BankBranch>>.ApiStatus.Success, Data = (List<BankBranch>)result });
+                return Ok((List<BankBranch>)result);
             }
         }
 
