@@ -15,7 +15,7 @@ namespace API.Controllers
     {
 
         [HttpPost]
-        [Route("AddCountryFlag")]
+        [Route("AddImages")]
         public async Task<IActionResult> AddImages([FromForm] Photo image)
         {
 
