@@ -73,7 +73,7 @@ namespace API.Controllers.Organizations
         }
         [Route("LoadLockUps")]
         [HttpGet]
-        public IApiResult LoadLockUpsLoadLockUps(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID = 1)
+        public IApiResult LoadLockUps(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID = 1)
         {
             GetLockUps operation = new GetLockUps();
             operation.ID = ID;
