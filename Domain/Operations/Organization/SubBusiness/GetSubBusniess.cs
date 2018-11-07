@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.SubBusiness
 {
     public class GetSubBusniess : SubLineOfBusnies, IQueryable
     {
-        public async Task<IEnumerable> Query()
+        public async Task<IEnumerable> QueryAsync()
         {
             var parameters = new OracleDynamicParameters();
             parameters.Add(SubBusniesSpParams.PARAMETER_ID, OracleDbType.Decimal, ParameterDirection.Input, (object)ID ?? DBNull.Value);
