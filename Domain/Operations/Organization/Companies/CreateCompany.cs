@@ -48,7 +48,7 @@ namespace Domain.Operations.Organization.Companies
                 RuleFor(company => company.Address2).MaximumLength(30);
                 RuleFor(company => company.ContactPerson).MaximumLength(30);
                 RuleFor(company => company.Code).MaximumLength(30);
-                RuleFor(company => company.Logo).MaximumLength(30);
+             
             
             }
         }
