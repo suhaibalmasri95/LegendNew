@@ -2,7 +2,7 @@
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Operations.Organization.Counrties;
-using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 using Infrastructure.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using System;

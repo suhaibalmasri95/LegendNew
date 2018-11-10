@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
-using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 
 namespace Domain.Operations.Organization.Departments
 {

@@ -6,7 +6,7 @@ using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Operations.Organization.Users;
-using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,6 +50,9 @@ namespace API.Controllers.Organizations
         [HttpGet]
         public IActionResult Load(Int64? userID, Int64? langId)
         {
+
+
+
 
             GetUsers operation = new GetUsers();
             operation.ID = userID;

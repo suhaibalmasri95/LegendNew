@@ -1,7 +1,7 @@
 ﻿using Common.Interfaces;
 using Domain.Entities.Organization;
 using Domain.Operations.Organization.UserGroups;
-using Domain.Organization.Entities;
+
 using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 using System;

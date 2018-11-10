@@ -1,7 +1,7 @@
 ﻿using Common.Extensions;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Domain.Operations.Organization.Users
                 return validationResult;
             }
 
-            return await DBUserSetup.AddUpdateMode(this);
+            return await DBUserSetup.AddMode(this);
         }
 
         public IDTO Validate()

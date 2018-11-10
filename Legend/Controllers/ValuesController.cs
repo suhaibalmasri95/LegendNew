@@ -9,7 +9,7 @@ using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Operations.Organization.Counrties;
-using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Legend.Controllers

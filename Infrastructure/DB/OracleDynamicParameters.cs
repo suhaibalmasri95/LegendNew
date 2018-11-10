@@ -56,18 +56,14 @@ namespace Infrastructure.DB
             }
         }
 
-        public T Get<T>(int index)
+        public Int64 Get(int index)
         {
-            var val = oracleParameters[index].Value;
-            if (val == DBNull.Value)
+            string val = oracleParameters[index].Value.ToString();
+            if (string.IsNullOrEmpty(val))
             {
-                if (default(T) != null)
-                {
-                    throw new ApplicationException("Attempting to cast a DBNull to a non nullable type!");
-                }
-                return default(T);
+                return 0;
             }
-            return (T)val;
+            return Int64.Parse(val);
         }
     }
 }

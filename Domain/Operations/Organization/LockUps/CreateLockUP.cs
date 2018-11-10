@@ -7,7 +7,7 @@ using System.Text;
 using Common.Extensions;
 using Common.Validations;
 using System.Threading.Tasks;
-using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 
 namespace Domain.Operations.Organization.LockUps
 {

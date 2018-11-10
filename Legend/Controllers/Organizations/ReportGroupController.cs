@@ -5,7 +5,7 @@ using Domain.Entities.Organization;
 using Domain.Operations.Organization.Areas;
 using Domain.Operations.Organization.MenuDetails;
 using Domain.Operations.Organization.ReportGroups;
-using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 using Infrastructure.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

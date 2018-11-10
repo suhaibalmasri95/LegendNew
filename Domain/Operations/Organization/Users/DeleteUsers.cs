@@ -1,7 +1,7 @@
 ﻿using Common.Extensions;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Organization.Entities;
+using Domain.Entities.Organization;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

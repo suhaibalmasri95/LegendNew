@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Organization.Entities
+namespace Domain.Entities.Organization
 {
     public class User: IEntity
     {
@@ -13,6 +13,8 @@ namespace Domain.Organization.Entities
         public User ()
         {
             StatusDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            UserRelations = new List<UserGroup>();
         }
 
         [DBFiledName("ID")]
@@ -23,17 +25,14 @@ namespace Domain.Organization.Entities
         public string Name2 { get; set; }
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
-
         [DBFiledName("USERNAME")]
         public string UserName { get; set; }
-
         [DBFiledName("EFF_DATE")]
         public DateTime EffectiveDate { get; set; }
         [DBFiledName("EXPIRY_DATE")]
         public DateTime ExpiryDate { get; set; }
         [DBFiledName("LOCK_STATUS")]
         public long Status { get; set; }
-
         [DBFiledName("STATUS_DATE")]
         public DateTime StatusDate { get; set; }
         [DBFiledName("PASSWORD")]
@@ -41,9 +40,9 @@ namespace Domain.Organization.Entities
         [DBFiledName("EMAIL")]
         public string Email { get; set; }
         [DBFiledName("ST_COM_ID")]
-        public string CompanyID { get; set; }
+        public long CompanyID { get; set; }
 
-   
+        [DBFiledName("UserRelations")]
         public List<UserGroup> UserRelations { get; set; }
 
         [DBFiledName("BIRTH_DATE")]
