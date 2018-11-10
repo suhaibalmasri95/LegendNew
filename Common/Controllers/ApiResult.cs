@@ -10,11 +10,19 @@ namespace Common.Controllers
 
         public ApiStatus Status;
         public DataType Data;
+        public ApiMessage ErrorMessageEn;
 
         public enum ApiStatus
         {
             Failed,
             Success
+        }
+
+        public enum ApiMessage
+        {
+            notExist,
+            exist,
+           
         }
     }
 }

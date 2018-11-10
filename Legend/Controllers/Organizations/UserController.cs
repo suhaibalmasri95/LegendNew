@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Operations.Organization.Users;
 using Domain.Entities.Organization;
+using Domain.Operations.Organization.Users;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +20,21 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Create(CreateUser operation)
         {
+            //check if userName and email exist 
+            GetUsers loadUser = new GetUsers();
+            
+            loadUser.LangID = 1;
+
+            var loadUserResult = loadUser.QueryAsync().Result;
+            List<User> users = (List<User>)loadUserResult;
+            bool emailExist = users.Exists(user => user.Email == operation.Email);
+            if (emailExist)
+                return new ApiResult<object>() { ErrorMessageEn = ApiResult<object>.ApiMessage.exist };
+            bool userNameExist = users.Exists(user => user.UserName == operation.UserName);
+            if (userNameExist)
+                return new ApiResult<object>() { ErrorMessageEn = ApiResult<object>.ApiMessage.exist };
+
+
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
             {
@@ -35,6 +50,14 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Update(UpdateUser operation)
         {
+            GetUsers loadUser = new GetUsers();
+
+            loadUser.LangID = 1;
+            loadUser.ID = operation.ID;
+            var loadUserResult = loadUser.QueryAsync().Result;
+            List<User> users = (List<User>)loadUserResult;
+            if(users.Count > 0)
+            { 
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
             {
@@ -43,6 +66,12 @@ namespace API.Controllers.Organizations
             else
             {
                 return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+
+            }
+            }
+            else
+            {
+                return new ApiResult<object>() { ErrorMessageEn = ApiResult<object>.ApiMessage.notExist };
             }
         }
 
@@ -50,9 +79,6 @@ namespace API.Controllers.Organizations
         [HttpGet]
         public IActionResult Load(Int64? userID, Int64? langId)
         {
-
-
-
 
             GetUsers operation = new GetUsers();
             operation.ID = userID;
