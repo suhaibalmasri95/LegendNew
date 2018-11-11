@@ -1,16 +1,13 @@
 ﻿using Common.Extensions;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Entities.Organization;
+using Domain.Entities.Setup;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Organization.SubBusiness
+namespace Domain.Operations.Setup.SubBusiness
 {
-    public class UpdateSubBusniess : SubLineOfBusnies, IUpdate
+    public class CreateSubBusines : SubLineOfBusnies, ICreate
     {
         public async Task<IDTO> Execute()
         {
@@ -27,7 +24,7 @@ namespace Domain.Operations.Organization.SubBusiness
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<UpdateSubBusniess>
+        public class Validation : AbstractValidator<CreateSubBusines>
         {
             public Validation()
             {

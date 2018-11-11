@@ -1,6 +1,5 @@
 ﻿using Common.Interfaces;
-using Domain.Entities.Organization;
-using Domain.Entities.Organization;
+using Domain.Entities.Setup;
 using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 using System;
@@ -9,7 +8,7 @@ using System.Data;
 
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Organization.Business
+namespace Domain.Operations.Setup.Business
 {
     public class GetBusniess : BusinesLine, IQueryable
     {

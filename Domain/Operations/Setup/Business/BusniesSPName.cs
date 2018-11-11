@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Operations.Organization.Business
+namespace Domain.Operations.Setup.Business
 {
     public class BusniesSPName
     {

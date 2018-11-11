@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Entities.Organization
+namespace Domain.Entities.Setup
 {
     public class SubLineOfBusnies : IEntity
     {

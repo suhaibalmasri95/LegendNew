@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Operations.Organization.SubBusiness
+namespace Domain.Operations.Setup.SubBusiness
 {
     public class SubBusniesSPName
     {

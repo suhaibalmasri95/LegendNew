@@ -1,13 +1,13 @@
 ﻿using Common.Extensions;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Entities.Organization;
+using Domain.Entities.Setup;
 using FluentValidation;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Organization.SubBusiness
+namespace Domain.Operations.Setup.Business
 {
-    public class CreateSubBusines : SubLineOfBusnies, ICreate
+    public class CreateBusines : BusinesLine, ICreate
     {
         public async Task<IDTO> Execute()
         {
@@ -16,7 +16,7 @@ namespace Domain.Operations.Organization.SubBusiness
             {
                 return validationResult;
             }
-            return await DBSubBusniesSetup.AddUpdateMode(this);
+            return await DBBusniesSetup.AddUpdateMode(this);
         }
 
         public IDTO Validate()
@@ -24,7 +24,7 @@ namespace Domain.Operations.Organization.SubBusiness
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<CreateSubBusines>
+        public class Validation : AbstractValidator<CreateBusines>
         {
             public Validation()
             {
@@ -32,6 +32,7 @@ namespace Domain.Operations.Organization.SubBusiness
                 RuleFor(area => area.Name).MaximumLength(500);
                 RuleFor(area => area.Name2).MaximumLength(500);
                 RuleFor(area => area.Code).NotNull();
+                RuleFor(area => area.Module).NotNull();
                 RuleFor(area => area.LangID).NotNull();
             }
         }

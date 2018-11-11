@@ -1,6 +1,6 @@
 ﻿using Common.Interfaces;
 using Common.Operations;
-using Domain.Entities.Organization;
+using Domain.Entities.Setup;
 using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 using System;
@@ -9,7 +9,7 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Organization.Business
+namespace Domain.Operations.Setup.Business
 {
     public static class DBBusniesSetup
     {

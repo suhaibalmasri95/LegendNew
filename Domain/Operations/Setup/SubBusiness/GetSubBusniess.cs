@@ -1,5 +1,5 @@
 ﻿using Common.Interfaces;
-using Domain.Entities.Organization;
+using Domain.Entities.Setup;
 
 using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
@@ -9,7 +9,7 @@ using System.Data;
 
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Organization.SubBusiness
+namespace Domain.Operations.Setup.SubBusiness
 {
     public class GetSubBusniess : SubLineOfBusnies, IQueryable
     {
