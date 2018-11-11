@@ -8,10 +8,7 @@ namespace Domain.Entities.Organization
 {
     public class City : Country
     {
-
-
         [DBFiledName("ST_CNT_ID")]
         public long? CountryID { get; set; }
-     
     }
 }

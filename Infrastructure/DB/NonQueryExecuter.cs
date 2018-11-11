@@ -33,5 +33,29 @@ namespace Infrastructure.DB
 
             return result;
         }
+        public static async Task<int> ExecuteNonQueryAsync(string sql)
+        {
+            int result = 0;
+            try
+            {
+                var connection = new DbConnection().GetConnection();
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                if (connection.State == ConnectionState.Open)
+                {
+                    result = await SqlMapper.ExecuteAsync(connection, sql);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
     }
 }

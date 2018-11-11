@@ -8,11 +8,14 @@ namespace Domain.Entities.Organization
 {
     public class Country : IEntity
     {
-        public Country() {
+        public Country()
+        {
             StatusDate = DateTime.Now;
-            }
+        }
+
+        [DBPrimaryKey]
         [DBFiledName("ID")]
-        public long? ID { get; set ; }
+        public long? ID { get; set; }
         [DBFiledName("NAME")]
         public string Name { get; set; }
         [DBFiledName("NAME2")]
@@ -33,7 +36,7 @@ namespace Domain.Entities.Organization
         public string PhoneCode { get; set; }
         [DBFiledName("FLAG")]
         public string Flag { get; set; }
-    
+
 
     }
 }
