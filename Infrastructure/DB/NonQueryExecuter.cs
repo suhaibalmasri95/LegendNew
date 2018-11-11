@@ -23,7 +23,7 @@ namespace Infrastructure.DB
                 if (connection.State == ConnectionState.Open)
                 {
                     result = await SqlMapper.ExecuteAsync(connection, SPName, param: Params, commandType: CommandType.StoredProcedure);
-
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -47,7 +47,7 @@ namespace Infrastructure.DB
                 if (connection.State == ConnectionState.Open)
                 {
                     result = await SqlMapper.ExecuteAsync(connection, sql);
-
+                    connection.Close();
                 }
             }
             catch (Exception ex)

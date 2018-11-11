@@ -25,6 +25,7 @@ namespace Infrastructure.DB
                 {
                     dataReader = await SqlMapper.ExecuteReaderAsync(connection, SPName, param: Params, commandType: CommandType.StoredProcedure);
                     result = dataReader.Map<DTO>();
+                    connection.Close();
                 }
             }
             catch (Exception ex)
