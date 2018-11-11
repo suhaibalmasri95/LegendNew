@@ -48,7 +48,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IApiResult Load(long? ID , long? Type, long? SubMenuID , long? LanguageID )
+        public IActionResult Load(long? ID , long? Type, long? SubMenuID , long? LanguageID )
         {
             GetMenus operation = new GetMenus();
             operation.ID = ID;
@@ -61,14 +61,17 @@ namespace API.Controllers.Organizations
                 operation.LangID = 1;
 
 
+
+
             var result = operation.QueryAsync().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return new ApiResult<List<Menu>>() { Status = ApiResult<List<Menu>>.ApiStatus.Success, Data = (List<Menu>)result };
+                return Ok((List<Menu>)result);
+             
             }
         }
 

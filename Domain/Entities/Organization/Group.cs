@@ -21,15 +21,15 @@ namespace Domain.Entities.Organization
         [DBFiledName("STATUS_DATE")]
         public DateTime StatusDate { get; set; }
         [DBFiledName("IS_PDF")]
-        public bool IsPdf { get; set; }
+        public Int64 IsPdf { get; set; }
         [DBFiledName("IS_WORD")]
-        public bool IsWord { get; set; }
+        public Int64 IsWord { get; set; }
         [DBFiledName("IS_RTF")]
-        public bool IsRef { get; set; }
+        public Int64 IsRef { get; set; }
         [DBFiledName("IS_EXCEL")]
-        public bool IsExcel { get; set; }
+        public Int64 IsExcel { get; set; }
         [DBFiledName("IS_EXCEL_RECORD")]
-        public bool IsExcelRecord { get; set; }
+        public Int64 IsExcelRecord { get; set; }
         [DBFiledName("EMAIL")]
         public string Email { get; set; }
     }
