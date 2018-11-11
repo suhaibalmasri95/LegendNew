@@ -10,6 +10,5 @@ namespace Domain.Entities.Other
         public MemoryStream Stream;
         public string ContentType;
         public string FileName;
-
     }
 }
