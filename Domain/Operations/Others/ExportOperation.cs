@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Domain.Operations.Others
 {
     public class ExportOperation
@@ -22,13 +23,13 @@ namespace Domain.Operations.Others
         public List<dynamic> items;
         public string Type;
         private string _contentType;
-        private MemoryStream _result;
+        private string _result;
         private string _fileName;
         private string _path;
         public ExportResult Execute()
         {
             setupMemoryStream();
-            return new ExportResult() { Stream = _result, ContentType = _contentType , FileName  = _fileName};
+            return new ExportResult() { file = _result};
         }
 
         void setupMemoryStream()
@@ -51,25 +52,26 @@ namespace Domain.Operations.Others
             var ienumerableObject = newList as IEnumerable<object>;
             var dataTable = ToDataTable(ienumerableObject.ToList());
             _fileName = Guid.NewGuid().ToString();
+            _fileName = (_fileName.Substring(0, _fileName.Length / 2) + DateTime.Now.Hour.ToString()).Replace('/','-');
             if (string.Equals(Type, "PDF"))
             {
                 _fileName = _fileName + ".pdf";
                
                 _result = AsPDFAsync(dataTable, _fileName);
-                _contentType = GetContentType(_path);
+            
             }
 
             if (string.Equals(Type, "CSV"))
             {
                 _fileName = _fileName + ".csv";
-                _contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                _result = AsCSV(ref dataTable);
+            
+                _result = AsCSV(ref dataTable, _fileName);
             }
 
             if (string.Equals(Type, "xlsx"))
             {
                 _fileName = _fileName + ".xlsx";
-                _contentType = "text/csv";
+             
                 _result = AsExcel(dataTable, _fileName);
             }
         }
@@ -100,7 +102,7 @@ namespace Domain.Operations.Others
             //put a breakpoint here and check datatable
             return dataTable;
         }
-        MemoryStream AsPDFAsync(DataTable dtblTable, string fileName)
+        string AsPDFAsync(DataTable dtblTable, string fileName)
         {
             var strPdfPath = Path.Combine(
             Directory.GetCurrentDirectory(), "wwwroot/Documents",
@@ -159,26 +161,31 @@ namespace Domain.Operations.Others
             document.Close();
             writer.Close();
             fs.Close();
-            _path = strPdfPath;
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(strPdfPath, FileMode.Open))
-            {
-                stream.CopyTo(memory);
-            }
-            memory.Position = 0;
-
-            return memory;
+           return  fileName;
+         
         }
-        MemoryStream AsExcel(DataTable dataTable, string fileName)
+        string AsExcel(DataTable dataTable, string fileName)
         {
-            ClosedXML.Excel.XLWorkbook wbook = new ClosedXML.Excel.XLWorkbook();
-            wbook.Worksheets.Add(dataTable, fileName);
-            var memoryStream = new MemoryStream();
-            wbook.SaveAs(memoryStream);
-            memoryStream.Position = 0;
-            return memoryStream;
+            using (ClosedXML.Excel.XLWorkbook wbook = new ClosedXML.Excel.XLWorkbook())
+            {
+                wbook.Worksheets.Add(dataTable, fileName);
+                var memoryStream = new MemoryStream();
+                wbook.SaveAs(memoryStream);
+
+                var strPdfPath = Path.Combine(
+              Directory.GetCurrentDirectory(), "wwwroot/Documents",
+              fileName);
+                var file = File.Create(strPdfPath);
+
+                memoryStream.Position = 0;
+                memoryStream.WriteTo(file);
+                memoryStream.Close();
+                file.Close();
+                return fileName;
+            }
+            
         }
-        MemoryStream AsCSV(ref DataTable dTable)
+        string AsCSV(ref DataTable dTable , string fileName)
         {
             StringBuilder sb = new StringBuilder();
             int intClmn = dTable.Columns.Count;
@@ -219,7 +226,15 @@ namespace Domain.Operations.Others
                 }
                 sb.Append(Environment.NewLine);
             }
-            return new MemoryStream(Encoding.UTF8.GetBytes(sb.ToString()));
+            var strPdfPath = Path.Combine(
+     Directory.GetCurrentDirectory(), "wwwroot/Documents",
+     fileName);
+            var file = File.Create(strPdfPath);
+            var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(sb.ToString()));
+            memoryStream.Position = 0;
+            memoryStream.WriteTo(file);
+            file.Close();
+            return fileName;
         }
          string GetContentType(string path)
         {

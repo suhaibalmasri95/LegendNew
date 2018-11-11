@@ -13,12 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ClosedXML">
-      <HintPath>..\References\ClosedXML.dll</HintPath>
-    </Reference>
-    <Reference Include="DocumentFormat.OpenXml">
-      <HintPath>..\References\DocumentFormat.OpenXml.dll</HintPath>
-    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\References\itextsharp.dll</HintPath>
     </Reference>

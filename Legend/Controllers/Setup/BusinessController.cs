@@ -2,7 +2,8 @@
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.Organization;
-using Domain.Operations.Organization.Business;
+using Domain.Entities.Setup;
+using Domain.Operations.Setup.Business;
 using Infrastructure.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Controllers.Organizations
+namespace API.Controllers.Setup
 {
     [Route("api/[controller]")]
     [ApiController]

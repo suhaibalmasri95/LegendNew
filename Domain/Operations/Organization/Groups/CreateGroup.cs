@@ -19,9 +19,7 @@ namespace Domain.Operations.Organization.Groups
             {
                 return validationResult;
             }
-
             return await DBGroupSetup.AddUpdateMode(this);
-
         }
 
         public IDTO Validate()

@@ -8,7 +8,7 @@ namespace Infrastructure.DB
 {
     public class MultiDeleteFormater
     {
-        private static string _deleteStatment = "Delete from {0} where {1} in {2}";
+        private static string _deleteStatment = "Delete from {0} where {1} in ({2})";
         public static string Format(Type type, long[] IDs)
         {
             var tableName = (type.GetCustomAttributes(typeof(DBTableName), false)[0] as DBTableName).Name;

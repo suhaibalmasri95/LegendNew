@@ -15,6 +15,7 @@ namespace Domain.Operations.Organization.Areas
 {
     public class DeleteAreas : Area, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -24,7 +25,7 @@ namespace Domain.Operations.Organization.Areas
             }
 
 
-            return await DBDeleteAreaSetup.DeleteAreaAsync(this);
+            return await DBDeleteAreaSetup.DeleteAreasAsync(IDs);
 
         }
 
@@ -37,7 +38,7 @@ namespace Domain.Operations.Organization.Areas
         {
             public Validation()
             {
-                RuleFor(area => area.ID).NotNull();
+                
               
             }
         }

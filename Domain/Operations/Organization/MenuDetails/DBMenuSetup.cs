@@ -35,10 +35,9 @@ namespace Domain.Operations.Organization.MenuDetails
 
             oracleParams.Add(MenuSpParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)menu.Name ?? DBNull.Value, 500);
             oracleParams.Add(MenuSpParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)menu.Name2 ?? DBNull.Value, 500);
-            oracleParams.Add(MenuSpParams.PARAMETER_MENU_TYPE, OracleDbType.Varchar2, ParameterDirection.Input, (object)menu.Type ?? DBNull.Value, 50);
-            oracleParams.Add(MenuSpParams.PARAMETER_MENU_ORDER, OracleDbType.Int64, ParameterDirection.Input, (object)menu.Order ?? DBNull.Value);
-            oracleParams.Add(MenuSpParams.PARAMETER_URL, OracleDbType.Int64, ParameterDirection.Input, (object)menu.Url ?? DBNull.Value);
-            oracleParams.Add(MenuSpParams.PARAMETER_MENU_ORDER, OracleDbType.Int64, ParameterDirection.Input, (object)menu.Order ?? DBNull.Value);
+            oracleParams.Add(MenuSpParams.PARAMETER_MENU_ORDER, OracleDbType.Int32, ParameterDirection.Input, (object)menu.Order ?? DBNull.Value);
+            oracleParams.Add(MenuSpParams.PARAMETER_MENU_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)menu.Type ?? DBNull.Value);
+            oracleParams.Add(MenuSpParams.PARAMETER_URL, OracleDbType.Varchar2, ParameterDirection.Input, (object)menu.Url ?? DBNull.Value,1000);
             oracleParams.Add(MenuSpParams.PARAMETER_ST_MENUE_ID, OracleDbType.Int64, ParameterDirection.Input, (object)menu.SubMenuID ?? DBNull.Value);
 
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)

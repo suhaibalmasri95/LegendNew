@@ -47,9 +47,20 @@ namespace API.Controllers.Organizations
         }
 
         [Route("Load")]
-        [HttpPost]
-        public IApiResult Load(GetMenus operation)
+        [HttpGet]
+        public IApiResult Load(long? ID , long? Type, long? SubMenuID , long? LanguageID )
         {
+            GetMenus operation = new GetMenus();
+            operation.ID = ID;
+            operation.SubMenuID = SubMenuID;
+            operation.Type = Type;
+
+            if (LanguageID.HasValue)
+                operation.LangID = LanguageID;
+            else
+                operation.LangID = 1;
+
+
             var result = operation.QueryAsync().Result;
             if (result is ValidationsOutput)
             {

@@ -8,7 +8,6 @@ using Common.Extensions;
 using Common.Validations;
 using System.Threading.Tasks;
 using Domain.Entities.Organization;
-using Domain.Entities.Organization;
 
 namespace Domain.Operations.Organization.MenuDetails
 {
@@ -33,9 +32,9 @@ namespace Domain.Operations.Organization.MenuDetails
         {
             public Validation()
             {
-                RuleFor(area => area.Name).NotEmpty();
-                RuleFor(area => area.Name).MaximumLength(500);
-                RuleFor(area => area.Name2).MaximumLength(500);
+                RuleFor(menu => menu.Name).NotEmpty();
+                RuleFor(menu => menu.Name).MaximumLength(500);
+                RuleFor(menu => menu.Name2).MaximumLength(500);
             }
         }
     }

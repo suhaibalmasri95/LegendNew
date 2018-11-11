@@ -7,7 +7,7 @@ namespace Domain.Entities.Other
 {
     public class ExportResult
     {
-        public MemoryStream Stream;
+        public string file;
         public string ContentType;
         public string FileName;
     }

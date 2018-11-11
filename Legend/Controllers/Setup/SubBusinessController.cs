@@ -6,11 +6,12 @@ using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.Organization;
-using Domain.Operations.Organization.SubBusiness;
+using Domain.Entities.Setup;
+using Domain.Operations.Setup.SubBusiness;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers.Organizations
+namespace API.Controllers.Setup
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -17,9 +17,9 @@ namespace Domain.Entities.Organization
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
         [DBFiledName("MENU_ORDER")]
-        public string Order { get; set; }
+        public long? Order { get; set; }
         [DBFiledName("MENU_TYPE")]
-        public string Type { get; set; }
+        public long? Type { get; set; }
         [DBFiledName("URL")]
         public string Url { get; set; }
         [DBFiledName("ST_MENUE_ID")]
