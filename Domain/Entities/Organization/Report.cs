@@ -17,10 +17,10 @@ namespace Domain.Entities.Organization
         [DBFiledName("")]
         public long? LangID { get; set; }
         [DBFiledName("REP_ORDER")]
-        public string Order { get; set; }
+        public long? Order { get; set; }
         [DBFiledName("CODE")]
         public string Code { get; set; }
-        [DBFiledName("")]
-        public string ReportGroupID { get; set; }
+        [DBFiledName("ST_REPG_ID")]
+        public long? ReportGroupID { get; set; }
     }
 }

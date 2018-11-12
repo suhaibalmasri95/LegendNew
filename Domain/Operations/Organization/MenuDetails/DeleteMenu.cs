@@ -11,7 +11,6 @@ using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 using Domain.Entities.Organization;
-using Domain.Entities.Organization;
 
 namespace Domain.Operations.Organization.MenuDetails
 {

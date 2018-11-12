@@ -23,7 +23,7 @@ namespace Domain.Operations.Organization.Reports
             if (report.ID.HasValue)
             {
                 oracleParams.Add(ReportSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)report.ID ?? DBNull.Value);
-                SPName = ReportSPName.SP_LOAD_Report;
+                SPName = ReportSPName.SP_UPADTE_Report;
                 message = "Updated Successfully";
             }
             else
@@ -32,12 +32,12 @@ namespace Domain.Operations.Organization.Reports
                 SPName = ReportSPName.SP_INSERT_Report;
                 message = "Inserted Successfully";
             }
-
+            oracleParams.Add(ReportSpParams.PARAMETER_CODE, OracleDbType.Varchar2, ParameterDirection.Input, (object)report.Code ?? DBNull.Value, 30);
             oracleParams.Add(ReportSpParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)report.Name ?? DBNull.Value, 500);
             oracleParams.Add(ReportSpParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)report.Name2 ?? DBNull.Value, 500);
-            oracleParams.Add(ReportSpParams.PARAMETER_ORDER_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)report.Order ?? DBNull.Value, 50);
-            oracleParams.Add(ReportSpParams.PARAMETER_CODE, OracleDbType.Varchar2, ParameterDirection.Input, (object)report.Code ?? DBNull.Value, 50);
-            oracleParams.Add(ReportSpParams.PARAMETER_GROUPID, OracleDbType.Varchar2, ParameterDirection.Input, (object)report.ReportGroupID ?? DBNull.Value, 50);
+            oracleParams.Add(ReportSpParams.PARAMETER_ORDER_BY, OracleDbType.Int64, ParameterDirection.Input, (object)report.Order ?? DBNull.Value);
+           
+            oracleParams.Add(ReportSpParams.PARAMETER_GROUPID, OracleDbType.Int64, ParameterDirection.Input, (object)report.ReportGroupID ?? DBNull.Value);
 
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)
                 complate.message = message;
