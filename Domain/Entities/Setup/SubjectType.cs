@@ -6,8 +6,8 @@ using System.Text;
 
 namespace Domain.Entities.Setup
 {
-    [DBTableName("ST_LOB")]
-    public class BusinesLine : IEntity
+    [DBTableName("ST_SUBJECT_TYPE")]
+    public class SubjectType : IEntity
     {
         [DBPrimaryKey]
         [DBFiledName("ID")]
@@ -18,23 +18,23 @@ namespace Domain.Entities.Setup
         public string Name2 { get; set; }
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
-        [DBFiledName("Code")]
-        public string Code { get; set; }
-        [DBFiledName("LOB_CODE")]
-        public string LineOfBusiness { get; set; }
-        [DBFiledName("LOC_MODULE")]
-        public string Module { get; set; }
-        [DBFiledName("STATUS_DATE")]
-        public DateTime StatusDate { get; set; }
-        [DBFiledName("LOC_STATUS")]
-        public DateTime Stastus { get; set; }
+        [DBFiledName("ST_LOB_ID")]
+        public long LineOfBusniessID;
+        [DBFiledName("ST_SUB_LOB_ID")]
+        public long SubLineOfBusniessID;
+        [DBFiledName("ST_SBT_ID")]
+        public string Parent;
+        [DBFiledName("EXCESS_PER")]
+        public int ExcessPercentage;
+        [DBFiledName("MIN_EXCESS_AMT")]
+        public int MinExcessAmount;
+        [DBFiledName("MAX_EXCESS_AMT")]
+        public int MaxExcessAmount;
         [DBFiledName("CREATED_BY")]
         public string CreatedBy { get; set; }
         [DBFiledName("CREATION_DATE")]
         public DateTime CreationDate { get; set; }
-        [DBFiledName("MODIFIED_BY")]
-        public DateTime ModifiedBy { get; set; }
-        [DBFiledName("MODIFICATION_DATE")]
-        public DateTime ModificationDate { get; set; }
+        [DBFiledName("EXCESS_FROM")]
+        public string From { get; set; }
     }
 }

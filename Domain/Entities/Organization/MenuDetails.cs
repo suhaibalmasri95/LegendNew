@@ -6,8 +6,10 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
+    [DBTableName("ST_MENUS")]
     public class Menu : IEntity
     {
+        [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
         [DBFiledName("NAME")]

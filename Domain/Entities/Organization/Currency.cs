@@ -6,8 +6,10 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
-   public class Currency : ILocalized
+    [DBTableName("ST_COUNTRIES")]
+    public class Currency : ILocalized
     {
+        [DBPrimaryKey]
         [DBFiledName("CODE")]
         public string Code { get; set; }
         [DBFiledName("NAME")]

@@ -1,22 +1,20 @@
 ﻿using Common.Interfaces;
-using Domain.Entities.Organization;
 using Infrastructure.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Entities.Organization
 {
-    public class User: IEntity
+    [DBTableName("ST_USERES")]
+    public class User : IEntity
     {
-
-        public User ()
+        public User()
         {
             StatusDate = DateTime.Now;
             CreationDate = DateTime.Now;
             UserRelations = new List<UserGroup>();
         }
-
+        [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
         [DBFiledName("NAME")]
@@ -41,10 +39,8 @@ namespace Domain.Entities.Organization
         public string Email { get; set; }
         [DBFiledName("ST_COM_ID")]
         public long CompanyID { get; set; }
-
         [DBFiledName("UserRelations")]
         public List<UserGroup> UserRelations { get; set; }
-
         [DBFiledName("BIRTH_DATE")]
         public DateTime BirthDate { get; set; }
         [DBFiledName("Picture")]

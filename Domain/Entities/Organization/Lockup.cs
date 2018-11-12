@@ -1,11 +1,10 @@
 ﻿using Common.Interfaces;
 using Infrastructure.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Entities.Organization
 {
+    [DBTableName("ST_LOCKUP")]
     public class Lockup : IEntity
     {
         public Lockup()
@@ -13,6 +12,7 @@ namespace Domain.Entities.Organization
             ModificationDate = DateTime.Now;
             CreationDate = DateTime.Now;
         }
+        [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
         [DBFiledName("NAME")]

@@ -6,9 +6,11 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
+    [DBTableName("ST_BANCK")]
     public class Bank : IEntity
     {
         [DBFiledName("ID")]
+        [DBPrimaryKey]
         public long? ID { get; set; }
         [DBFiledName("NAME")]
         public string Name { get; set; }

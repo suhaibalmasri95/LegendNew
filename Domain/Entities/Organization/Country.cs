@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
+    [DBTableName("ST_COUNTRIES")]
     public class Country : IEntity
     {
         public Country()
