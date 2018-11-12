@@ -7,9 +7,9 @@ using System.Text;
 namespace Domain.Entities.Setup
 {
     [DBTableName("ST_LOB")]
-    public class BusinesLine : IEntity
+    public class BusinessLine : IEntity
     {
-        public BusinesLine ()
+        public BusinessLine ()
         {
             StatusDate = DateTime.Now;
             CreationDate = DateTime.Now;
@@ -35,13 +35,13 @@ namespace Domain.Entities.Setup
         [DBFiledName("STATUS_DATE")]
         public DateTime StatusDate { get; set; }
         [DBFiledName("LOC_STATUS")]
-        public long? Stastus { get; set; }
+        public long Status { get; set; }
         [DBFiledName("CREATED_BY")]
         public string CreatedBy { get; set; }
         [DBFiledName("CREATION_DATE")]
         public DateTime CreationDate { get; set; }
         [DBFiledName("MODIFIED_BY")]
-        public DateTime ModifiedBy { get; set; }
+        public string ModifiedBy { get; set; }
         [DBFiledName("MODIFICATION_DATE")]
         public DateTime ModificationDate { get; set; }
     }

@@ -3,11 +3,14 @@ using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.Setup;
 using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Operations.Setup.Business
 {
-    public class CreateBusines : BusinesLine, ICreate
+    public class UpdateBusiness : BusinessLine, IUpdate
     {
         public async Task<IDTO> Execute()
         {
@@ -16,7 +19,7 @@ namespace Domain.Operations.Setup.Business
             {
                 return validationResult;
             }
-            return await DBBusniesSetup.AddUpdateMode(this);
+            return await DBBusinessSetup.AddUpdateMode(this);
         }
 
         public IDTO Validate()
@@ -24,7 +27,7 @@ namespace Domain.Operations.Setup.Business
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<CreateBusines>
+        public class Validation : AbstractValidator<UpdateBusiness>
         {
             public Validation()
             {

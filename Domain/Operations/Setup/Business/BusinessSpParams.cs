@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Operations.Setup.Business
 {
-    public class BusniesSpParams
+    public class BusinessSpParams
     {
         public const string PARAMETER_ID = "IN_ID";
         public const string PARAMETER_NAME = "IN_NAME";

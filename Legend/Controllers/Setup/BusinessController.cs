@@ -1,15 +1,15 @@
-﻿using Common.Controllers;
-using Common.Interfaces;
-using Common.Validations;
-using Domain.Entities.Organization;
-using Domain.Entities.Setup;
-using Domain.Operations.Setup.Business;
-using Infrastructure.Attributes;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Controllers;
+using Common.Interfaces;
+using Common.Validations;
+using Domain.Entities.Setup;
+using Domain.Operations.Setup.Business;
+using Infrastructure.Attributes;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Setup
 {
@@ -20,7 +20,7 @@ namespace API.Controllers.Setup
     {
         [Route("Create")]
         [HttpPost]
-        public IApiResult Create(CreateBusines operation)
+        public IApiResult Create(CreateBusiness operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -35,7 +35,7 @@ namespace API.Controllers.Setup
 
         [Route("Update")]
         [HttpPost]
-        public IApiResult Update(UpdateBusniess operation)
+        public IApiResult Update(UpdateBusiness operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -69,7 +69,7 @@ namespace API.Controllers.Setup
             }
             else
             {
-                return Ok((List<BusinesLine>)result);
+                return Ok((List<BusinessLine>)result);
             }
         }
     }

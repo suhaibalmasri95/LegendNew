@@ -3,14 +3,11 @@ using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.Setup;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Operations.Setup.Business
 {
-    public class UpdateBusniess : BusinesLine, IUpdate
+    public class CreateBusiness : BusinessLine, ICreate
     {
         public async Task<IDTO> Execute()
         {
@@ -19,7 +16,7 @@ namespace Domain.Operations.Setup.Business
             {
                 return validationResult;
             }
-            return await DBBusniesSetup.AddUpdateMode(this);
+            return await DBBusinessSetup.AddUpdateMode(this);
         }
 
         public IDTO Validate()
@@ -27,7 +24,7 @@ namespace Domain.Operations.Setup.Business
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<UpdateBusniess>
+        public class Validation : AbstractValidator<CreateBusiness>
         {
             public Validation()
             {
@@ -36,7 +33,7 @@ namespace Domain.Operations.Setup.Business
                 RuleFor(area => area.Name2).MaximumLength(500);
                 RuleFor(area => area.Code).NotNull();
                 RuleFor(area => area.Module).NotNull();
-                RuleFor(area => area.LangID).NotNull();
+             
             }
         }
 
