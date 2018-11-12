@@ -4,7 +4,6 @@ using Common.Validations;
 using Domain.Entities.Organization;
 using Domain.Operations.Organization.Areas;
 using Domain.Operations.Organization.MenuDetails;
-using Domain.Entities.Organization;
 using Infrastructure.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -20,6 +19,8 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Create(CreateMenu operation)
         {
+            operation.Type = 1;
+            operation.SubMenuID = 1;
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
             {
@@ -35,6 +36,8 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Update(UpdateMenu operation)
         {
+            operation.Type = 1;
+            operation.SubMenuID = 1;
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
             {

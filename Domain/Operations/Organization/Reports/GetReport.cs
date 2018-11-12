@@ -17,9 +17,9 @@ namespace Domain.Operations.Organization.Reports
         {
             var @params = new OracleDynamicParameters();
 
-            @params.Add(ReportSpParams.PARAMETER_ID, OracleDbType.Decimal, ParameterDirection.Input, (object)ID ?? DBNull.Value);
-            @params.Add(ReportSpParams.PARAMETER_LANG, OracleDbType.Decimal, ParameterDirection.Input, (object)LangID ?? DBNull.Value);
-            @params.Add(ReportSpParams.PARAMETER_GROUPID, OracleDbType.Decimal, ParameterDirection.Input, (object)ReportGroupID ?? DBNull.Value);
+            @params.Add(ReportSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ID ?? DBNull.Value);
+            @params.Add(ReportSpParams.PARAMETER_GROUPID, OracleDbType.Int64, ParameterDirection.Input, (object)ReportGroupID ?? DBNull.Value);
+            @params.Add(ReportSpParams.PARAMETER_LANG, OracleDbType.Int64, ParameterDirection.Input, (object)LangID ?? DBNull.Value);
             @params.Add(ReportSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
             return await QueryExecuter.ExecuteQueryAsync<Report>(ReportSPName.SP_LOAD_Report, @params);
         }
