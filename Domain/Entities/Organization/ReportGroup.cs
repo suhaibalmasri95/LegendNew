@@ -20,6 +20,6 @@ namespace Domain.Entities.Organization
         [DBFiledName("")]
         public long? LangID { get; set; }
         [DBFiledName("ORDER_BY")]
-        public string OrderBy { get; set; }
+        public long? OrderBy { get; set; }
     }
 }
