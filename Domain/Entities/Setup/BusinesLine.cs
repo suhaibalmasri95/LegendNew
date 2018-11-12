@@ -9,6 +9,14 @@ namespace Domain.Entities.Setup
     [DBTableName("ST_LOB")]
     public class BusinesLine : IEntity
     {
+        public BusinesLine ()
+        {
+            StatusDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
+        }
+
+
         [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
