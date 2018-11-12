@@ -49,16 +49,23 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpPost]
-        public IApiResult Load(GetReportGroups operation)
+        public IActionResult Load(long? ID , long? LanguageID)
         {
+            GetReportGroups operation = new GetReportGroups();
+            operation.ID = ID;
+
+            if (LanguageID.HasValue)
+                operation.LangID = LanguageID;
+            else
+                operation.LangID = 1;
             var result = operation.QueryAsync().Result;
             if (result is ValidationsOutput)
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                return Ok( new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return new ApiResult<List<ReportGroup>>() { Status = ApiResult<List<ReportGroup>>.ApiStatus.Success, Data = (List<ReportGroup>)result };
+                return Ok((List<ReportGroup>)result);
             }
         }
     }

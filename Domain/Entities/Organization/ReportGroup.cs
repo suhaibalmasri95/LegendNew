@@ -14,6 +14,7 @@ namespace Domain.Entities.Organization
         public string Name { get; set; }
         [DBFiledName("NAME2")]
         public string Name2 { get; set; }
+  
         [DBFiledName("")]
         public long? LangID { get; set; }
         [DBFiledName("ORDER_BY")]
