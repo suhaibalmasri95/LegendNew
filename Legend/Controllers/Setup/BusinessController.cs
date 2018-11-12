@@ -50,12 +50,12 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(Int64? id, string code, string lineOfBusiness, Int64? langId)
+        public IActionResult Load(long? ID, string Code, long? LineOfBusiness, long? langId)
         {
             GetBusniess operation = new GetBusniess();
-            operation.ID = id;
-            operation.Code = code;
-            operation.LineOfBusiness = lineOfBusiness;
+            operation.ID = ID;
+            operation.Code = Code;
+            operation.LineOfBusiness = LineOfBusiness;
 
             if (langId.HasValue)
                 operation.LangID = langId;
