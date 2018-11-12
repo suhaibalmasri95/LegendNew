@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
+    [DBTableName("ST_BANCK_BRANCHES")]
     public class BankBranch : Bank
     {
         [DBFiledName("ST_BNK_ID")]

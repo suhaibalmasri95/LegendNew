@@ -6,8 +6,10 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
-   public class Company : IEntity
+    [DBTableName("ST_COMPANIES")]
+    public class Company : IEntity
     {
+        [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
         [DBFiledName("NAME")]
@@ -16,7 +18,6 @@ namespace Domain.Entities.Organization
         public string Name2 { get; set; }
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
-
         [DBFiledName("MOBILE")]
         public string Mobile { get; set; }
         [DBFiledName("Website")]

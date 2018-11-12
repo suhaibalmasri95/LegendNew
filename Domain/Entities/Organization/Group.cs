@@ -6,16 +6,18 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
+    [DBTableName("ST_GROUPS")]
     public class Group : IEntity
     {
+        [DBPrimaryKey]
+        [DBFiledName("ID")]
+        public long? ID { get; set; }
         [DBFiledName("NAME")]
         public string Name { get; set; }
         [DBFiledName("NAME2")]
         public string Name2 { get; set; }
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
-        [DBFiledName("ID")]
-        public long? ID { get; set; }
         [DBFiledName("LOC_STATUS")]
         public long? Status { get; set; }
         [DBFiledName("STATUS_DATE")]

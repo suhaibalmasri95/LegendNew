@@ -6,12 +6,14 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
+    [DBTableName("ST_GROUP_RELATIONS")]
     public class GroupRelation : IBase
     {
-        [DBFiledName("LangID")]
-        public long? LangID { get; set; }
+        [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
+        [DBFiledName("LangID")]
+        public long? LangID { get; set; }
         [DBFiledName("ST_GRP_ID")]
         public long? GroupID { get; set; }
         [DBFiledName("GRPNAME")]
