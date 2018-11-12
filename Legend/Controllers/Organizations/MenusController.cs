@@ -19,6 +19,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Create(CreateMenu operation)
         {
+            operation.Type = 1;
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
             {
