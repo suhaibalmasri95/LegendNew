@@ -48,7 +48,7 @@ namespace API.Controllers.Organizations
         }
 
         [Route("Load")]
-        [HttpPost]
+        [HttpGet]
         public IActionResult Load(long? ID , long? LanguageID)
         {
             GetReportGroups operation = new GetReportGroups();
