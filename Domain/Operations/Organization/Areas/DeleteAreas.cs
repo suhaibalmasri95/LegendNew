@@ -25,7 +25,7 @@ namespace Domain.Operations.Organization.Areas
             }
 
 
-            return await DBDeleteAreaSetup.DeleteAreasAsync(IDs);
+            return await DBDeleteReportSetup.DeleteAreasAsync(IDs);
 
         }
 

@@ -68,5 +68,20 @@ namespace API.Controllers.Organizations
                 return Ok((List<Report>)result);
             }
         }
+
+        [Route("Delete")]
+        [HttpPost]
+        public IApiResult Delete(DeleteReport operation)
+        {
+            var result = operation.Execute().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
     }
 }

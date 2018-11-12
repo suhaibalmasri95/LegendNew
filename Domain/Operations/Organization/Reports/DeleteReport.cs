@@ -1,20 +1,16 @@
-﻿using Common.Interfaces;
-
+﻿using Common.Extensions;
+using Common.Interfaces;
+using Common.Validations;
+using Domain.Entities.Organization;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Common.Extensions;
-using Common.Validations;
 using System.Threading.Tasks;
-using Infrastructure.DB;
-using Oracle.ManagedDataAccess.Client;
-using System.Data;
-using Domain.Entities.Organization;
 
-namespace Domain.Operations.Organization.Areas
+namespace Domain.Operations.Organization.Reports
 {
-    public class DeleteArea : Area, IDelete
+    public class DeleteReport : Report, IDelete
     {
         public async Task<IDTO> Execute()
         {
@@ -23,10 +19,7 @@ namespace Domain.Operations.Organization.Areas
             {
                 return validationResult;
             }
-
-
-            return await DBDeleteReportSetup.DeleteAreaAsync(this);
-
+            return await DBDeleteReportGroupSetup.DeleteReportAsync(this);
         }
 
         public IDTO Validate()
@@ -34,12 +27,12 @@ namespace Domain.Operations.Organization.Areas
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<Area>
+        public class Validation : AbstractValidator<Report>
         {
             public Validation()
             {
-                RuleFor(area => area.ID).NotNull();
-              
+                RuleFor(report => report.ID).NotNull();
+               
             }
         }
     }

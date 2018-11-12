@@ -23,7 +23,7 @@ namespace Domain.Operations.Setup.Business
             if (busnies.ID.HasValue)
             {
                 oracleParams.Add(BusniesSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)busnies.ID ?? DBNull.Value);
-                oracleParams.Add(BusniesSpParams.PARAMETER_STATUS_DATE, OracleDbType.Varchar2, ParameterDirection.Input, DateTime.Now, 500);
+     
                 SPName = BusniesSPName.SP_UPADTE_Busnies;
                 message = "Updated Successfully";
             }
@@ -33,14 +33,18 @@ namespace Domain.Operations.Setup.Business
                 SPName = BusniesSPName.SP_INSERT_Busnies;
                 message = "Inserted Successfully";
             }
-
-            oracleParams.Add(BusniesSpParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)busnies.Name ?? DBNull.Value, 500);
-            oracleParams.Add(BusniesSpParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)busnies.Name2 ?? DBNull.Value, 500);
-            oracleParams.Add(BusniesSpParams.PARAMETER_CODE, OracleDbType.Int64, ParameterDirection.Input, (object)busnies.Code ?? DBNull.Value);
-            oracleParams.Add(BusniesSpParams.PARAMETER_CREATED_BY, OracleDbType.Int64, ParameterDirection.Input, "Admin");
-            oracleParams.Add(BusniesSpParams.PARAMETER_CREATION_DATE, OracleDbType.Int64, ParameterDirection.Input, DateTime.Now);
-            oracleParams.Add(BusniesSpParams.PARAMETER_STATUS, OracleDbType.Varchar2, ParameterDirection.Input, (object)busnies.Stastus ?? DBNull.Value, 50);
-            oracleParams.Add(BusniesSpParams.PARAMETER_LOC_MODULE, OracleDbType.Int64, ParameterDirection.Input, (object)busnies.LineOfBusiness ?? DBNull.Value);
+            oracleParams.Add(BusniesSpParams.PARAMETER_CODE, OracleDbType.Varchar2, ParameterDirection.Input, (object)busnies.Code ?? DBNull.Value,30);
+            oracleParams.Add(BusniesSpParams.PARAMETER_LOB_CODE, OracleDbType.Int64, ParameterDirection.Input, (object)busnies.LineOfBusiness ?? DBNull.Value);
+            oracleParams.Add(BusniesSpParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)busnies.Name ?? DBNull.Value, 1000);
+            oracleParams.Add(BusniesSpParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)busnies.Name2 ?? DBNull.Value, 1000);
+   
+            oracleParams.Add(BusniesSpParams.PARAMETER_CREATED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)busnies.CreatedBy ?? DBNull.Value , 30);
+            oracleParams.Add(BusniesSpParams.PARAMETER_CREATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)busnies.CreationDate ?? DBNull.Value);
+            oracleParams.Add(BusniesSpParams.PARAMETER_MODIFIED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)busnies.ModifiedBy ?? DBNull.Value, 30);
+            oracleParams.Add(BusniesSpParams.PARAMETER_MODIFICATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)busnies.ModificationDate ?? DBNull.Value);
+            oracleParams.Add(BusniesSpParams.PARAMETER_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)busnies.Stastus ?? DBNull.Value);
+            oracleParams.Add(BusniesSpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)busnies.StatusDate ?? DBNull.Value);
+            oracleParams.Add(BusniesSpParams.PARAMETER_LOC_MODULE, OracleDbType.Int64, ParameterDirection.Input, (object)busnies.Module ?? DBNull.Value);
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)
                 complate.message = message;
             else

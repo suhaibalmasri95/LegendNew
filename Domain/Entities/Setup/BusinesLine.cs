@@ -21,13 +21,13 @@ namespace Domain.Entities.Setup
         [DBFiledName("Code")]
         public string Code { get; set; }
         [DBFiledName("LOB_CODE")]
-        public string LineOfBusiness { get; set; }
+        public long? LineOfBusiness { get; set; }
         [DBFiledName("LOC_MODULE")]
-        public string Module { get; set; }
+        public long? Module { get; set; }
         [DBFiledName("STATUS_DATE")]
         public DateTime StatusDate { get; set; }
         [DBFiledName("LOC_STATUS")]
-        public DateTime Stastus { get; set; }
+        public long? Stastus { get; set; }
         [DBFiledName("CREATED_BY")]
         public string CreatedBy { get; set; }
         [DBFiledName("CREATION_DATE")]
