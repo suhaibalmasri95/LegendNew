@@ -26,5 +26,7 @@ namespace Domain.Entities.Organization
         public string Url { get; set; }
         [DBFiledName("ST_MENUE_ID")]
         public long? SubMenuID { get; set; }
+        [DBFiledName("ParentMenuID")]
+        public long? ParentMenuID { get; set; }
     }
 }
