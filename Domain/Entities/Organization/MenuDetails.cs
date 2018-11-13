@@ -27,11 +27,11 @@ namespace Domain.Entities.Organization
         [DBFiledName("ST_MENUE_ID")]
         public long? SubMenuID { get; set; }
         [DBFiledName("FirstParentMenuID")]
-        public long? FirstParentMenuID { get; set; }
+        public long? SystemMenuID { get; set; }
         [DBFiledName("SecondParentMenuID")]
-        public long? SecondParentMenuID { get; set; }
+        public long? ModuleMenuID { get; set; }
         [DBFiledName("ThirdParentMenuID")]
-        public long? ThirdParentMenuID { get; set; }
+        public long? SubMoudleMenuID { get; set; }
     
     }
 }

@@ -138,9 +138,9 @@ namespace API.Controllers.Organizations
                         {
                             if (item.SubMenuID == FirstMenu.ID && FirstMenu.SubMenuID == secondMenu.ID && secondMenu.SubMenuID == ThirdMenu.ID)
                             {
-                                item.FirstParentMenuID = FirstMenu.SubMenuID;
-                                item.SecondParentMenuID = secondMenu.SubMenuID;
-                                item.ThirdParentMenuID = ThirdMenu.SubMenuID;
+                                item.SystemMenuID = FirstMenu.SubMenuID;
+                                item.ModuleMenuID = secondMenu.SubMenuID;
+                                item.SubMoudleMenuID = ThirdMenu.SubMenuID;
                              
                                 MenusToReturn.Add(item);
 
@@ -157,8 +157,8 @@ namespace API.Controllers.Organizations
                     {
                         if (item.SubMenuID == FirstMenu.ID && FirstMenu.SubMenuID == secondMenu.ID )
                         {
-                            item.FirstParentMenuID = FirstMenu.SubMenuID;
-                            item.SecondParentMenuID = secondMenu.SubMenuID;
+                            item.SystemMenuID = FirstMenu.SubMenuID;
+                            item.ModuleMenuID = secondMenu.SubMenuID;
                             MenusToReturn.Add(item);
 
                         }
@@ -174,7 +174,7 @@ namespace API.Controllers.Organizations
                 {
                     if (item.SubMenuID == FirstMenu.ID )
                     {
-                        item.FirstParentMenuID = FirstMenu.SubMenuID;
+                        item.SystemMenuID = FirstMenu.SubMenuID;
                     
                         MenusToReturn.Add(item);
 
