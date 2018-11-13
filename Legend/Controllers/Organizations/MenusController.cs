@@ -142,7 +142,7 @@ namespace API.Controllers.Organizations
                                 item.SystemMenuName = ThirdMenu.Name;
 
                                 item.ModuleMenuID = secondMenu.SubMenuID;
-                            item.ModuleMenuName = secondMenu.ModuleMenuName;
+                            item.ModuleMenuName = secondMenu.Name;
                             item.SubMoudleMenuID = FirstMenu.SubMenuID;
                             item.SubMoudleMenuName = FirstMenu.Name;
                             MenusToReturn.Add(item);
@@ -164,7 +164,7 @@ namespace API.Controllers.Organizations
                             item.SystemMenuName = secondMenu.Name;
 
                             item.ModuleMenuID = FirstMenu.SubMenuID;
-                            item.ModuleMenuName = FirstMenu.ModuleMenuName;
+                            item.ModuleMenuName = FirstMenu.Name;
                             MenusToReturn.Add(item);
 
                         }
