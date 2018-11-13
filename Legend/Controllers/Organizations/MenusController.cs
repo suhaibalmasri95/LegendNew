@@ -84,46 +84,105 @@ namespace API.Controllers.Organizations
 
             //First load the Type
             GetMenus operation = new GetMenus();
-            GetMenus ParentMenu = new GetMenus();
+            // the direct parent of menu
+            GetMenus FirstParent = new GetMenus();
+            // the second parent of the related menu
+            GetMenus SecondParent = new GetMenus();
+            // the thid parent of the related menu
+            GetMenus ThirdParent = new GetMenus();
+            // the fourth parent of the related menu
+        
             operation.ID = ID;
             operation.Type = Type;
             if (LanguageID.HasValue)
             {
                 operation.LangID = LanguageID;
-                ParentMenu.LangID = LanguageID;
+                FirstParent.LangID = LanguageID;
+                SecondParent.LangID = LanguageID;
+                ThirdParent.LangID = LanguageID;
+              
+           
             }
               
             else
             {
                 operation.LangID = 1;
-                ParentMenu.LangID = 1;
+                FirstParent.LangID = 1;
+                SecondParent.LangID = 1;
+                ThirdParent.LangID = 1;
+            
             }
 
             var result = operation.QueryAsync().Result;
             var Menus = (List<Menu>)result;
-           
-           
-            ParentMenu.ID = SubMenuID;
-     
-           var parentMenu = ((List<Menu>)ParentMenu.QueryAsync().Result).FirstOrDefault();
+
             List<Menu> MenusToReturn = new List<Menu>();
-            foreach (var item in Menus)
+            FirstParent.ID = SubMenuID;
+        // Get the first parent of menu
+           var FirstMenu = ((List<Menu>)FirstParent.QueryAsync().Result).FirstOrDefault();
+
+            // Get the second Parent of parent of menu
+            SecondParent.ID = FirstMenu.SubMenuID;
+           var secondMenu = ((List<Menu>)SecondParent.QueryAsync().Result).FirstOrDefault();
+            if(secondMenu != null)
             {
-                if(item.SubMenuID == parentMenu.ID)
+                // Get the third Parent
+                ThirdParent.ID = secondMenu.SubMenuID;
+                var ThirdMenu = ((List<Menu>)ThirdParent.QueryAsync().Result).FirstOrDefault();
+                if(ThirdMenu!=null)
                 {
-                    item.ParentMenuID = parentMenu.SubMenuID;
-                    MenusToReturn.Add(item);
-                   
+                    // Get fourth Parent
+                  
+                      
+                        foreach (var item in Menus)
+                        {
+                            if (item.SubMenuID == FirstMenu.ID && FirstMenu.SubMenuID == secondMenu.ID && secondMenu.SubMenuID == ThirdMenu.ID)
+                            {
+                                item.FirstParentMenuID = FirstMenu.SubMenuID;
+                                item.SecondParentMenuID = secondMenu.SubMenuID;
+                                item.ThirdParentMenuID = ThirdMenu.SubMenuID;
+                             
+                                MenusToReturn.Add(item);
+
+                            }
+
+                        }
+
+                    
                 }
-              
+                else
+                {
+                  
+                    foreach (var item in Menus)
+                    {
+                        if (item.SubMenuID == FirstMenu.ID && FirstMenu.SubMenuID == secondMenu.ID )
+                        {
+                            item.FirstParentMenuID = FirstMenu.SubMenuID;
+                            item.SecondParentMenuID = secondMenu.SubMenuID;
+                            MenusToReturn.Add(item);
+
+                        }
+
+                    }
+                }
+
             }
-           
-        
+            else
+            {
+          
+                foreach (var item in Menus)
+                {
+                    if (item.SubMenuID == FirstMenu.ID )
+                    {
+                        item.FirstParentMenuID = FirstMenu.SubMenuID;
+                    
+                        MenusToReturn.Add(item);
 
+                    }
 
-
-
-
+                }
+            }
+         
 
             if (result is ValidationsOutput)
             {
