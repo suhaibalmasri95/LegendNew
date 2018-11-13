@@ -26,12 +26,18 @@ namespace Domain.Entities.Organization
         public string Url { get; set; }
         [DBFiledName("ST_MENUE_ID")]
         public long? SubMenuID { get; set; }
-        [DBFiledName("FirstParentMenuID")]
+        [DBFiledName("SystemMenuID")]
         public long? SystemMenuID { get; set; }
+        [DBFiledName("SystemMenuName")]
+        public string SystemMenuName { get; set; }
         [DBFiledName("SecondParentMenuID")]
         public long? ModuleMenuID { get; set; }
+        [DBFiledName("ModuleMenuName")]
+        public string ModuleMenuName { get; set; }
         [DBFiledName("ThirdParentMenuID")]
         public long? SubMoudleMenuID { get; set; }
-    
+        [DBFiledName("SubMoudleMenuName")]
+        public string SubMoudleMenuName { get; set; }
+
     }
 }
