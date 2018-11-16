@@ -26,5 +26,17 @@ namespace Domain.Operations.Organization.MenuDetails
 
             return complate;
         }
+        public async static Task<IDTO> DeleteMenusAsync(long[] IDs)
+        {
+
+            ComplateOperation<int> complate = new ComplateOperation<int>();
+
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(Menu), IDs)) == -1)
+                complate.message = "Operation Successed";
+            else
+                complate.message = "Operation Failed";
+
+            return complate;
+        }
     }
 }

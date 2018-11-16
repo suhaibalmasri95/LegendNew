@@ -12,6 +12,7 @@ namespace Domain.Operations.Organization.UserGroups
 {
    public class DeleteUserGroups : UserGroup, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -21,7 +22,7 @@ namespace Domain.Operations.Organization.UserGroups
             }
 
 
-            return await DBDeleteUserGroupSetup.DeleteUserGroupAsync(this);
+            return await DBDeleteUserGroupSetup.DeleteUserGroupsAsync(IDs);
         }
 
         public IDTO Validate()

@@ -15,6 +15,7 @@ namespace Domain.Operations.Organization.Companies
 {
     public class DeleteCompanies : Company, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -24,7 +25,7 @@ namespace Domain.Operations.Organization.Companies
             }
 
 
-            return await DBDeleteCompanySetup.DeleteCompanyAsync(this);
+            return await DBDeleteCompanySetup.DeleteCompaniesAsync(IDs);
 
         }
 
@@ -37,7 +38,7 @@ namespace Domain.Operations.Organization.Companies
         {
             public Validation()
             {
-                RuleFor(comapny => comapny.ID).NotNull();
+                
               
             }
         }

@@ -1,19 +1,16 @@
-﻿using Common.Interfaces;
+﻿using Common.Extensions;
+using Common.Interfaces;
+using Common.Validations;
+using Domain.Entities.Organization;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Common.Extensions;
-using Common.Validations;
 using System.Threading.Tasks;
-using Infrastructure.DB;
-using Oracle.ManagedDataAccess.Client;
-using System.Data;
-using Domain.Entities.Organization;
 
-namespace Domain.Operations.Organization.Banks
+namespace Domain.Operations.Organization.Groups
 {
-    public class DeleteBanks : Bank, IDelete
+    public class DeleteGroups : Group, IDelete
     {
         public long[] IDs;
         public async Task<IDTO> Execute()
@@ -23,10 +20,7 @@ namespace Domain.Operations.Organization.Banks
             {
                 return validationResult;
             }
-
-
-            return await DBDeleteBankSetup.DeleteBanksAsync(IDs);
-
+            return await DBDeleteGroupSetup.DeleteGroupsAsync(IDs);
         }
 
         public IDTO Validate()
@@ -34,12 +28,11 @@ namespace Domain.Operations.Organization.Banks
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<Bank>
+        public class Validation : AbstractValidator<Group>
         {
             public Validation()
             {
-           
-              
+                RuleFor(group => group.ID).NotNull();
             }
         }
     }

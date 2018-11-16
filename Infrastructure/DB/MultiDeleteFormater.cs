@@ -17,5 +17,13 @@ namespace Infrastructure.DB
             var sqlResult = string.Format(_deleteStatment, tableName, primaryKeyFieldName, values);
             return sqlResult;
         }
+        public static string Format(Type type, string[] Codes)
+        {
+            var tableName = (type.GetCustomAttributes(typeof(DBTableName), false)[0] as DBTableName).Name;
+            var primaryKeyFieldName = type.GetProperties().Where(prop => prop.GetCustomAttributes(typeof(DBPrimaryKey), false).FirstOrDefault() != null).First().Name;
+            var values = string.Join(',', Codes);
+            var sqlResult = string.Format(_deleteStatment, tableName, primaryKeyFieldName, values);
+            return sqlResult;
+        }
     }
 }

@@ -13,8 +13,9 @@ using Domain.Entities.Organization;
 
 namespace Domain.Operations.Organization.CompanyBranches
 {
-    public class DeleteCities : CompanyBranch, IDelete
+    public class DeleteCompanyBranches : CompanyBranch, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -24,7 +25,7 @@ namespace Domain.Operations.Organization.CompanyBranches
             }
 
 
-            return await DBDeleteCompanyBranchSetup.DeleteCompanyBranchAsync(this);
+            return await DBDeleteCompanyBranchSetup.DeleteCompanyBranchesAsync(IDs);
 
         }
 
@@ -37,7 +38,7 @@ namespace Domain.Operations.Organization.CompanyBranches
         {
             public Validation()
             {
-                RuleFor(companyBranch => companyBranch.ID).NotNull();
+             
 
             }
         }

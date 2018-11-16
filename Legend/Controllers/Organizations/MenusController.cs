@@ -81,7 +81,6 @@ namespace API.Controllers.Organizations
         [HttpGet]
         public IActionResult LoadParent(long? ID, long? Type, long? SubMenuID, long? LanguageID)
         {
-
             //First load the Type
             GetMenus operation = new GetMenus();
             // the direct parent of menu
@@ -91,7 +90,6 @@ namespace API.Controllers.Organizations
             // the thid parent of the related menu
             GetMenus ThirdParent = new GetMenus();
             // the fourth parent of the related menu
-        
             operation.ID = ID;
             operation.Type = Type;
             if (LanguageID.HasValue)
@@ -100,8 +98,6 @@ namespace API.Controllers.Organizations
                 FirstParent.LangID = LanguageID;
                 SecondParent.LangID = LanguageID;
                 ThirdParent.LangID = LanguageID;
-              
-           
             }
               
             else
@@ -110,7 +106,6 @@ namespace API.Controllers.Organizations
                 FirstParent.LangID = 1;
                 SecondParent.LangID = 1;
                 ThirdParent.LangID = 1;
-            
             }
 
             var result = operation.QueryAsync().Result;
@@ -206,6 +201,20 @@ namespace API.Controllers.Organizations
         [Route("Delete")]
         [HttpPost]
         public IApiResult Delete(DeleteMenu operation)
+        {
+            var result = operation.Execute().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
+        [Route("DeleteMultiple")]
+        [HttpPost]
+        public IApiResult DeleteMultiple(DeleteMenus operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)

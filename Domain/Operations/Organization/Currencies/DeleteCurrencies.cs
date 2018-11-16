@@ -9,6 +9,7 @@ namespace Domain.Operations.Organization.Currencies
 {
     public class DeleteCurrencies : Currency, IDelete
     {
+        public string[] Codes;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -18,7 +19,7 @@ namespace Domain.Operations.Organization.Currencies
             }
 
 
-            return await DBDeleteCurrencySetup.DeleteCurrencyAsync(this);
+            return await DBDeleteCurrencySetup.DeleteCurrenciesAsync(Codes);
 
         }
 
@@ -31,7 +32,7 @@ namespace Domain.Operations.Organization.Currencies
         {
             public Validation()
             {
-                RuleFor(currency => currency.Code).NotNull();
+               
               
             }
         }

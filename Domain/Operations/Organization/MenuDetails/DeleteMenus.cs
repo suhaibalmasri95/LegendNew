@@ -14,16 +14,17 @@ using Domain.Entities.Organization;
 
 namespace Domain.Operations.Organization.MenuDetails
 {   
-    public class DeleteMenus : Menu
+    public class DeleteMenus : Menu, IDelete
     {
-        public IDTO Execute()
+        public long[] IDs;
+        public async Task<IDTO> Execute()
         {
-            //var validationResult = (ValidationsOutput)Validate();
-            //if (!validationResult.IsValid)
-            //{
-            //    return validationResult;
-            //}
-            throw new NotImplementedException();
+            var validationResult = (ValidationsOutput)Validate();
+            if (!validationResult.IsValid)
+            {
+                return validationResult;
+            }
+            return await DBDeleteMenuSetup.DeleteMenusAsync(IDs);
         }
 
         public IDTO Validate()
@@ -35,7 +36,7 @@ namespace Domain.Operations.Organization.MenuDetails
         {
             public Validation()
             {
-                RuleFor(area => area.ID).NotNull();
+               
             }
         }
     }

@@ -15,6 +15,8 @@ namespace Domain.Operations.Organization.BankBranches
 {
     public class DeleteBankBranches : BankBranch, IDelete
     {
+
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -26,7 +28,7 @@ namespace Domain.Operations.Organization.BankBranches
 
 
 
-            return await DBDeleteBankBranchSetup.DeleteBankBranchAsync(this);
+            return await DBDeleteBankBranchSetup.DeleteBankBranchesAsync(IDs);
 
         }
 
@@ -39,7 +41,7 @@ namespace Domain.Operations.Organization.BankBranches
         {
             public Validation()
             {
-                RuleFor(bankbranch => bankbranch.ID).NotNull();
+                
               
             }
         }

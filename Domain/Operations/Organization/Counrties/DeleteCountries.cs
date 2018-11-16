@@ -9,6 +9,7 @@ namespace Domain.Operations.Organization.Counrties
 {
     public class DeleteCountries : Country, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -18,7 +19,7 @@ namespace Domain.Operations.Organization.Counrties
             }
 
 
-            return await DBDeleteCountrySetup.DeleteCountryAsync(this);
+            return await DBDeleteCountrySetup.DeleteCountriesAsync(IDs);
 
         }
 

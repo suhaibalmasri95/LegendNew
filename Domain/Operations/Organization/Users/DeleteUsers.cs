@@ -12,8 +12,9 @@ namespace Domain.Operations.Organization.Users
 {
    public class DeleteUsers : User, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
-        {
+        { 
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)
             {
@@ -21,7 +22,7 @@ namespace Domain.Operations.Organization.Users
             }
 
 
-            return await DBDeleteUserSetup.DeleteUserAsync(this);
+            return await DBDeleteUserSetup.DeleteUsersAsync(IDs);
         }
 
         public IDTO Validate()

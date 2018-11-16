@@ -15,6 +15,7 @@ namespace Domain.Operations.Organization.Departments
 {
     public class DeleteDepartments : Department, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -24,7 +25,7 @@ namespace Domain.Operations.Organization.Departments
             }
 
 
-            return await DBDeleteDepartmentSetup.DeleteDepartmentAsync(this);
+            return await DBDeleteDepartmentSetup.DeleteDepartmentsAsync(IDs);
 
         }
 

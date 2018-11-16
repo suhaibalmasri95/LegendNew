@@ -28,5 +28,18 @@ namespace Domain.Operations.Organization.GroupRelations
             return complate;
 
         }
+
+        public async static Task<IDTO> DeleteGroupRelationsAsync(long[] IDs)
+        {
+
+            ComplateOperation<int> complate = new ComplateOperation<int>();
+
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(GroupRelation), IDs)) == -1)
+                complate.message = "Operation Successed";
+            else
+                complate.message = "Operation Failed";
+
+            return complate;
+        }
     }
 }

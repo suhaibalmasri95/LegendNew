@@ -15,6 +15,7 @@ namespace Domain.Operations.Organization.LockUps
 {
     public class DeleteLockUps : Lockup, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -24,7 +25,7 @@ namespace Domain.Operations.Organization.LockUps
             }
 
 
-            return await DBDeleteLockUpSetup.DeleteLockUpAsync(this);
+            return await DBDeleteLockUpSetup.DeleteLockupsAsync(IDs);
 
         }
 

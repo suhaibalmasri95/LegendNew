@@ -80,5 +80,19 @@ namespace API.Controllers.Organizations
                 return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
             }
         }
+        [Route("DeleteMultiple")]
+        [HttpPost]
+        public IApiResult DeleteMultiple(DeleteDepartments operation)
+        {
+            var result = operation.Execute().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
     }
 }

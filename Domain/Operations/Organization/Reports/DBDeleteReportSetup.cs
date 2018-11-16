@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Operations.Organization.Reports
 {
-    public class DBDeleteReportGroupSetup
+    public class DBDeleteReportSetup
     {
         public async static Task<IDTO> DeleteReportAsync(Report report)
         {
@@ -25,7 +25,7 @@ namespace Domain.Operations.Organization.Reports
             return complate;
         }
 
-        public async static Task<IDTO> DeleteAReportsAsync(long[] IDs)
+        public async static Task<IDTO> DeleteReportsAsync(long[] IDs)
         {
 
             ComplateOperation<int> complate = new ComplateOperation<int>();

@@ -19,7 +19,7 @@ namespace Domain.Operations.Organization.Reports
             {
                 return validationResult;
             }
-            return await DBDeleteReportGroupSetup.DeleteReportAsync(this);
+            return await DBDeleteReportSetup.DeleteReportAsync(this);
         }
 
         public IDTO Validate()

@@ -15,6 +15,7 @@ namespace Domain.Operations.Organization.Cities
 {
     public class DeleteCities : City, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> Execute()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -24,7 +25,7 @@ namespace Domain.Operations.Organization.Cities
             }
 
 
-            return await DBDeleteCitySetup.DeleteCityAsync(this);
+            return await DBDeleteCitySetup.DeleteCitiesAsync(IDs);
 
         }
 
@@ -37,7 +38,7 @@ namespace Domain.Operations.Organization.Cities
         {
             public Validation()
             {
-                RuleFor(city => city.ID).NotNull();
+              
               
             }
         }

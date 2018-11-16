@@ -28,20 +28,17 @@ namespace Domain.Operations.Organization.Cities
 
         }
 
-        /*public async static Task<IDTO> DeleteCountriesAsync(List<Country> countries)
+        public async static Task<IDTO> DeleteCitiesAsync(long[] IDs)
         {
-            OracleDynamicParameters oracleParams = new OracleDynamicParameters();
-            ComplateOperation<int> complate = new ComplateOperation<int>();
-            var dyParam = new OracleDynamicParameters();
-            dyParam.Add(CountrySpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)country.ID ?? DBNull.Value);
 
-            if (await NonQueryExecuter.ExecuteNonQueryAsync(CountrySPName.SP_DELETE_COUNTRY, dyParam) == -1)
+            ComplateOperation<int> complate = new ComplateOperation<int>();
+
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(City), IDs)) == -1)
                 complate.message = "Operation Successed";
             else
                 complate.message = "Operation Failed";
 
             return complate;
-
-        }*/
+        }
     }
     }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
-    [DBTableName("")]
+    [DBTableName("ST_GROUP_RELATIONS")]
     public class UserGroup : IBase
     {
         [DBPrimaryKey]

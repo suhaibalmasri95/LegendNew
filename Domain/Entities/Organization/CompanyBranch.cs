@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
-    [DBTableName("")]
+    [DBTableName("ST_BRANCHES")]
     public class CompanyBranch : IEntity
     {
         [DBPrimaryKey]

@@ -9,6 +9,10 @@ namespace Domain.Entities.Organization
     [DBTableName("ST_COUNTRIES")]
     public class Currency : ILocalized
     {
+        public Currency ()
+        {
+            StatusDate = DateTime.Now;
+        }
         [DBPrimaryKey]
         [DBFiledName("CODE")]
         public string Code { get; set; }

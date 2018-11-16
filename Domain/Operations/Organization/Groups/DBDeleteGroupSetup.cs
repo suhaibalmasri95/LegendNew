@@ -28,6 +28,18 @@ namespace Domain.Operations.Organization.Groups
             return complate;
 
         }
+        public async static Task<IDTO> DeleteGroupsAsync(long[] IDs)
+        {
+
+            ComplateOperation<int> complate = new ComplateOperation<int>();
+
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(Group), IDs)) == -1)
+                complate.message = "Operation Successed";
+            else
+                complate.message = "Operation Failed";
+
+            return complate;
+        }
 
     }
 }

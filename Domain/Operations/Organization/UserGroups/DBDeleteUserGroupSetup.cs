@@ -28,5 +28,17 @@ namespace Domain.Operations.Organization.UserGroups
             return complate;
 
         }
+        public async static Task<IDTO> DeleteUserGroupsAsync(long[] IDs)
+        {
+
+            ComplateOperation<int> complate = new ComplateOperation<int>();
+
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(UserGroup), IDs)) == -1)
+                complate.message = "Operation Successed";
+            else
+                complate.message = "Operation Failed";
+
+            return complate;
+        }
     }
 }

@@ -28,5 +28,17 @@ namespace Domain.Operations.Organization.Users
             return complate;
 
         }
+        public async static Task<IDTO> DeleteUsersAsync(long[] IDs)
+        {
+
+            ComplateOperation<int> complate = new ComplateOperation<int>();
+
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(User), IDs)) == -1)
+                complate.message = "Operation Successed";
+            else
+                complate.message = "Operation Failed";
+
+            return complate;
+        }
     }
 }

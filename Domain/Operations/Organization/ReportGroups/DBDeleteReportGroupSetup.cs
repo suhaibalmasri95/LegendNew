@@ -25,7 +25,7 @@ namespace Domain.Operations.Organization.ReportGroups
             return complate;
         }
 
-        public async static Task<IDTO> DeleteAReportGroupssAsync(long[] IDs)
+        public async static Task<IDTO> DeleteReportGroupsAsync(long[] IDs)
         {
 
             ComplateOperation<int> complate = new ComplateOperation<int>();
