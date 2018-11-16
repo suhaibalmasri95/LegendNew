@@ -33,7 +33,7 @@ namespace Domain.Operations.Organization.Users
         {
             public Validation()
             {
-                RuleFor(user => user.ID).NotNull();
+              
 
             }
         }

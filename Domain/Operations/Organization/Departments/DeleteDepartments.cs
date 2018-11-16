@@ -38,7 +38,7 @@ namespace Domain.Operations.Organization.Departments
         {
             public Validation()
             {
-                RuleFor(department => department.ID).NotNull();
+               
               
             }
         }

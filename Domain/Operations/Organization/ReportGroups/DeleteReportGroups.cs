@@ -34,7 +34,7 @@ namespace Domain.Operations.Organization.ReportGroups
         {
             public Validation()
             {
-                RuleFor(reportGroup => reportGroup.ID).NotNull();
+              
             
             }
         }

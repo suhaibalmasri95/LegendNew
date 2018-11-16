@@ -33,7 +33,7 @@ namespace Domain.Operations.Organization.Reports
         {
             public Validation()
             {
-                RuleFor(report => report.ID).NotNull();
+              
                
             }
         }

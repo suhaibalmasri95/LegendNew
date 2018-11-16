@@ -38,7 +38,7 @@ namespace Domain.Operations.Organization.LockUps
         {
             public Validation()
             {
-                RuleFor(Lockup => Lockup.ID).NotNull();
+              
               
             }
         }

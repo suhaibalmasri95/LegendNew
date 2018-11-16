@@ -32,7 +32,7 @@ namespace Domain.Operations.Organization.Counrties
         {
             public Validation()
             {
-                RuleFor(country => country.ID).NotNull();
+               
               
             }
         }

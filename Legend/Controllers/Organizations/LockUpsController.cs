@@ -78,7 +78,7 @@ namespace API.Controllers.Organizations
             GetLockUps operation = new GetLockUps();
             operation.ID = ID;
             operation.MajorCode = MajorCode;
-            operation.MajorCode = MinorCode;
+            operation.MinorCode = MinorCode;
             operation.LockUpID = LockupParentID;
 
             if (languageID.HasValue)

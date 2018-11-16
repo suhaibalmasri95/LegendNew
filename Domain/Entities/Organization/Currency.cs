@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.Entities.Organization
 {
-    [DBTableName("ST_COUNTRIES")]
+    [DBTableName("ST_CURRENCIES")]
     public class Currency : ILocalized
     {
         public Currency ()

@@ -32,7 +32,7 @@ namespace Domain.Operations.Organization.Groups
         {
             public Validation()
             {
-                RuleFor(group => group.ID).NotNull();
+                
             }
         }
     }
