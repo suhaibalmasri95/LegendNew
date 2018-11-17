@@ -138,8 +138,8 @@ namespace API.Controllers.Organizations
 
                                 item.ModuleMenuID = secondMenu.SubMenuID;
                             item.ModuleMenuName = secondMenu.Name;
-                            item.SubMoudleMenuID = FirstMenu.SubMenuID;
-                            item.SubMoudleMenuName = FirstMenu.Name;
+                            item.SubModuleMenuID = FirstMenu.SubMenuID;
+                            item.SubModuleMenuName = FirstMenu.Name;
                             MenusToReturn.Add(item);
 
                             }
