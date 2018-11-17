@@ -34,7 +34,7 @@ namespace Domain.Operations.Setup.SubjectTypies
                 RuleFor(type => type.Name).NotEmpty();
                 RuleFor(type => type.Name).MaximumLength(500);
                 RuleFor(type => type.Name2).MaximumLength(500);
-                RuleFor(type => type.LangID).NotNull();
+            
             }
         }
     }

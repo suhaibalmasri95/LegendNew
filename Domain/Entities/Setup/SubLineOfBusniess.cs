@@ -9,6 +9,14 @@ namespace Domain.Entities.Setup
     [DBTableName("ST_SUB_LOB")]
     public class SubLineOfBusnies : IEntity
     {
+        public SubLineOfBusnies()
+        {
+            StatusDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
+            CreatedBy = "ADMIN";
+            ModifiedBy = "ADMIN";
+        }
         [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
@@ -21,13 +29,13 @@ namespace Domain.Entities.Setup
         [DBFiledName("CODE")]
         public string Code { get; set; }
         [DBFiledName("ST_LOB_ID")]
-        public string LineOfBusniess { get; set; }
+        public long? LineOfBusniess { get; set; }
         [DBFiledName("SUB_LOB")]
-        public string BasicLineOfBusniess { get; set; }
+        public long? BasicLineOfBusniess { get; set; }
         [DBFiledName("RINS_TYPE")]
-        public string ReinsType { get; set; }
-        [DBFiledName("LOC_STATUS")]
-        public string Status { get; set; }
+        public long? ReinsType { get; set; }
+        [DBFiledName("STATUS")]
+        public long? Status { get; set; }
         [DBFiledName("STATUS_DATE")]
         public DateTime StatusDate { get; set; }
         [DBFiledName("CREATED_BY")]
@@ -37,6 +45,6 @@ namespace Domain.Entities.Setup
         [DBFiledName("MODIFIED_BY")]
         public string ModifiedBy { get; set; }
         [DBFiledName("MODIFICATION_DATE")]
-        public string ModificationDate { get; set; }
+        public DateTime ModificationDate { get; set; }
     }
 }

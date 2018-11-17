@@ -32,14 +32,13 @@ namespace Domain.Operations.Setup.SubjectTypies
                 SPName = SubjectTypeSPName.SP_INSERT_SubjectType;
                 message = "Inserted Successfully";
             }
-            oracleParams.Add(SubjectTypepParams.PARAMETER_ID, OracleDbType.Long, ParameterDirection.Input, (object)subjectType.ID ?? DBNull.Value, 500);
-            oracleParams.Add(SubjectTypepParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.ID ?? DBNull.Value, 500);
-            oracleParams.Add(SubjectTypepParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.ID ?? DBNull.Value, 500);
-            oracleParams.Add(SubjectTypepParams.PARAMETER_CREATED_BY, OracleDbType.Varchar2, ParameterDirection.Input, "Admin", 500);
-            oracleParams.Add(SubjectTypepParams.PARAMETER_CREATION_DATE, OracleDbType.Date, ParameterDirection.Input, subjectType.CreationDate == default(DateTime) ? DateTime.Now : subjectType.CreationDate, 500);
-            oracleParams.Add(SubjectTypepParams.PARAMETER_MODIFIED_BY, OracleDbType.Varchar2, ParameterDirection.Input, "Admin", 500);
-            oracleParams.Add(SubjectTypepParams.PARAMETER_MODIFICATION_DATE, OracleDbType.Date, ParameterDirection.Input, DateTime.Now, 500);
-            oracleParams.Add(SubjectTypepParams.PARAMETER_PARENT, OracleDbType.Long, ParameterDirection.Input, subjectType.Parent, 500);
+            oracleParams.Add(SubjectTypepParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.Name ?? DBNull.Value, 1000);
+            oracleParams.Add(SubjectTypepParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.Name2 ?? DBNull.Value, 1000);
+            oracleParams.Add(SubjectTypepParams.PARAMETER_CREATED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.CreatedBy ?? DBNull.Value, 1000);
+            oracleParams.Add(SubjectTypepParams.PARAMETER_CREATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)subjectType.CreationDate ?? DBNull.Value);
+            oracleParams.Add(SubjectTypepParams.PARAMETER_MODIFIED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.ModifiedBy ?? DBNull.Value,1000);
+            oracleParams.Add(SubjectTypepParams.PARAMETER_MODIFICATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)subjectType.ModificationDate ?? DBNull.Value);
+            oracleParams.Add(SubjectTypepParams.PARAMETER_PARENT, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.Parent ?? DBNull.Value);
             oracleParams.Add(SubjectTypepParams.PARAMETER_LINEOFBUSNIESS, OracleDbType.Long, ParameterDirection.Input, subjectType.LineOfBusniessID, 500);
             oracleParams.Add(SubjectTypepParams.PARAMETER_SUBLINEOFBUSNIESS, OracleDbType.Long, ParameterDirection.Input, subjectType.SubLineOfBusniessID, 500);
             oracleParams.Add(SubjectTypepParams.PARAMETER_EXCESS_MAX_AMOUNT, OracleDbType.Long, ParameterDirection.Input, subjectType.MaxExcessAmount, 500);

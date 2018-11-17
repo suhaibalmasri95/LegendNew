@@ -14,7 +14,7 @@ namespace API.Controllers.Setup
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SubjecttypiesController : ControllerBase
+    public class SubjectTypeController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]
@@ -48,12 +48,13 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long lineOfBusniess, long subLineOfBusniess, long? LanguageID)
+        public IActionResult Load(long? ID, long? LineOfBusniess, long? SubLineOfBusniess, long? langId)
         {
-            GetSubjectTypies operation = new GetSubjectTypies() { ID=ID,LineOfBusniessID = lineOfBusniess, SubLineOfBusniessID = subLineOfBusniess};
+            GetSubjectTypies operation = new GetSubjectTypies()
+            { ID=ID,LineOfBusniessID = LineOfBusniess, SubLineOfBusniessID = SubLineOfBusniess };
 
-            if (LanguageID.HasValue)
-                operation.LangID = LanguageID;
+            if (langId.HasValue)
+                operation.LangID = langId;
             else
                 operation.LangID = 1;
 
@@ -65,6 +66,34 @@ namespace API.Controllers.Setup
             else
             {
                 return Ok((List<SubjectType>)result);
+            }
+        }
+        [Route("Delete")]
+        [HttpPost]
+        public IApiResult Delete(DeleteSubjectType operation)
+        {
+            var result = operation.Execute().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
+        [Route("DeleteMultiple")]
+        [HttpPost]
+        public IApiResult DeleteMultiple(DeleteSubjectTypes operation)
+        {
+            var result = operation.Execute().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
             }
         }
     }

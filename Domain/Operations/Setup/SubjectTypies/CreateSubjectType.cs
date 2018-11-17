@@ -28,9 +28,9 @@ namespace Domain.Operations.Setup.SubjectTypies
         {
             public Validation()
             {
-                RuleFor(area => area.Name).NotEmpty();
-                RuleFor(area => area.Name).MaximumLength(500);
-                RuleFor(area => area.Name2).MaximumLength(500);
+                RuleFor(subType => subType.Name).NotEmpty();
+                RuleFor(subType => subType.Name).MaximumLength(500);
+                RuleFor(subType => subType.Name2).MaximumLength(500);
             }
         }
     }

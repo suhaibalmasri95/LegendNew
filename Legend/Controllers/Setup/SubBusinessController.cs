@@ -49,12 +49,12 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? id, string basicLine, string lineOfBusiness, Int64? langId)
+        public IActionResult Load(long? ID, long? LineOfBusiness, long? BasicLine, long? langId)
         {
             GetSubBusniess operation = new GetSubBusniess();
-            operation.ID = id;
-            operation.BasicLineOfBusniess = basicLine;
-            operation.LineOfBusniess = lineOfBusiness;
+            operation.ID = ID;
+            operation.BasicLineOfBusniess = BasicLine;
+            operation.LineOfBusniess = LineOfBusiness;
 
             if (langId.HasValue)
                 operation.LangID = langId;
@@ -69,6 +69,35 @@ namespace API.Controllers.Setup
             else
             {
                 return Ok((List<SubLineOfBusnies>)result);
+            }
+        }
+
+        [Route("Delete")]
+        [HttpPost]
+        public IApiResult Delete(DeleteSubBusniess operation)
+        {
+            var result = operation.Execute().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
+        [Route("DeleteMultiple")]
+        [HttpPost]
+        public IApiResult DeleteMultiple(DeleteSubBusniesses operation)
+        {
+            var result = operation.Execute().Result;
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
             }
         }
     }

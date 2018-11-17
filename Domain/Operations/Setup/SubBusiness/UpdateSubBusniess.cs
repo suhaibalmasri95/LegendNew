@@ -31,11 +31,11 @@ namespace Domain.Operations.Setup.SubBusiness
         {
             public Validation()
             {
-                RuleFor(area => area.Name).NotEmpty();
-                RuleFor(area => area.Name).MaximumLength(500);
-                RuleFor(area => area.Name2).MaximumLength(500);
-                RuleFor(area => area.Code).NotNull();
-                RuleFor(area => area.LangID).NotNull();
+                RuleFor(sub => sub.Name).NotEmpty();
+                RuleFor(sub => sub.Name).MaximumLength(500);
+                RuleFor(sub => sub.Name2).MaximumLength(500);
+                RuleFor(sub => sub.Code).NotNull();
+            
             }
         }
 

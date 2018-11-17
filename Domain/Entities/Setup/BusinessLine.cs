@@ -14,6 +14,8 @@ namespace Domain.Entities.Setup
             StatusDate = DateTime.Now;
             CreationDate = DateTime.Now;
             ModificationDate = DateTime.Now;
+            CreatedBy = "ADMIN";
+            ModifiedBy = "ADMIN";
         }
 
 
@@ -26,7 +28,7 @@ namespace Domain.Entities.Setup
         public string Name2 { get; set; }
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
-        [DBFiledName("Code")]
+        [DBFiledName("CODE")]
         public string Code { get; set; }
         [DBFiledName("LOB_CODE")]
         public long? LineOfBusiness { get; set; }
@@ -34,7 +36,7 @@ namespace Domain.Entities.Setup
         public long? Module { get; set; }
         [DBFiledName("STATUS_DATE")]
         public DateTime StatusDate { get; set; }
-        [DBFiledName("LOC_STATUS")]
+        [DBFiledName("STATUS")]
         public long Status { get; set; }
         [DBFiledName("CREATED_BY")]
         public string CreatedBy { get; set; }

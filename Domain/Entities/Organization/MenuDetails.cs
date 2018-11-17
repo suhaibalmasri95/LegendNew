@@ -35,9 +35,9 @@ namespace Domain.Entities.Organization
         [DBFiledName("ModuleMenuName")]
         public string ModuleMenuName { get; set; }
         [DBFiledName("ThirdParentMenuID")]
-        public long? SubMoudleMenuID { get; set; }
+        public long? SubModuleMenuID { get; set; }
         [DBFiledName("SubMoudleMenuName")]
-        public string SubMoudleMenuName { get; set; }
+        public string SubModuleMenuName { get; set; }
 
     }
 }
