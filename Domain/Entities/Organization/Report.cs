@@ -24,5 +24,7 @@ namespace Domain.Entities.Organization
         public string Code { get; set; }
         [DBFiledName("ST_REPG_ID")]
         public long? ReportGroupID { get; set; }
+        [DBFiledName("ReportRelationID")]
+        public long? ReportRelationID { get; set; }
     }
 }

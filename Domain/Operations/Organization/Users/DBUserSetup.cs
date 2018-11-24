@@ -61,18 +61,31 @@ namespace Domain.Operations.Organization.Users
                     await deleteUserGroup.Execute();
 
                 }
-                if (user.UserRelations.Count > 0)
+                if (user.Branches.Length > 0)
                 {
 
-                   
+
                     // Add Relations
-
-                    foreach (var item in user.UserRelations)
+                    if (user.Branches.Length > 0)
                     {
-                        item.UserName = user.UserName;
-                        item.UserID = user.ID;
+                        // Add Relations
 
-                        await DBUserGroupSetup.AddUpdateMode(item);
+
+                        UserGroup userGroup = new UserGroup();
+
+
+                        userGroup.UserName = user.UserName;
+                        userGroup.UserID = user.ID;
+                        userGroup.RefrenceIDs = user.Branches;
+                        if (user.UserRelationID.HasValue)
+                            userGroup.UserRelationID = user.UserRelationID;
+                        else
+                            userGroup.UserRelationID = 1;
+
+                        await DBUserGroupSetup.AddUserBranches(userGroup);
+
+
+
 
                     }
                 }
@@ -118,18 +131,25 @@ namespace Domain.Operations.Organization.Users
                 complate.message = "Inserted Successfully";
                 long UserID = oracleParams.Get(0);
               
-                if(user.UserRelations.Count > 0)
+                if(user.Branches.Length > 0)
                 {
                     // Add Relations
 
-                    foreach (var item in user.UserRelations)
-                    {
-                        item.UserName = user.UserName;
-                        item.UserID = UserID;
-                        
-                        await DBUserGroupSetup.AddUpdateMode(item);
+                    
+                        UserGroup userGroup = new UserGroup();
 
-                    }
+
+                    userGroup.UserName = user.UserName;
+                    userGroup.UserID = UserID;
+                    userGroup.RefrenceIDs = user.Branches;
+                    if (user.UserRelationID.HasValue)
+                        userGroup.UserRelationID = user.UserRelationID;
+                    else
+                        userGroup.UserRelationID = 1;
+
+                        await DBUserGroupSetup.AddUserBranches(userGroup);
+
+                    
 
                 
                 }

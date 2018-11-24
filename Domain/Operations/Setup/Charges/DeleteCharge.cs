@@ -1,16 +1,16 @@
 ﻿using Common.Extensions;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Entities.Organization;
+using Domain.Entities.Setup;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Organization.GroupRelations
+namespace Domain.Operations.Setup.Charges
 {
-    public class CreateGroupRelation : GroupRelation, ICreate
+   public class DeleteCharge : Charge, IDelete
     {
         public async Task<IDTO> Execute()
         {
@@ -20,7 +20,8 @@ namespace Domain.Operations.Organization.GroupRelations
                 return validationResult;
             }
 
-            return await DBGroupRelationSetup.AddUpdateMode(this);
+
+            return await DBDeleteChargeSetup.DeleteChargeAsync(this);
 
         }
 
@@ -29,12 +30,12 @@ namespace Domain.Operations.Organization.GroupRelations
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<GroupRelation>
+        public class Validation : AbstractValidator<Charge>
         {
             public Validation()
             {
-      
-               
+                RuleFor(cgarge => cgarge.ID).NotNull();
+
             }
         }
     }

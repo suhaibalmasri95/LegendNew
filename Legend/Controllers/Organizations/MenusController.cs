@@ -81,6 +81,11 @@ namespace API.Controllers.Organizations
         [HttpGet]
         public IActionResult LoadParent(long? ID, long? Type, long? SubMenuID, long? LanguageID)
         {
+
+            if (SubMenuID.HasValue)
+            {
+
+           
             //First load the Type
             GetMenus operation = new GetMenus();
             // the direct parent of menu
@@ -89,8 +94,9 @@ namespace API.Controllers.Organizations
             GetMenus SecondParent = new GetMenus();
             // the thid parent of the related menu
             GetMenus ThirdParent = new GetMenus();
-            // the fourth parent of the related menu
-            operation.ID = ID;
+           // the fourth parent of the related menu
+            GetMenus FourthParent = new GetMenus();
+                operation.ID = ID;
             operation.Type = Type;
             if (LanguageID.HasValue)
             {
@@ -98,7 +104,8 @@ namespace API.Controllers.Organizations
                 FirstParent.LangID = LanguageID;
                 SecondParent.LangID = LanguageID;
                 ThirdParent.LangID = LanguageID;
-            }
+                    FourthParent.LangID = LanguageID;
+                }
               
             else
             {
@@ -106,7 +113,8 @@ namespace API.Controllers.Organizations
                 FirstParent.LangID = 1;
                 SecondParent.LangID = 1;
                 ThirdParent.LangID = 1;
-            }
+                    FourthParent.LangID = 1;
+                }
 
             var result = operation.QueryAsync().Result;
             var Menus = (List<Menu>)result;
@@ -126,40 +134,62 @@ namespace API.Controllers.Organizations
                 var ThirdMenu = ((List<Menu>)ThirdParent.QueryAsync().Result).FirstOrDefault();
                 if(ThirdMenu!=null)
                 {
-                    // Get fourth Parent
-                  
-                      
+                        // Get fourth Parent
+                        FourthParent.ID = ThirdParent.SubMenuID;
+                        var FourthMenu = ((List<Menu>)FourthParent.QueryAsync().Result).FirstOrDefault();
+
+                        if(FourthParent!=null)
+                        {
+                            foreach (var item in Menus)
+                            {
+                                if (item.SubMenuID == ThirdMenu.ID && ThirdMenu.SubMenuID == secondMenu.ID && secondMenu.SubMenuID == FirstMenu.ID)
+                                {
+                                    item.SystemMenuID = FirstMenu.SubMenuID;
+                                    item.SystemMenuName = FirstMenu.Name;
+
+                                    item.ModuleMenuID = secondMenu.ID;
+                                    item.ModuleMenuName = secondMenu.Name;
+                                    item.SubModuleMenuID = ThirdMenu.ID;
+                                    item.SubModuleMenuName = ThirdMenu.Name;
+                                    MenusToReturn.Add(item);
+
+                                }
+
+                            }
+                        }
+                        else { 
                         foreach (var item in Menus)
                         {
-                            if (item.SubMenuID == FirstMenu.ID && FirstMenu.SubMenuID == secondMenu.ID && secondMenu.SubMenuID == ThirdMenu.ID)
+                            if (item.SubMenuID == secondMenu.ID && secondMenu.SubMenuID == FirstMenu.ID)
                             {
-                                item.SystemMenuID = ThirdMenu.SubMenuID;
-                                item.SystemMenuName = ThirdMenu.Name;
+                                item.SystemMenuID = FirstMenu.ID;
+                                item.SystemMenuName = FirstMenu.Name;
 
-                                item.ModuleMenuID = secondMenu.SubMenuID;
+                                item.ModuleMenuID = secondMenu.ID;
                             item.ModuleMenuName = secondMenu.Name;
-                            item.SubModuleMenuID = FirstMenu.SubMenuID;
+                            item.SubModuleMenuID = FirstMenu.ID;
                             item.SubModuleMenuName = FirstMenu.Name;
                             MenusToReturn.Add(item);
 
                             }
 
                         }
+                        }
 
-                    
-                }
+
+                    }
                 else
                 {
                   
                     foreach (var item in Menus)
                     {
-                        if (item.SubMenuID == FirstMenu.ID && FirstMenu.SubMenuID == secondMenu.ID )
+                        if (item.SubMenuID == FirstMenu.ID  )
                         {
-                            item.SystemMenuID = secondMenu.SubMenuID;
-                            item.SystemMenuName = secondMenu.Name;
+                            item.SystemMenuID = FirstMenu.ID;
+                            item.SystemMenuName = FirstMenu.Name;
 
-                            item.ModuleMenuID = FirstMenu.SubMenuID;
-                            item.ModuleMenuName = FirstMenu.Name;
+                            item.ModuleMenuID = secondMenu.ID;
+                            item.ModuleMenuName = secondMenu.Name;
                             MenusToReturn.Add(item);
 
                         }
@@ -175,7 +205,7 @@ namespace API.Controllers.Organizations
                 {
                     if (item.SubMenuID == FirstMenu.ID )
                     {
-                        item.SystemMenuID = FirstMenu.SubMenuID;
+                        item.SystemMenuID = FirstMenu.ID;
                         item.SystemMenuName = FirstMenu.Name;
 
                         MenusToReturn.Add(item);
@@ -194,7 +224,88 @@ namespace API.Controllers.Organizations
             {
                 return Ok(MenusToReturn);
 
+                }
             }
+            else
+            {
+                List<Menu> MenusToReturn = new List<Menu>();
+                //First load the Type
+                GetMenus operation = new GetMenus();
+                // the direct parent of menu
+                GetMenus FirstChild = new GetMenus();
+                // the second parent of the related menu
+                GetMenus SecondChild = new GetMenus();
+                // the thid parent of the related menu
+                GetMenus ThirdChild = new GetMenus();
+                // the fourth parent of the related menu
+                GetMenus FourthChild = new GetMenus();
+                operation.Type = 1;
+                var result = operation.QueryAsync().Result;
+                var Menus = (List<Menu>)result;
+                foreach (var item in Menus)
+                {
+                    FirstChild.Type = 2;
+                    var firstChild = (List<Menu>)FirstChild.QueryAsync().Result;
+                    if (firstChild.Count > 0)
+                    { 
+                    foreach (var child in firstChild)
+                    {
+                        item.ModuleMenuID = child.ID;
+                        item.ModuleMenuName = child.Name;
+                        SecondChild.Type = 3;
+                        var secondChild = (List<Menu>)SecondChild.QueryAsync().Result;
+                        if(secondChild.Count > 0)
+                        {
+                        foreach (var child2 in secondChild)
+                        {
+                            item.SubModuleMenuID = child2.ID;
+                            item.SubModuleMenuName = child2.Name;
+                            ThirdChild.Type = 4;
+                            var thirdChild = (List<Menu>)ThirdChild.QueryAsync().Result;
+                            if(thirdChild.Count >0)
+                            { 
+                            foreach (var child3 in thirdChild)
+                            {
+                                item.PageMenuID = child3.ID;
+                                item.PageMenuName = child3.Name;
+                                FourthChild.Type = 5;
+                                var fourthChild = (List<Menu>)FourthChild.QueryAsync().Result;
+                                if(fourthChild.Count>0)
+                                { 
+                                foreach (var child4 in fourthChild)
+                                {
+                                    item.ActionMenuID = child4.ID;
+                                    item.ActionMenuName = child4.Name;
+                                    MenusToReturn.Add(item);
+
+                                }
+                                }
+                                else
+                                {
+                                    MenusToReturn.Add(item);
+                                }
+                            }
+                            }
+                            else
+                            {
+                                MenusToReturn.Add(item);
+                            }
+                            }
+                        }
+                        else
+                        {
+                            MenusToReturn.Add(item);
+                        }
+                        }
+                    }
+                    else
+                    {
+                        MenusToReturn.Add(item);
+                    }
+                }
+                return Ok(MenusToReturn);
+            }
+
         }
 
 

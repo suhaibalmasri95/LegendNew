@@ -33,7 +33,7 @@ namespace Domain.Operations.Organization.UserGroups
             {
                 RuleFor(userGroup => userGroup.UserID).NotNull();
                 RuleFor(userGroup => userGroup.UserName).NotNull();
-                RuleFor(userGroup => userGroup.UserRelationID).NotNull();
+              
 
 
             }

@@ -18,9 +18,13 @@ namespace Domain.Operations.Organization.GroupRelations
         {
             string SPName = "";
             string message = "";
-            OracleDynamicParameters oracleParams = new OracleDynamicParameters();
             ComplateOperation<int> complate = new ComplateOperation<int>();
+            for (int i = 0; i < groupRelation.RefrenceIDs.Length; i++)
+            {
 
+          
+         
+            OracleDynamicParameters oracleParams = new OracleDynamicParameters();
             if (groupRelation.ID.HasValue)
             {
                 oracleParams.Add(GroupRelationSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)groupRelation.ID ?? DBNull.Value);
@@ -36,12 +40,13 @@ namespace Domain.Operations.Organization.GroupRelations
             oracleParams.Add(GroupRelationSpParams.PARAMETER_ST_GRP_ID, OracleDbType.Int64, ParameterDirection.Input, (object)groupRelation.GroupID ?? DBNull.Value);
             oracleParams.Add(GroupRelationSpParams.PARAMETER_GRPNAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)groupRelation.GroupName ?? DBNull.Value, 1000);
             oracleParams.Add(GroupRelationSpParams.PARAMETER_LOCK_GRP_CAT, OracleDbType.Int64, ParameterDirection.Input, (object)groupRelation.LockUpGroupCat ?? DBNull.Value);
-            oracleParams.Add(GroupRelationSpParams.PARAMETER_REF_ID, OracleDbType.Int64, ParameterDirection.Input, (object)groupRelation.RefrenceID ?? DBNull.Value);
+            oracleParams.Add(GroupRelationSpParams.PARAMETER_REF_ID, OracleDbType.Int64, ParameterDirection.Input, (object)groupRelation.RefrenceIDs[i] ?? DBNull.Value);
  
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)
                 complate.message = message;
             else
                 complate.message = "Operation Failed";
+            }
 
             return complate;
         }

@@ -35,7 +35,7 @@ namespace Domain.Operations.Others
         void setupMemoryStream()
         {
             var assemply = Assembly.Load("Domain");
-            var type = assemply.GetType("Domain." + FieldName);
+            var type = assemply.GetType("Domain.Entities." + FieldName);
             var listType = typeof(List<>).MakeGenericType(type);
             var newList = Activator.CreateInstance(listType) as IList;
             foreach (var item in items)
@@ -53,7 +53,7 @@ namespace Domain.Operations.Others
             var dataTable = ToDataTable(ienumerableObject.ToList());
             _fileName = Guid.NewGuid().ToString();
             _fileName = (_fileName.Substring(0, _fileName.Length / 2) + DateTime.Now.Hour.ToString()).Replace('/','-');
-            if (string.Equals(Type, "PDF"))
+            if (string.Equals(Type, "pdf"))
             {
                 _fileName = _fileName + ".pdf";
                
@@ -61,7 +61,7 @@ namespace Domain.Operations.Others
             
             }
 
-            if (string.Equals(Type, "CSV"))
+            if (string.Equals(Type, "csv"))
             {
                 _fileName = _fileName + ".csv";
             

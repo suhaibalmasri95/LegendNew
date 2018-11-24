@@ -15,11 +15,11 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("Export")]
-        public string Export(ExportOperation operation)
+        public IActionResult Export(ExportOperation operation)
         {
             var result = operation.Execute();
             string filePath = Request.Scheme + "://" + Request.Host.Value + "/" + "Documents/" + result.file;
-            return filePath;
+            return Ok(new { FilePath = filePath});
         }
     }
 }

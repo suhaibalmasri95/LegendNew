@@ -33,12 +33,7 @@ namespace Domain.Operations.Organization.GroupRelations
         {
             public Validation()
             {
-                RuleFor(groupRelation => groupRelation.ID).NotNull();
-                RuleFor(groupRelation => groupRelation.GroupID).NotNull();
-                RuleFor(groupRelation => groupRelation.GroupName).NotEmpty();
-                RuleFor(groupRelation => groupRelation.GroupName).MaximumLength(1000);
-                RuleFor(groupRelation => groupRelation.LockUpGroupCat).NotNull();
-                RuleFor(groupRelation => groupRelation.RefrenceID).NotNull();
+           
 
             }
         }

@@ -34,5 +34,7 @@ namespace Domain.Entities.Organization
         public Int32 IsExcelRecord { get; set; }
         [DBFiledName("EMAIL")]
         public string Email { get; set; }
+        [DBFiledName("UserRelationID")]
+        public long? UserRelationID { get; set; }
     }
 }

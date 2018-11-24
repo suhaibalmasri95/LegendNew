@@ -41,6 +41,8 @@ namespace Domain.Entities.Organization
         public long CompanyID { get; set; }
         [DBFiledName("UserRelations")]
         public List<UserGroup> UserRelations { get; set; }
+        [DBFiledName("UserRelationID")]
+        public long? UserRelationID { get; set; }
         [DBFiledName("BIRTH_DATE")]
         public DateTime BirthDate { get; set; }
         [DBFiledName("Picture")]
@@ -61,5 +63,7 @@ namespace Domain.Entities.Organization
         public string ModifiedBy { get; set; }
         [DBFiledName("MODIFICATION_DATE")]
         public DateTime? ModificationDate { get; set; }
+        [DBFiledName("Branches")]
+        public long[] Branches { get; set; }
     }
 }

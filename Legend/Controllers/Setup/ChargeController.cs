@@ -1,25 +1,24 @@
-﻿using Common.Controllers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Entities.Organization;
-using Domain.Operations.Organization.Areas;
-using Domain.Operations.Organization.MenuDetails;
-using Domain.Operations.Organization.ReportGroups;
-using Domain.Entities.Organization;
-using Infrastructure.Attributes;
+using Domain.Entities.Setup;
+using Domain.Operations.Setup.Charges;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
-namespace API.Controllers.Organizations
+namespace API.Controllers.Setup
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ExceptionsHandling]
-    public class ReportGroupController : ControllerBase
+    public class ChargeController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]
-        public IApiResult Create(CreateReportGroup operation)
+        public IApiResult Create(CreateCharge operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -34,7 +33,7 @@ namespace API.Controllers.Organizations
 
         [Route("Update")]
         [HttpPost]
-        public IApiResult Update(UpdateReportGroup operation)
+        public IApiResult Update(UpdateCharge operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -49,29 +48,32 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID , long? LanguageID)
+        public IActionResult Load(long? ID, long? LockUpChargeType, long? LineOfBusinessCode,  long? ChargeID,  long? langId)
         {
-            GetReportGroups operation = new GetReportGroups();
+            GetChareges operation = new GetChareges();
             operation.ID = ID;
+            operation.LockUpChargeType = LockUpChargeType;
+            operation.LineOfBusinessCode = LineOfBusinessCode;
+            operation.ChargeID = ChargeID;
 
-            if (LanguageID.HasValue)
-                operation.LangID = LanguageID;
+            if (langId.HasValue)
+                operation.LangID = langId;
             else
                 operation.LangID = 1;
+
             var result = operation.QueryAsync().Result;
             if (result is ValidationsOutput)
             {
-                return Ok( new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return Ok((List<ReportGroup>)result);
+                return Ok((List<Charge>)result);
             }
         }
-       
         [Route("Delete")]
         [HttpPost]
-        public IApiResult Delete(DeleteReportGroup operation)
+        public IApiResult Delete(DeleteCharge operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -85,7 +87,7 @@ namespace API.Controllers.Organizations
         }
         [Route("DeleteMultiple")]
         [HttpPost]
-        public IApiResult DeleteMultiple(DeleteReportGroups operation)
+        public IApiResult DeleteMultiple(DeleteCharges operation)
         {
             var result = operation.Execute().Result;
             if (result is ValidationsOutput)
@@ -98,4 +100,5 @@ namespace API.Controllers.Organizations
             }
         }
     }
+
 }

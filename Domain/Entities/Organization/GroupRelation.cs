@@ -22,5 +22,7 @@ namespace Domain.Entities.Organization
         public long? LockUpGroupCat { get; set; }
         [DBFiledName("REF_ID")]
         public long? RefrenceID { get; set; }
+        [DBFiledName("REF_IDs")]
+        public long[] RefrenceIDs { get; set; }
     }
 }

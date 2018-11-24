@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Organization.GroupRelations
+namespace Domain.Operations.Organization.UserGroups
 {
-    public class CreateGroupRelation : GroupRelation, ICreate
+    public class AddUsersToGroup : UserGroup, ICreate
     {
         public async Task<IDTO> Execute()
         {
@@ -20,21 +20,21 @@ namespace Domain.Operations.Organization.GroupRelations
                 return validationResult;
             }
 
-            return await DBGroupRelationSetup.AddUpdateMode(this);
-
+            return await DBUserGroupSetup.AddUsersToGroup(this);
         }
 
         public IDTO Validate()
         {
             return new Validation().Validate(this).AsDto();
         }
-
-        public class Validation : AbstractValidator<GroupRelation>
+        public class Validation : AbstractValidator<UserGroup>
         {
             public Validation()
             {
-      
-               
+             
+              
+
+
             }
         }
     }

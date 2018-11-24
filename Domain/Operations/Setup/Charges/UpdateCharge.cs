@@ -5,9 +5,9 @@ using Domain.Entities.Setup;
 using FluentValidation;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Setup.Business
+namespace Domain.Operations.Setup.Charges
 {
-    public class CreateBusiness : BusinessLine, ICreate
+    public class UpdateCharge : Charge, IUpdate
     {
         public async Task<IDTO> Execute()
         {
@@ -16,7 +16,7 @@ namespace Domain.Operations.Setup.Business
             {
                 return validationResult;
             }
-            return await DBBusinessSetup.AddUpdateMode(this);
+            return await DBChargeSetup.AddUpdateMode(this);
         }
 
         public IDTO Validate()
@@ -24,16 +24,17 @@ namespace Domain.Operations.Setup.Business
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<CreateBusiness>
+        public class Validation : AbstractValidator<Charge>
         {
             public Validation()
             {
-                RuleFor(bank => bank.Name).NotEmpty();
-                RuleFor(bank => bank.Name).MaximumLength(500);
-                RuleFor(bank => bank.Name2).MaximumLength(500);
-                RuleFor(bank => bank.Code).NotNull();
-                RuleFor(bank => bank.Module).NotNull();
-             
+                RuleFor(charge => charge.ID).NotNull();
+                RuleFor(charge => charge.Name).NotEmpty();
+                RuleFor(charge => charge.Name).MaximumLength(500);
+                RuleFor(charge => charge.Name2).MaximumLength(500);
+                RuleFor(charge => charge.CreatedBy).NotNull();
+                RuleFor(charge => charge.CreationDate).NotNull();
+
             }
         }
 

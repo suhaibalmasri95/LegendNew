@@ -18,6 +18,8 @@ namespace Domain.Entities.Organization
         public string Name2 { get; set; }
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
+        [DBFiledName("GroupRelationID")]
+        public long GroupRelationID { get; set; }
         [DBFiledName("MENU_ORDER")]
         public long? Order { get; set; }
         [DBFiledName("MENU_TYPE")]
@@ -38,6 +40,14 @@ namespace Domain.Entities.Organization
         public long? SubModuleMenuID { get; set; }
         [DBFiledName("SubMoudleMenuName")]
         public string SubModuleMenuName { get; set; }
+        [DBFiledName("FourthParentMenuID")]
+        public long? PageMenuID { get; set; }
+        [DBFiledName("SubMoudleMenuName")]
+        public string PageMenuName { get; set; }
+        [DBFiledName("FourthParentMenuID")]
+        public long? ActionMenuID { get; set; }
+        [DBFiledName("SubMoudleMenuName")]
+        public string ActionMenuName { get; set; }
 
     }
 }
