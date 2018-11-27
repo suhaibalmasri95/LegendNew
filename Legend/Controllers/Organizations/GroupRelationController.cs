@@ -316,8 +316,8 @@ namespace API.Controllers.Organizations
                 mo.children = SubModuels.Where(x => x.SubMenuID == mo.ID).ToList();
                 foreach (var child in mo.children)
                 {
-                    child.Parent = new Menu() { Name="ABD Makahleh"};
-                    child.Parent = new Menu() { ID = mo.ID };
+                    child.Parent = new Menu() { Name= mo.Name , ID = mo.ID , SubMenuID = mo.SubMenuID};
+                   
                 }
             }
 
@@ -326,7 +326,7 @@ namespace API.Controllers.Organizations
                 mo.children = Pages.Where(x => x.SubMenuID == mo.ID).ToList();
                 foreach (var child in mo.children)
                 {
-                    child.Parent = new Menu() { ID = mo.ID};
+                    child.Parent = new Menu() { Name = mo.Name, ID = mo.ID, SubMenuID = mo.SubMenuID };
                 }
             }
         }
