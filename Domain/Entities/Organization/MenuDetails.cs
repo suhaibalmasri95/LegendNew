@@ -9,6 +9,11 @@ namespace Domain.Entities.Organization
     [DBTableName("ST_MENUS")]
     public class Menu : IEntity
     {
+        public Menu()
+        {
+            children = new List<Menu>();
+        }
+
         [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
@@ -48,6 +53,9 @@ namespace Domain.Entities.Organization
         public long? ActionMenuID { get; set; }
         [DBFiledName("SubMoudleMenuName")]
         public string ActionMenuName { get; set; }
-
+        [DBFiledName("")]
+        public List<Menu> children { get; set; }
+        [DBFiledName("")]
+        public Menu Parent { get; set; }
     }
 }

@@ -50,7 +50,7 @@ namespace API.Controllers.Organizations
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(Int64 ID ,Int64? groupID, Int64? langId)
+        public IActionResult Load(Int64 ID, Int64? groupID, Int64? langId)
         {
 
             GetGroupRelation operation = new GetGroupRelation();
@@ -94,15 +94,16 @@ namespace API.Controllers.Organizations
                 getMenus.LangID = 1;
 
             }
-               
+
             var result = operation.QueryAsync().Result;
             var Actions = (List<Menu>)getMenus.QueryAsync().Result;
             var groups = (List<GroupRelation>)result;
             List<Menu> returnedRelatedActions = new List<Menu>();
             List<Menu> returnedUnRelatedActions = new List<Menu>();
-            if (groups.Count > 0) { 
-            foreach (var item in Actions)
+            if (groups.Count > 0)
             {
+                foreach (var item in Actions)
+                {
                     foreach (var group in groups)
                     {
                         if (group.RefrenceID == item.ID)
@@ -133,7 +134,7 @@ namespace API.Controllers.Organizations
                         }
                     }
 
-            }
+                }
             }
             else
             {
@@ -162,20 +163,21 @@ namespace API.Controllers.Organizations
                 getRelatedReport.LangID = LanguageID;
                 getUnRelatedReport.LangID = LanguageID;
             }
-            else { 
+            else
+            {
                 operation.LangID = 1;
                 getUnRelatedReport.LangID = 1;
                 getRelatedReport.LangID = 1;
             }
-          
+
             var Reports = (List<Report>)getRelatedReport.QueryAsync().Result;
 
             var result = operation.QueryAsync().Result;
             var reports = (List<GroupRelation>)result;
-         
+
             List<Report> returnedRelatedReports = new List<Report>();
-            List<Report> returnedUnRelatedReports= new List<Report>();
-            
+            List<Report> returnedUnRelatedReports = new List<Report>();
+
             var groups = (List<GroupRelation>)result;
             if (groups.Count > 0)
             {
@@ -225,9 +227,52 @@ namespace API.Controllers.Organizations
             {
                 return Ok(new { RelatedReports = returnedRelatedReports, UnRelatedReports = returnedUnRelatedReports });
             }
-          
+
         }
 
+
+        [Route("LoadMenus")]
+        [HttpGet]
+        public IActionResult LoadMenus(long? groupID, long? LanguageID)
+        {
+            GetGroupRelation operation = new GetGroupRelation();
+            operation.GroupID = groupID;
+            GetMenus getMenus = new GetMenus();
+            getMenus.Type = 1;
+            if (LanguageID.HasValue)
+            {
+                getMenus.LangID = LanguageID;
+                operation.LangID = LanguageID;
+            }
+            else
+            {
+                getMenus.LangID = 1;
+                operation.LangID = 1;
+            }
+
+            var System = (List<Menu>)getMenus.QueryAsync().Result;
+            getMenus.Type = 2;
+            var Modules = (List<Menu>)getMenus.QueryAsync().Result;
+            getMenus.Type = 3;
+            var SubModule = (List<Menu>)getMenus.QueryAsync().Result;
+            getMenus.Type = 4;
+            var Pages = (List<Menu>)getMenus.QueryAsync().Result;
+            var groups = (List<GroupRelation>)operation.QueryAsync().Result;
+            var relatedSystem = new List<System>();
+            var unRelatedSystems = new List<System>();
+
+            foreach (var ss in System)
+            {
+                var system = new System();
+                system.children = Modules.Where(x => x.SubMenuID == ss.ID).ToList();
+                system.children = system.children.Select(c => { c.Parent = ss; return c; }).ToList();
+                system.SubModuels = SubModule.Where(subModule => system.children.Where(x => x.ID == subModule.SubMenuID) != null).ToList();
+                system.Pages = Pages.Where(page => system.SubModuels.Where(x => x.ID == page.SubMenuID) != null).ToList();
+                system.OrderChildrens();
+                relatedSystem.Add(system);
+            }
+            return Ok(relatedSystem);
+        }
         [Route("Delete")]
         [HttpPost]
         public IApiResult Delete(DeleteGroupRelation operation)
@@ -254,6 +299,35 @@ namespace API.Controllers.Organizations
             else
             {
                 return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
+    }
+
+    public class System : Menu
+    {
+        public new List<Menu> children;
+        internal List<Menu> SubModuels;
+        internal List<Menu> Pages;
+
+        public void OrderChildrens()
+        {
+            foreach (var mo in children)
+            {
+                mo.children = SubModuels.Where(x => x.SubMenuID == mo.ID).ToList();
+                foreach (var child in mo.children)
+                {
+                    child.Parent = new Menu() { Name="ABD Makahleh"};
+                    child.Parent = new Menu() { ID = mo.ID };
+                }
+            }
+
+            foreach (var mo in SubModuels)
+            {
+                mo.children = Pages.Where(x => x.SubMenuID == mo.ID).ToList();
+                foreach (var child in mo.children)
+                {
+                    child.Parent = new Menu() { ID = mo.ID};
+                }
             }
         }
     }

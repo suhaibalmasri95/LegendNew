@@ -48,13 +48,13 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? LockUpChargeType, long? LineOfBusinessCode,  long? ChargeID,  long? langId)
+        public IActionResult Load(long? ID, long? LockUpChargeType, long? LineOfBusinessCode,  long? ChargeType,  long? langId)
         {
             GetChareges operation = new GetChareges();
             operation.ID = ID;
             operation.LockUpChargeType = LockUpChargeType;
             operation.LineOfBusinessCode = LineOfBusinessCode;
-            operation.ChargeID = ChargeID;
+            operation.ChargeType = ChargeType;
 
             if (langId.HasValue)
                 operation.LangID = langId;
