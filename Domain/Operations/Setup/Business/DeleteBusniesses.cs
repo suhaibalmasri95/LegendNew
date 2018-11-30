@@ -13,7 +13,7 @@ namespace Domain.Operations.Setup.Business
     public class DeleteBusniesses : BusinessLine, IDelete
     {
         public long[] IDs;
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

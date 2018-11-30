@@ -9,7 +9,7 @@ namespace Domain.Operations.Organization.LockUps
 {
     public class UpdateLockUp : Lockup, IUpdate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

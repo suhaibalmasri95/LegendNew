@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.Departments
 {
     public class CreateDepartment : Department, ICreate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

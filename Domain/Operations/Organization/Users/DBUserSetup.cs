@@ -58,7 +58,7 @@ namespace Domain.Operations.Organization.Users
                 {
                     DeleteUserGroup deleteUserGroup = new DeleteUserGroup();
                     deleteUserGroup.ID = userRelation.ID;
-                    await deleteUserGroup.Execute();
+                    await deleteUserGroup.ExecuteAsync();
 
                 }
                 if (user.Branches.Length > 0)

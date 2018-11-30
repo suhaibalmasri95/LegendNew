@@ -13,7 +13,7 @@ namespace Domain.Operations.Setup.SubBusiness
     public class DeleteSubBusniess : SubLineOfBusnies, IDelete
     {
        
-    public async Task<IDTO> Execute()
+    public async Task<IDTO> ExecuteAsync()
     {
         var validationResult = (ValidationsOutput)Validate();
         if (!validationResult.IsValid)

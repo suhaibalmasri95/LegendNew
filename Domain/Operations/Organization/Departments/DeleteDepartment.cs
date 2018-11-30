@@ -9,7 +9,7 @@ namespace Domain.Operations.Organization.Departments
 {
     public class DeleteDepartment : Department, IDelete
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

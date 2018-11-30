@@ -9,7 +9,7 @@ namespace Domain.Operations.Organization.Areas
 {
     public class UpdateArea : Area, IUpdate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

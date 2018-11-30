@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.Cities
 {
     public class CreateCity : City, ICreate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

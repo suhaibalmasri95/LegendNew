@@ -16,7 +16,7 @@ namespace Domain.Operations.Organization.MenuDetails
 {
     public class DeleteMenu : Menu, IDelete
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

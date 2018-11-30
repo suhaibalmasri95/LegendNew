@@ -9,7 +9,7 @@ namespace Domain.Operations.Organization.Cities
 {
     public class UpdateCity : City, IUpdate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

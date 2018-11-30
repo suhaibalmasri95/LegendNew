@@ -16,7 +16,7 @@ namespace Domain.Operations.Organization.Companies
 {
     public class DeleteCompany : Company, IDelete
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

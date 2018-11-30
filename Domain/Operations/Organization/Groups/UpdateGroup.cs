@@ -12,7 +12,7 @@ namespace Domain.Operations.Organization.Groups
 {
    public class UpdateGroup : Group, IUpdate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

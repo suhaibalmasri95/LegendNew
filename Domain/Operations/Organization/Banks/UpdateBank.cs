@@ -9,7 +9,7 @@ namespace Domain.Operations.Organization.Banks
 {
     public class UpdateBank : Bank, IUpdate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

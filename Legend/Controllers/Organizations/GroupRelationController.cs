@@ -22,7 +22,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Create(CreateGroupRelation operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -37,7 +37,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Update(UpdateGroupRelation operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -272,7 +272,7 @@ namespace API.Controllers.Organizations
             }
 
             var unRelatedSystem = GenrerateUnRelatedGroups(groups, relatedSystem);
-            return Ok(new { unRelatedSystem = unRelatedSystem , relatedSystem  = relatedSystem});
+            return Ok(new { unRelatedSystem = unRelatedSystem, relatedSystem = relatedSystem });
         }
 
         private List<Menu> GenrerateUnRelatedGroups(List<GroupRelation> groups, List<System> allSystems)
@@ -307,7 +307,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Delete(DeleteGroupRelation operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -321,7 +321,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteGroupRelations operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
