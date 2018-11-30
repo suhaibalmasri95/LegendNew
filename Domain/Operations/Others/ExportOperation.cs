@@ -29,7 +29,7 @@ namespace Domain.Operations.Others
         public ExportResult Execute()
         {
             setupMemoryStream();
-            return new ExportResult() { file = _result};
+            return new ExportResult() { file = _result };
         }
 
         void setupMemoryStream()
@@ -52,26 +52,26 @@ namespace Domain.Operations.Others
             var ienumerableObject = newList as IEnumerable<object>;
             var dataTable = ToDataTable(ienumerableObject.ToList());
             _fileName = Guid.NewGuid().ToString();
-            _fileName = (_fileName.Substring(0, _fileName.Length / 2) + DateTime.Now.Hour.ToString()).Replace('/','-');
+            _fileName = (_fileName.Substring(0, _fileName.Length / 2) + DateTime.Now.Hour.ToString()).Replace('/', '-');
             if (string.Equals(Type, "pdf"))
             {
                 _fileName = _fileName + ".pdf";
-               
+
                 _result = AsPDFAsync(dataTable, _fileName);
-            
+
             }
 
             if (string.Equals(Type, "csv"))
             {
                 _fileName = _fileName + ".csv";
-            
+
                 _result = AsCSV(ref dataTable, _fileName);
             }
 
             if (string.Equals(Type, "xlsx"))
             {
                 _fileName = _fileName + ".xlsx";
-             
+
                 _result = AsExcel(dataTable, _fileName);
             }
         }
@@ -161,8 +161,8 @@ namespace Domain.Operations.Others
             document.Close();
             writer.Close();
             fs.Close();
-           return  fileName;
-         
+            return fileName;
+
         }
         string AsExcel(DataTable dataTable, string fileName)
         {
@@ -183,9 +183,9 @@ namespace Domain.Operations.Others
                 file.Close();
                 return fileName;
             }
-            
+
         }
-        string AsCSV(ref DataTable dTable , string fileName)
+        string AsCSV(ref DataTable dTable, string fileName)
         {
             StringBuilder sb = new StringBuilder();
             int intClmn = dTable.Columns.Count;
@@ -236,13 +236,13 @@ namespace Domain.Operations.Others
             file.Close();
             return fileName;
         }
-         string GetContentType(string path)
+        string GetContentType(string path)
         {
             var types = GetMimeTypes();
             var ext = Path.GetExtension(path).ToLowerInvariant();
             return types[ext];
         }
-      Dictionary<string, string> GetMimeTypes()
+        Dictionary<string, string> GetMimeTypes()
         {
             return new Dictionary<string, string>
             {

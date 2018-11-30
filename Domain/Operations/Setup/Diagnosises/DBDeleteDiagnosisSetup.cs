@@ -9,28 +9,28 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Setup.SubjectTypies
+namespace Domain.Operations.Setup.Diagnosises
 {
-   public static class DBDeleteSubjectTypeSetup
+    public static class DBDeleteDiagnosisSetup
     {
-        public async static Task<IDTO> DeleteSubjectTypeAsync(SubjectType subjectType)
+        public async static Task<IDTO> DeleteDiagnosisAsync(Diagnosis diagnosis)
         {
             OracleDynamicParameters oracleParams = new OracleDynamicParameters();
             ComplateOperation<int> complate = new ComplateOperation<int>();
             var dyParam = new OracleDynamicParameters();
-            dyParam.Add(SubjectTypepParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.ID ?? DBNull.Value);
-            if (await NonQueryExecuter.ExecuteNonQueryAsync(SubjectTypeSPName.SP_DELETE_SubjectType, dyParam) == -1)
+            dyParam.Add(DiagnosisParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)diagnosis.ID ?? DBNull.Value);
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(DiagnosisSPName.SP_DELETE_Diagnosis, dyParam) == -1)
                 complate.message = "Operation Successed";
             else
                 complate.message = "Operation Failed";
             return complate;
         }
 
-        public async static Task<IDTO> DeleteSubjectTypesLinesAsync(long[] IDs)
+        public async static Task<IDTO> DeleteDiagnosisAsync(long[] IDs)
         {
             ComplateOperation<int> complate = new ComplateOperation<int>();
 
-            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(SubjectType), IDs)) == -1)
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(Diagnosis), IDs)) == -1)
                 complate.message = "Operation Successed";
             else
                 complate.message = "Operation Failed";
