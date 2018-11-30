@@ -29,7 +29,7 @@ namespace Domain.Operations.Organization.ReportGroups
             return new Validation().Validate(this).AsDto();
         }
 
-        Task<IDTO> IOperation.Execute()
+        Task<IDTO> IOperation.ExecuteAsync()
         {
             throw new NotImplementedException();
         }

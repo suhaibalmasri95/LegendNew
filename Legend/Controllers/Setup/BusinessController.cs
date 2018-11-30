@@ -22,7 +22,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Create(CreateBusiness operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -37,7 +37,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Update(UpdateBusiness operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -76,7 +76,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Delete(DeleteBusniess operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -90,7 +90,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteBusniesses operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };

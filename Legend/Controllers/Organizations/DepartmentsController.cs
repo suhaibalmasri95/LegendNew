@@ -18,7 +18,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Create(CreateDepartment operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -33,7 +33,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Update(UpdateDepartment operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -70,7 +70,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Delete(DeleteDepartment operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -84,7 +84,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteDepartments operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };

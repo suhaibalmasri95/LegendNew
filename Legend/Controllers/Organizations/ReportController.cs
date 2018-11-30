@@ -18,7 +18,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Create(CreateReport operation = null)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -73,7 +73,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Delete(DeleteReport operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -87,7 +87,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteReports operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };

@@ -16,7 +16,7 @@ namespace Domain.Operations.Organization.CompanyBranches
 {
     public class DeleteCompanyBranch : CompanyBranch, IDelete
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

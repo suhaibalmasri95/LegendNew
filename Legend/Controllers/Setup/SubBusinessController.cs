@@ -21,7 +21,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Create(CreateSubBusines operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -36,7 +36,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Update(UpdateSubBusniess operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -76,7 +76,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Delete(DeleteSubBusniess operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -90,7 +90,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteSubBusniesses operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };

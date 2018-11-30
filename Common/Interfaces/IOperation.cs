@@ -7,6 +7,6 @@ namespace Common.Interfaces
 {
     public interface IOperation
     {
-        Task<IDTO> Execute();
+        Task<IDTO> ExecuteAsync();
     }
 }

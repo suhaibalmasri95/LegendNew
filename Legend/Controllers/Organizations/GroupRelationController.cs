@@ -22,7 +22,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Create(CreateGroupRelation operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -37,7 +37,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Update(UpdateGroupRelation operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -259,7 +259,6 @@ namespace API.Controllers.Organizations
             var Pages = (List<Menu>)getMenus.QueryAsync().Result;
             var groups = (List<GroupRelation>)operation.QueryAsync().Result;
             var relatedSystem = new List<System>();
-            var unRelatedSystems = new List<System>();
 
             foreach (var ss in System)
             {
@@ -271,13 +270,44 @@ namespace API.Controllers.Organizations
                 system.OrderChildrens();
                 relatedSystem.Add(system);
             }
-            return Ok(relatedSystem);
+
+            var unRelatedSystem = GenrerateUnRelatedGroups(groups, relatedSystem);
+            return Ok(new { unRelatedSystem = unRelatedSystem, relatedSystem = relatedSystem });
         }
+
+        private List<Menu> GenrerateUnRelatedGroups(List<GroupRelation> groups, List<System> allSystems)
+        {
+            var unRelatedMenus = new List<Menu>();
+            foreach (var system in allSystems)
+            {
+                if (groups.Any(group => group.RefrenceID == system.ID)) //system
+                {
+                    unRelatedMenus.Add(system);
+                    continue;
+                }
+
+                if (system.children.Select(child => child.ID).Intersect(groups.Select(group => group.RefrenceID)) != null)//modules
+                {
+                    var unRelatedModuelse = system.children.Where(child => groups.Where(group => group.RefrenceID == child.ID) != null).ToList().Select(module => { module.Parent.children = null; module.Parent = null; return module; });
+                    unRelatedMenus.AddRange(unRelatedModuelse);
+                    continue;
+                }
+
+                if (system.children.Any(module => module.children.Select(subModule => subModule.ID).Intersect(groups.Select(group => group.RefrenceID)) != null)) //subModules
+                {
+                    var unrelatedSubModules = system.children.Select(module => { module.children.Where(subModule => groups.Select(group => group.RefrenceID).Contains(subModule.ID)); return module.children; }).ToList();
+                    unrelatedSubModules.ForEach(c => unRelatedMenus.AddRange(c.Select(x => { x.Parent = null; x.Parent.children = null; return x; })));
+                    continue;
+                }
+            }
+            return unRelatedMenus;
+        }
+
         [Route("Delete")]
         [HttpPost]
         public IApiResult Delete(DeleteGroupRelation operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -291,7 +321,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteGroupRelations operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -316,8 +346,8 @@ namespace API.Controllers.Organizations
                 mo.children = SubModuels.Where(x => x.SubMenuID == mo.ID).ToList();
                 foreach (var child in mo.children)
                 {
-                    child.Parent = new Menu() { Name= mo.Name , ID = mo.ID , SubMenuID = mo.SubMenuID};
-                   
+                    child.Parent = new Menu() { Name = mo.Name, ID = mo.ID, SubMenuID = mo.SubMenuID };
+
                 }
             }
 

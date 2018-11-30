@@ -16,7 +16,7 @@ namespace Domain.Operations.Organization.LockUps
 {
     public class DeleteLockUp : Lockup, IDelete
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

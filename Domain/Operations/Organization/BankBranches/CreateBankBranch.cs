@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.BankBranches
 {
     public class CreateBankBranch : BankBranch, ICreate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

@@ -9,7 +9,7 @@ namespace Domain.Operations.Setup.Charges
 {
     public class CreateCharge : Charge, ICreate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

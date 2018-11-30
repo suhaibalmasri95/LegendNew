@@ -13,7 +13,7 @@ namespace Domain.Operations.Organization.ReportGroups
     public class DeleteReportGroups : ReportGroup, IDelete
     {
         public long[] IDs;
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

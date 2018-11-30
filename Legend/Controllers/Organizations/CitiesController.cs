@@ -21,7 +21,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Create(CreateCity operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -36,7 +36,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Update(UpdateCity operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -75,7 +75,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Delete(DeleteCity operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -89,7 +89,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteCities operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };

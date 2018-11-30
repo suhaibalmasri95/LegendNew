@@ -35,7 +35,7 @@ namespace API.Controllers.Organizations
                 return new ApiResult<object>() { ErrorMessageEn = ApiResult<object>.ApiMessage.exist };
 
 
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -58,7 +58,7 @@ namespace API.Controllers.Organizations
             List<User> users = (List<User>)loadUserResult;
             if(users.Count > 0)
             { 
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -103,7 +103,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult Delete(DeleteUser operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -117,7 +117,7 @@ namespace API.Controllers.Organizations
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteUsers operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
