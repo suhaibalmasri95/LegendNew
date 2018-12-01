@@ -20,7 +20,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Create(CreateDiagnosis operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -35,7 +35,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Update(UpdateDiagnosis operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -48,7 +48,7 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long ServiceType, long CodeingSystem, long IS_ICD_SERV_BEN, long Parent, long? langId)
+        public IActionResult Load(long? ID, long? ServiceType, long? CodeingSystem, long? IS_ICD_SERV_BEN, long? Parent, long? langId)
         {
             GetDiagnosises operation = new GetDiagnosises();
             operation.ID = ID;
@@ -75,7 +75,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Delete(DeleteDiagnosis operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -89,7 +89,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteDiagnosises operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };

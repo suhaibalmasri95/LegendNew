@@ -16,11 +16,11 @@ namespace Domain.Entities.Setup
         public string Name { get; set; }
         [DBFiledName("NAME2")]
         public string Name2 { get; set; }
-        [DBFiledName("LangID")]
+        [DBFiledName("LangID")] 
         public long? LangID { get; set; }
         [DBFiledName("ST_SRVCS_ID")]
-        public long SRVCS_ID { get; set; }
+        public long? SRVCS_ID { get; set; }
         [DBFiledName("ST_MED_ATT_GRP_ID")]
-        public long ATT_GRP_ID { get; set; }
+        public long? ATT_GRP_ID { get; set; }
     }
 }

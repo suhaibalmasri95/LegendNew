@@ -128,6 +128,38 @@ namespace API.Controllers.Organizations
                 return Ok( ReturnedLockups);
             }
         }
+        [Route("LoadLockUpsForQuestionnaire")]
+        [HttpGet]
+        public IActionResult LoadLockUpsForQuestionnaire(long? languageID)
+        {
+            GetLockUps operation = new GetLockUps();
+   
+            operation.MajorCode = 0;
+         
+       
+
+            if (languageID.HasValue)
+                operation.LangID = languageID;
+            else
+                operation.LangID = 1;
+            var result = operation.QueryAsync().Result;
+            if (result is ValidationsOutput)
+            {
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
+            }
+            else
+            {
+                var ReturnResult = (List<Lockup>)result;
+                List<Lockup> ReturnedLockups = new List<Lockup>();
+                foreach (var item in ReturnResult)
+                {
+                    if (item.LockUpType == 2)
+                        ReturnedLockups.Add(item);
+                }
+
+                return Ok(ReturnedLockups);
+            }
+        }
 
         [Route("Delete")]
         [HttpPost]

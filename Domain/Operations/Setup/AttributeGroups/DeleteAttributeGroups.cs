@@ -13,7 +13,7 @@ namespace Domain.Operations.Setup.AttributeGroups
     public class DeleteAttributeGroups : AttributeGroup, IDelete
     {
         public long[] IDs;
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)
@@ -23,6 +23,7 @@ namespace Domain.Operations.Setup.AttributeGroups
             return await DBDeleteAttributeGroupsSetup.DeleteAttributesAsync(IDs);
         }
 
+  
         public IDTO Validate()
         {
             return new Validation().Validate(this).AsDto();

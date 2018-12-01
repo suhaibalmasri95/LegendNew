@@ -14,7 +14,7 @@ namespace Domain.Operations.Setup.Diagnosises
     public class DeleteDiagnosises : Diagnosis, IDelete
     {
         public long[] IDs;
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Operations.Setup.Diagnosises
 {
-    public class CreateDiagnosis :  Domain.Entities.Setup.Diagnosis, ICreate
+    public class CreateDiagnosis : Diagnosis, ICreate
     {
-        public async Task<IDTO> Execute()
+        public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)

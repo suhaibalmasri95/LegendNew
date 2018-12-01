@@ -21,7 +21,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Create(CreateAttributeGroup operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -36,7 +36,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Update(UpdateAttributeGroup operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -74,7 +74,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult Delete(DeleteAttributeGroup operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
@@ -88,7 +88,7 @@ namespace API.Controllers.Setup
         [HttpPost]
         public IApiResult DeleteMultiple(DeleteAttributeGroups operation)
         {
-            var result = operation.Execute().Result;
+            var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
                 return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
