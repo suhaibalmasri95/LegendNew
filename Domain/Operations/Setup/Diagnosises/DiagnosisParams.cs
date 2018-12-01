@@ -9,6 +9,7 @@ namespace Domain.Operations.Setup.Diagnosises
         public static readonly string PARAMETER_ID = "IN_ID";
         public static readonly string PARAMETER_NAME = "IN_NAME";
         public static readonly string PARAMETER_NAME2 = "IN_NAME2";
+        public static readonly string PARAMETER_CODE = "IN_CODE";
         public static readonly string PARAMETER_LOC_CODING_SYSTEM = "IN_ST_MED_SERVICES.LOC_CODING_SYSTEM";
         public static readonly string PARAMETER_LOC_SERVICE_TYPE = "IN_ST_MED_SERVICES.LOC_SERVICE_TYPE";
         public static readonly string PARAMETER_GENDER = "IN_ST_MED_SERVICES.GENDER";

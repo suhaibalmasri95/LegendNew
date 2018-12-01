@@ -16,6 +16,8 @@ namespace Domain.Entities.Setup
         public string Name { get; set; }
         [DBFiledName("NAME2")]
         public string Name2 { get; set; }
+        [DBFiledName("CODE")]
+        public string Code { get; set; }
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
         [DBFiledName("LOC_CODING_SYSTEM")]
