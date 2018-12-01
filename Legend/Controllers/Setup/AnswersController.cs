@@ -14,7 +14,7 @@ namespace API.Controllers.Setup
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AnswerController : ControllerBase
+    public class AnswersController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]
