@@ -32,6 +32,7 @@ namespace Domain.Operations.Setup.Diagnosises
                 SPName = DiagnosisSPName.SP_UPADTE_Diagnosis;
                 message = "Inserted Successfully";
             }
+
             oracleParams.Add(DiagnosisParams.PARAMETER_CODE, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.Code ?? DBNull.Value);
             oracleParams.Add(DiagnosisParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.Name ?? DBNull.Value, 1000);
             oracleParams.Add(DiagnosisParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.Name2 ?? DBNull.Value, 1000);
