@@ -23,13 +23,13 @@ namespace Domain.Operations.Setup.Diagnosises
             if (subjectType.ID.HasValue)
             {
                 oracleParams.Add(DiagnosisParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.ID ?? DBNull.Value);
-                SPName = DiagnosisSPName.SP_INSERT_Diagnosis;
+                SPName = DiagnosisSPName.SP_UPADTE_Diagnosis;
                 message = "Updated Successfully";
             }
             else
             {
                 oracleParams.Add(DiagnosisParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Output);
-                SPName = DiagnosisSPName.SP_UPADTE_Diagnosis;
+                SPName = DiagnosisSPName.SP_INSERT_Diagnosis;
                 message = "Inserted Successfully";
             }
 
