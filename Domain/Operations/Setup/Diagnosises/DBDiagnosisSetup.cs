@@ -23,20 +23,20 @@ namespace Domain.Operations.Setup.Diagnosises
             if (subjectType.ID.HasValue)
             {
                 oracleParams.Add(DiagnosisParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.ID ?? DBNull.Value);
-                SPName = DiagnosisSPName.SP_INSERT_Diagnosis;
+                SPName = DiagnosisSPName.SP_UPADTE_Diagnosis;
                 message = "Updated Successfully";
             }
             else
             {
                 oracleParams.Add(DiagnosisParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Output);
-                SPName = DiagnosisSPName.SP_UPADTE_Diagnosis;
+                SPName = DiagnosisSPName.SP_INSERT_Diagnosis;
                 message = "Inserted Successfully";
             }
 
             oracleParams.Add(DiagnosisParams.PARAMETER_CODE, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.Code ?? DBNull.Value);
             oracleParams.Add(DiagnosisParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.Name ?? DBNull.Value, 1000);
             oracleParams.Add(DiagnosisParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)subjectType.Name2 ?? DBNull.Value, 1000);
-            oracleParams.Add(DiagnosisParams.PARAMETER_LOC_CODING_SYSTEM, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.CodeingSystem ?? DBNull.Value);
+            oracleParams.Add(DiagnosisParams.PARAMETER_LOC_CODING_SYSTEM, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.CodingSystem ?? DBNull.Value);
             oracleParams.Add(DiagnosisParams.PARAMETER_LOC_SERVICE_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.ServiceType ?? DBNull.Value);
             oracleParams.Add(DiagnosisParams.PARAMETER_GENDER, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.Gender ?? DBNull.Value, 1000);
             oracleParams.Add(DiagnosisParams.PARAMETER_AGE_FROM, OracleDbType.Int64, ParameterDirection.Input, (object)subjectType.AgeFrom ?? DBNull.Value);

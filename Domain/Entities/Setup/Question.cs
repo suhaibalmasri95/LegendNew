@@ -6,7 +6,8 @@ using Infrastructure.Attributes;
  
 namespace Domain.Entities.Setup
 {
-   public class Question : IEntity
+    [DBTableName("ST_QUESTIONS")]
+    public class Question : IEntity
     {
         public Question ()
         {
@@ -31,7 +32,7 @@ namespace Domain.Entities.Setup
         [DBFiledName("STATUS_DATE")]
         public DateTime StatusDate { get; set; }
         [DBFiledName("QUS_ORDER")]
-        public long? QustionOrder { get; set; }
+        public Int16 QustionOrder { get; set; }
 
         [DBFiledName("QUS_TYPE")]
         public long? QustionType { get; set; }

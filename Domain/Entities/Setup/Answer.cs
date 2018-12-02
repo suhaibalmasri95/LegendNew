@@ -6,7 +6,8 @@ using Infrastructure.Attributes;
 
 namespace Domain.Entities.Setup
 {
-   public class Answer : IEntity
+    [DBTableName("ST_ANSWERS")]
+    public class Answer : IEntity
     {
         [DBFiledName("NAME")]
         public string Name { get; set; }

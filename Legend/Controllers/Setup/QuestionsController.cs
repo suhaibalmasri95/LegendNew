@@ -1,11 +1,8 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Operations.Setup.Questions;
 using Domain.Entities.Setup;

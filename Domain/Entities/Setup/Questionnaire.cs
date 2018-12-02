@@ -7,7 +7,8 @@ using Infrastructure.Attributes;
 
 namespace Domain.Entities.Setup
 {
-   public class Questionnaire : IEntity
+    [DBTableName("ST_QUESTIONEAR")]
+    public class Questionnaire : IEntity
     {
         public Questionnaire ()
         {

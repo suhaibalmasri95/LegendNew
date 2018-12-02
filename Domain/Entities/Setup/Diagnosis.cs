@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.Entities.Setup
 {
-    [DBTableName("ST_SUBJECT_TYPE")]
+    [DBTableName("ST_MED_SERVICES")]
     public class Diagnosis : IEntity
     {
         [DBPrimaryKey]
@@ -21,7 +21,7 @@ namespace Domain.Entities.Setup
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
         [DBFiledName("LOC_CODING_SYSTEM")]
-        public long? CodeingSystem { get; set; }
+        public long? CodingSystem { get; set; }
         [DBFiledName("ST_ICD_SVC_ID")]
         public long? Parent { get; set; }
         [DBFiledName("GENDER")]

@@ -41,8 +41,8 @@ namespace Domain.Operations.Setup.Questions
             oracleParams.Add(QuestionSpParams.PARAMETER_QUS_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)question.QustionType ?? DBNull.Value);
             oracleParams.Add(QuestionSpParams.PARAMETER_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)question.Status ?? DBNull.Value);
             oracleParams.Add(QuestionSpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)question.StatusDate ?? DBNull.Value);
-            oracleParams.Add(QuestionSpParams.PARAMETER_ST_QUS_ID, OracleDbType.Date, ParameterDirection.Input, (object)question.QuestionnaireID ?? DBNull.Value);
-            oracleParams.Add(QuestionSpParams.PARAMETER_LOC_ST_LOCK_ID, OracleDbType.Date, ParameterDirection.Input, (object)question.LockUpID ?? DBNull.Value);
+            oracleParams.Add(QuestionSpParams.PARAMETER_ST_QUS_ID, OracleDbType.Int64, ParameterDirection.Input, (object)question.QuestionnaireID ?? DBNull.Value);
+            oracleParams.Add(QuestionSpParams.PARAMETER_LOC_ST_LOCK_ID, OracleDbType.Int64, ParameterDirection.Input, (object)question.LockUpID ?? DBNull.Value);
 
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)
                 complate.message = message;
