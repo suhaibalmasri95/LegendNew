@@ -9,6 +9,14 @@ namespace Domain.Entities.Setup
     [DBTableName("ST_COLUMNS_CATGORY")]
     public class Category : IEntity
     {
+        public Category()
+        {
+            ModificationDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            CreateBy = "Admin";
+            ModifiedBy = "Admin";
+            StatusDate = DateTime.Now;
+        }
         [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
@@ -41,6 +49,6 @@ namespace Domain.Entities.Setup
         [DBFiledName("CAT_LEVEL")]
         public long? CategoryLevel { get; set; }
         [DBFiledName("IS_MULTI_RECORDS")]
-        public long? MultiRecord { get; set; }
+        public Int32? MultiRecord { get; set; }
     }
 }

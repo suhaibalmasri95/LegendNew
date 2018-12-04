@@ -37,16 +37,16 @@ namespace Domain.Operations.Setup.Categories
             oracleParams.Add(CategorySpParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Name2 ?? DBNull.Value, 1000);
             oracleParams.Add(CategorySpParams.PARAMETER_LABLE, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Label ?? DBNull.Value, 1000);
             oracleParams.Add(CategorySpParams.PARAMETER_LABLE2, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Label2 ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_STATUS, OracleDbType.Int16, ParameterDirection.Input, (object)category.Status ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)category.StatusDate ?? DBNull.Value, 1000);
+            oracleParams.Add(CategorySpParams.PARAMETER_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)category.Status ?? DBNull.Value);
+            oracleParams.Add(CategorySpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)category.StatusDate ?? DBNull.Value);
             oracleParams.Add(CategorySpParams.PARAMETER_LINE_OF_BUSNIESS, OracleDbType.Int64, ParameterDirection.Input, (object)category.LineOfBusniess ?? DBNull.Value);
             oracleParams.Add(CategorySpParams.PARAMETER_SUB_LINE_OF_BUSNIESS, OracleDbType.Int64, ParameterDirection.Input, (object)category.SubLineOfBusniess ?? DBNull.Value);
-            oracleParams.Add(CategorySpParams.PARAMETER_CREATED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.CreateBy ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_CREATATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)category.CreationDate ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_MODIFIED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.ModifiedBy ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_MODIFICATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)category.ModificationDate ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_CAT_LEVEL, OracleDbType.Int64, ParameterDirection.Input, (object)category.CategoryLevel ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_IS_MULTI_RECORDS, OracleDbType.Int64, ParameterDirection.Input, (object)category.MultiRecord ?? DBNull.Value, 1000);
+            oracleParams.Add(CategorySpParams.PARAMETER_CREATED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.CreateBy ?? DBNull.Value, 20);
+            oracleParams.Add(CategorySpParams.PARAMETER_CREATATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)category.CreationDate ?? DBNull.Value);
+            oracleParams.Add(CategorySpParams.PARAMETER_MODIFIED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.ModifiedBy ?? DBNull.Value, 20);
+            oracleParams.Add(CategorySpParams.PARAMETER_MODIFICATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)category.ModificationDate ?? DBNull.Value);
+            oracleParams.Add(CategorySpParams.PARAMETER_CAT_LEVEL, OracleDbType.Int64, ParameterDirection.Input, (object)category.CategoryLevel ?? DBNull.Value);
+            oracleParams.Add(CategorySpParams.PARAMETER_IS_MULTI_RECORDS, OracleDbType.Int32, ParameterDirection.Input, (object)category.MultiRecord ?? DBNull.Value);
 
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)
                 complate.message = message;
