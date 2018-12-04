@@ -68,7 +68,7 @@ namespace API.Controllers.Setup
             }
             else
             {
-                return Ok((List<Answer>)result);
+                return Ok((List<Category>)result);
             }
         }
         [Route("Delete")]
