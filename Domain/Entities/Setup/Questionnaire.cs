@@ -31,9 +31,9 @@ namespace Domain.Entities.Setup
         [DBFiledName("QUS_LEVEL")]
         public long? QustionnaireLevel { get; set; }
 
-        [DBFiledName("ST_LOB_ID")]
+        [DBFiledName("ST_LOB")]
         public long? LineOfBusiness { get; set; }
-        [DBFiledName("ST_SUB_LOB_ID")]
+        [DBFiledName("ST_SUB_LOB")]
         public long? SubLineOfBusiness { get; set; }
 
     }

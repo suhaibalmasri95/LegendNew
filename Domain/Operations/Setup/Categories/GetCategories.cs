@@ -22,7 +22,7 @@ namespace Domain.Operations.Setup.Categories
             parameters.Add(CategorySpParams.PARAMETER_SUB_LINE_OF_BUSNIESS, OracleDbType.Int64, ParameterDirection.Input, (object)this.SubLineOfBusniess ?? DBNull.Value);
             parameters.Add(CategorySpParams.PARAMETER_LANG_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.LangID ?? DBNull.Value);
             parameters.Add(CategorySpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
-            return await QueryExecuter.ExecuteQueryAsync<Answer>(CategorySpName.SP_LOAD_CATEGORY, parameters);
+            return await QueryExecuter.ExecuteQueryAsync<Category>(CategorySpName.SP_LOAD_CATEGORY, parameters);
         }
     }
 }

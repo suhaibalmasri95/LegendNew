@@ -48,7 +48,7 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID,long? langId, long lineOfBussniess, long subLineOfBussniess , long categoryLevel)
+        public IActionResult Load(long? ID,long? langId, long? lineOfBussniess, long? subLineOfBussniess , long? categoryLevel)
         {
             GetCategories operation = new GetCategories();
             operation.ID = ID;

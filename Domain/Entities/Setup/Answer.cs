@@ -21,7 +21,7 @@ namespace Domain.Entities.Setup
         public long? ID { get; set; }
 
         [DBFiledName("ANS_ORDER")]
-        public long? AnswerOrder { get; set; }
+        public Int16? AnswerOrder { get; set; }
         [DBFiledName("ST_QUS_ID")]
         public long? QuestionnaireID { get; set; }
 

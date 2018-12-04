@@ -23,9 +23,9 @@ namespace Domain.Entities.Setup
         [DBFiledName("LABLE2")]
         public string Label2 { get; set; }
         [DBFiledName("ST_LOB_ID")]
-        public long LineOfBusniess { get; set; }
+        public long? LineOfBusniess { get; set; }
         [DBFiledName("ST_SUB_LOB_ID")]
-        public long SubLineOfBusniess { get; set; }
+        public long? SubLineOfBusniess { get; set; }
         [DBFiledName("STATUS")]
         public int Status { get; set; }
         [DBFiledName("STATUS_DATE")]
@@ -39,8 +39,8 @@ namespace Domain.Entities.Setup
         [DBFiledName("MODIFICATION_DATE")]
         public DateTime ModificationDate { get; set; }
         [DBFiledName("CAT_LEVEL")]
-        public long CategoryLevel { get; set; }
+        public long? CategoryLevel { get; set; }
         [DBFiledName("IS_MULTI_RECORDS")]
-        public long MultiRecord { get; set; }
+        public long? MultiRecord { get; set; }
     }
 }

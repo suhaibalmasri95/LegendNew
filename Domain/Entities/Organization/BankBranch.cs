@@ -10,7 +10,7 @@ namespace Domain.Entities.Organization
     {
         [DBFiledName("ST_BNK_ID")]
         public long? BankID { get; set; }
-        [DBFiledName("ST_CITY_ID")]
+        [DBFiledName("ST_CTY_ID")]
         public long CityID { get; set; }
         [DBFiledName( "ST_CNT_ID")]
         public long CountryID { get; set; }

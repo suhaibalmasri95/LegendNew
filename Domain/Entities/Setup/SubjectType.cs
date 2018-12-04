@@ -27,9 +27,9 @@ namespace Domain.Entities.Setup
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
 
-        [DBFiledName("ST_LOB_ID")]
+        [DBFiledName("ST_LOB")]
         public long? LineOfBusniessID { get; set; }
-        [DBFiledName("ST_SUB_LOB_ID")]
+        [DBFiledName("ST_SUB_LOB")]
         public long? SubLineOfBusniessID { get; set; }
         [DBFiledName("ST_SBT_ID")]
         public long? Parent { get; set; }

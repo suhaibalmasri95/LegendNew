@@ -12,6 +12,7 @@ namespace Domain.Entities.Organization
         public Menu()
         {
             children = new List<Menu>();
+            
         }
 
         [DBPrimaryKey]
@@ -21,6 +22,10 @@ namespace Domain.Entities.Organization
         public string Name { get; set; }
         [DBFiledName("NAME2")]
         public string Name2 { get; set; }
+        [DBFiledName("")]
+        public string text => Name;
+        [DBFiledName("")]
+        public long? value => ID;
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
         [DBFiledName("GroupRelationID")]
@@ -57,5 +62,7 @@ namespace Domain.Entities.Organization
         public List<Menu> children { get; set; }
         [DBFiledName("")]
         public Menu Parent { get; set; }
+      
+        
     }
 }

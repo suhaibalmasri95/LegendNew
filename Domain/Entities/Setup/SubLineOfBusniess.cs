@@ -28,7 +28,7 @@ namespace Domain.Entities.Setup
         public string Name2 { get; set; }
         [DBFiledName("CODE")]
         public string Code { get; set; }
-        [DBFiledName("ST_LOB_ID")]
+        [DBFiledName("ST_LOB")]
         public long? LineOfBusniess { get; set; }
         [DBFiledName("SUB_LOB")]
         public long? BasicLineOfBusniess { get; set; }
