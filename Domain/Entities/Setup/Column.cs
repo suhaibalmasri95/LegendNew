@@ -47,11 +47,11 @@ namespace Domain.Entities.Setup
         [DBFiledName("ST_CAT_ID")]
         public long? CategoryID { get; set; }
         [DBFiledName("RFE_TABLE_NAME")]
-        public long? RefTableName { get; set; }
+        public string RefTableName { get; set; }
         [DBFiledName("REF_MAJOR_CODE")]
-        public long? RefMajorCode { get; set; }
+        public string RefMajorCode { get; set; }
         [DBFiledName("REF_COL_DT_ID")]
-        public long? RefColDetailsID { get; set; }
+        public string RefColDetailsID { get; set; }
 
 
     }
