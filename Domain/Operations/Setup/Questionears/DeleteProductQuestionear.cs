@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Setup.Categories
+namespace Domain.Operations.Setup.Questionears
 {
-    public class DeleteCategory : Category, IDelete
+    public class DeleteProductQuestionear : ProductQuestion, IDelete
     {
         public async Task<IDTO> ExecuteAsync()
         {
@@ -19,7 +19,7 @@ namespace Domain.Operations.Setup.Categories
             {
                 return validationResult;
             }
-            return await DBCategoryDeletionSetup.DeleteAnswerAsync(this);
+            return await DBDeleteProductQuestionearsSetup.DeleteProductSubjectTypeAsync(this);
         }
 
         public IDTO Validate()
@@ -27,7 +27,7 @@ namespace Domain.Operations.Setup.Categories
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<Category>
+        public class Validation : AbstractValidator<DeleteProductQuestionear>
         {
             public Validation()
             {

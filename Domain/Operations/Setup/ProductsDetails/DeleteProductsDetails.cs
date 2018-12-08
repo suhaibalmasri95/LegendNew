@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Setup.Categories
+namespace Domain.Operations.Setup.ProductsDetails
 {
-    public class DeleteCategory : Category, IDelete
+    public class DeleteProductsDetails  : Product, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -19,7 +20,7 @@ namespace Domain.Operations.Setup.Categories
             {
                 return validationResult;
             }
-            return await DBCategoryDeletionSetup.DeleteAnswerAsync(this);
+            return await DBProductDetailsDeletionSetup.DeleteProductDetailsAsync(IDs);
         }
 
         public IDTO Validate()
@@ -27,7 +28,7 @@ namespace Domain.Operations.Setup.Categories
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<Category>
+        public class Validation : AbstractValidator<DeleteProductsDetails>
         {
             public Validation()
             {
