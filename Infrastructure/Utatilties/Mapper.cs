@@ -78,21 +78,7 @@ namespace Infrastructure.Utatilties
                 {
                     value = Int16.Parse(value);
                 }
-                if (property.PropertyType == typeof(int?))
-                {
-                    if (!string.IsNullOrEmpty(value))
-                    {
-                        value = int.Parse(value);
-                    }
-                    else
-                    {
-                        value = null;
-                    }
-                }
-                if (property.PropertyType == typeof(int))
-                {
-                    value = int.Parse(value);
-                }
+               
                 property.SetValue(to, value);
             }
         }
