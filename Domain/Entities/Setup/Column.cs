@@ -9,6 +9,12 @@ namespace Domain.Entities.Setup
     [DBTableName("ST_COLUMNS")]
     public class Column : IEntity
     {
+        public Column() {
+            CreateBy = "Admin";
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
+            ModifiedBy = "Admin";
+        }
         [DBFiledName("NAME")]
         public string Name { get; set; }
         [DBFiledName("NAME2")]
