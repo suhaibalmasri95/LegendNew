@@ -15,7 +15,7 @@ namespace API.Controllers.Setup
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsSubjectTypoesController : ControllerBase
+    public class ProductsSubjectTypesController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]
@@ -49,7 +49,7 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? langId, long productID, long productDetailsID  )
+        public IActionResult Load(long? ID, long? langId, long? productID, long? productDetailsID  )
         {
             GetProductSubjectTypies operation = new GetProductSubjectTypies();
             operation.ID = ID;

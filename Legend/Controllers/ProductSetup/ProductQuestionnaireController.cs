@@ -49,7 +49,7 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long productID ,long productDetailedID,  long? langId)
+        public IActionResult Load(long? ID, long? productID ,long? productDetailedID,  long? langId)
         {
             GetProductQuestionears operation = new GetProductQuestionears();
             operation.ID = ID;

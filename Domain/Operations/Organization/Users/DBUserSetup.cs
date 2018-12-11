@@ -10,6 +10,8 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
+using Common.Auth;
+
 namespace Domain.Operations.Organization.Users
 {
     public static class DBUserSetup
@@ -29,7 +31,7 @@ namespace Domain.Operations.Organization.Users
             oracleParams.Add(UserSpParams.PARAMETER_EXPIRY_DATE, OracleDbType.Date, ParameterDirection.Input, (object)user.ExpiryDate ?? DBNull.Value);
             oracleParams.Add(UserSpParams.PARAMETER_LOCKUP_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)user.Status ?? DBNull.Value);
             oracleParams.Add(UserSpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)user.StatusDate ?? DBNull.Value);
-            oracleParams.Add(UserSpParams.PARAMETER_PASSWORD, OracleDbType.Varchar2, ParameterDirection.Input, (object)user.Password ?? DBNull.Value, 1000);
+            oracleParams.Add(UserSpParams.PARAMETER_PASSWORD, OracleDbType.Varchar2, ParameterDirection.Input, (object)Encryption.EncryptPassword(user.Password) ?? DBNull.Value, 1000);
             oracleParams.Add(UserSpParams.PARAMETER_EMAIL, OracleDbType.Varchar2, ParameterDirection.Input, (object)user.Email ?? DBNull.Value, 30);
             oracleParams.Add(UserSpParams.PARAMETER_COMPANY_ID, OracleDbType.Int64, ParameterDirection.Input, (object)user.CompanyID ?? DBNull.Value);
             oracleParams.Add(UserSpParams.PARAMETER_NO_OF_LOGIN, OracleDbType.Int64, ParameterDirection.Input, (object)user.NoOfLogin ?? DBNull.Value);
@@ -100,6 +102,7 @@ namespace Domain.Operations.Organization.Users
         }
         public async static Task<IDTO> AddMode(User user)
         {
+           
             OracleDynamicParameters oracleParams = new OracleDynamicParameters();
             ComplateOperation<int> complate = new ComplateOperation<int>();
             user.CreationDate = DateTime.Now;
@@ -111,7 +114,7 @@ namespace Domain.Operations.Organization.Users
             oracleParams.Add(UserSpParams.PARAMETER_EXPIRY_DATE, OracleDbType.Date, ParameterDirection.Input, (object)user.ExpiryDate ?? DBNull.Value);
             oracleParams.Add(UserSpParams.PARAMETER_LOCKUP_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)user.Status ?? DBNull.Value);
             oracleParams.Add(UserSpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)user.StatusDate ?? DBNull.Value);
-            oracleParams.Add(UserSpParams.PARAMETER_PASSWORD, OracleDbType.Varchar2, ParameterDirection.Input, (object)user.Password ?? DBNull.Value,1000);
+            oracleParams.Add(UserSpParams.PARAMETER_PASSWORD, OracleDbType.Varchar2, ParameterDirection.Input, (object)Encryption.EncryptPassword(user.Password) ?? DBNull.Value,1000);
             oracleParams.Add(UserSpParams.PARAMETER_EMAIL, OracleDbType.Varchar2, ParameterDirection.Input, (object)user.Email ?? DBNull.Value, 30);
             oracleParams.Add(UserSpParams.PARAMETER_COMPANY_ID, OracleDbType.Int64, ParameterDirection.Input, (object)user.CompanyID ?? DBNull.Value);
             oracleParams.Add(UserSpParams.PARAMETER_NO_OF_LOGIN, OracleDbType.Int64, ParameterDirection.Input, (object)user.NoOfLogin ?? DBNull.Value);
