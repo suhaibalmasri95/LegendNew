@@ -6,17 +6,17 @@ using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.ProductSetup;
-using Domain.Entities.Setup;
 using Domain.Operations.ProductSetup.ProductQuestionnaires;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers.Setup
+namespace API.Controllers.ProductSetup
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductQuestionnaireController : ControllerBase
     {
+
         [Route("Create")]
         [HttpPost]
         public IApiResult Create(CreateProductQuestionears operation)
@@ -49,7 +49,7 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? productID ,long? productDetailedID,  long? langId)
+        public IActionResult Load(long? ID, long? productID, long? productDetailedID, long? langId)
         {
             GetProductQuestionears operation = new GetProductQuestionears();
             operation.ID = ID;

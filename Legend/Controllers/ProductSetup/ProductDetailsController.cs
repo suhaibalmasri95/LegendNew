@@ -6,7 +6,6 @@ using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.ProductSetup;
-using Domain.Entities.Setup;
 using Domain.Operations.ProductSetup.ProductsDetails;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

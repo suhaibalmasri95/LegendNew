@@ -14,12 +14,12 @@ namespace API.Controllers.Authentication
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IConfiguration configuration;
+       /* private readonly IConfiguration configuration;
         public AuthController( IConfiguration configuration)
         {
             this.configuration = configuration;
         }
-
+        */
        /* public IActionResult Login([FromBody] Auth auth)
         {
             // Call Sp var user = await repo.Login(auth.Email.ToLower(), auth.Password);
