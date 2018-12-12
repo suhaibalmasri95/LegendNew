@@ -8,8 +8,9 @@ namespace Domain.Entities.Authentication
    public class Auth
     { 
         [Required]
-        public string Email { get; set; }
+        public string UserName { get; set; }
         [Required]
         public string Password { get; set; }
+        public long? langId { get; set; }
     }
 }
