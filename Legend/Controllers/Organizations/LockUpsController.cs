@@ -134,7 +134,7 @@ namespace API.Controllers.Organizations
         {
             GetLockUps operation = new GetLockUps();
    
-            operation.MajorCode = 0;
+            operation.MinorCode = 0;
          
        
 

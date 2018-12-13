@@ -1,14 +1,10 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.Setup;
 using Domain.Operations.Setup.Attributes;
-using Domain.Operations.Setup.Diagnosises;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Setup
@@ -66,7 +62,7 @@ namespace API.Controllers.Setup
             }
             else
             {
-                return Ok((List<Diagnosis>)result);
+                return Ok((List<Acttribute>)result);
             }
         }
         [Route("Delete")]

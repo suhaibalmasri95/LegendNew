@@ -48,12 +48,12 @@ namespace API.Controllers.Setup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? ServiceType, long? CodeingSystem, long? IS_ICD_SERV_BEN, long? Parent, long? langId)
+        public IActionResult Load(long? ID, long? ServiceType, long? CodingSystem, long? IS_ICD_SERV_BEN, long? Parent, long? langId)
         {
             GetDiagnosises operation = new GetDiagnosises();
             operation.ID = ID;
             operation.ServiceType = ServiceType;
-            operation.CodeingSystem = CodeingSystem;
+            operation.CodingSystem = CodingSystem;
             operation.IS_ICD_SERV_BEN = IS_ICD_SERV_BEN;
             operation.Parent = Parent;
             if (langId.HasValue)

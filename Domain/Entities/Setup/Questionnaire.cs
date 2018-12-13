@@ -7,7 +7,8 @@ using Infrastructure.Attributes;
 
 namespace Domain.Entities.Setup
 {
-   public class Questionnaire : IEntity
+    [DBTableName("ST_QUESTIONEAR")]
+    public class Questionnaire : IEntity
     {
         public Questionnaire ()
         {
@@ -30,9 +31,9 @@ namespace Domain.Entities.Setup
         [DBFiledName("QUS_LEVEL")]
         public long? QustionnaireLevel { get; set; }
 
-        [DBFiledName("ST_LOB_ID")]
+        [DBFiledName("ST_LOB")]
         public long? LineOfBusiness { get; set; }
-        [DBFiledName("ST_SUB_LOB_ID")]
+        [DBFiledName("ST_SUB_LOB")]
         public long? SubLineOfBusiness { get; set; }
 
     }

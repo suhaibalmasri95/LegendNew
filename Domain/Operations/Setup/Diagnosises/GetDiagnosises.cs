@@ -16,7 +16,7 @@ namespace Domain.Operations.Setup.Diagnosises
         {
             var parameters = new OracleDynamicParameters();
             parameters.Add(DiagnosisParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ID ?? DBNull.Value);
-            parameters.Add(DiagnosisParams.PARAMETER_LOC_CODING_SYSTEM, OracleDbType.Int64, ParameterDirection.Input, (object)this.CodeingSystem ?? DBNull.Value);
+            parameters.Add(DiagnosisParams.PARAMETER_LOC_CODING_SYSTEM, OracleDbType.Int64, ParameterDirection.Input, (object)this.CodingSystem ?? DBNull.Value);
             parameters.Add(DiagnosisParams.PARAMETER_LOC_SERVICE_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)this.ServiceType ?? DBNull.Value);
             parameters.Add(DiagnosisParams.PARAMETER_IS_ICD_SERV_BEN, OracleDbType.Int64, ParameterDirection.Input, (object)this.IS_ICD_SERV_BEN ?? DBNull.Value);
             parameters.Add(DiagnosisParams.PARAMETER_ST_ICD_SVC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.Parent ?? DBNull.Value);

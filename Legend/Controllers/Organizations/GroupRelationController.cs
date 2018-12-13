@@ -263,6 +263,8 @@ namespace API.Controllers.Organizations
             foreach (var ss in System)
             {
                 var system = new System();
+                system.ID = ss.ID;
+                system.Name = ss.Name;
                 system.children = Modules.Where(x => x.SubMenuID == ss.ID).ToList();
                 system.children = system.children.Select(c => { c.Parent = ss; return c; }).ToList();
                 system.SubModuels = SubModule.Where(subModule => system.children.Where(x => x.ID == subModule.SubMenuID) != null).ToList();
@@ -272,7 +274,7 @@ namespace API.Controllers.Organizations
             }
 
             var unRelatedSystem = GenrerateUnRelatedGroups(groups, relatedSystem);
-            return Ok(new { unRelatedSystem = unRelatedSystem, relatedSystem = relatedSystem });
+            return Ok(new { unRelatedMenu = unRelatedSystem, relatedMenu = relatedSystem });
         }
 
         private List<Menu> GenrerateUnRelatedGroups(List<GroupRelation> groups, List<System> allSystems)

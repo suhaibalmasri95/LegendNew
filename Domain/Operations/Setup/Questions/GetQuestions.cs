@@ -21,7 +21,7 @@ namespace Domain.Operations.Setup.Questions
             parameters.Add(QuestionSpParams.PARAMETER_ST_QUS_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.QuestionnaireID ?? DBNull.Value);
             parameters.Add(QuestionSpParams.PARAMETER_LANG_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.LangID ?? DBNull.Value);
             parameters.Add(QuestionSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
-            return await QueryExecuter.ExecuteQueryAsync<BusinessLine>(QuestionSpName.SP_LOAD_QUESTION, parameters);
+            return await QueryExecuter.ExecuteQueryAsync<Question>(QuestionSpName.SP_LOAD_QUESTION, parameters);
         }
     }
 }

@@ -48,6 +48,37 @@ namespace Infrastructure.Utatilties
                 {
                     value = Double.Parse(value);
                 }
+                if (property.PropertyType == typeof(Int32?))
+                {
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        value = Int32.Parse(value);
+                    }
+                    else
+                    {
+                        value = null;
+                    }
+                }
+                if (property.PropertyType == typeof(Int32))
+                {
+                    value = Int32.Parse(value);
+                }
+                if (property.PropertyType == typeof(Int16?))
+                {
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        value = Int16.Parse(value);
+                    }
+                    else
+                    {
+                        value = null;
+                    }
+                }
+                if (property.PropertyType == typeof(Int16))
+                {
+                    value = Int16.Parse(value);
+                }
+               
                 property.SetValue(to, value);
             }
         }

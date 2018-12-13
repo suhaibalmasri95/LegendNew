@@ -9,6 +9,10 @@ namespace Domain.Entities.Organization
     [DBTableName("ST_GROUPS")]
     public class Group : IEntity
     {
+        public Group()
+        {
+            StatusDate = DateTime.Now;
+        }
         [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
