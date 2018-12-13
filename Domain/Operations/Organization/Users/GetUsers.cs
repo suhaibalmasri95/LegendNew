@@ -38,7 +38,7 @@ namespace Domain.Operations.Organization.Users
             var dyParam = new OracleDynamicParameters();
 
             dyParam.Add(UserSpParams.PARAMETER_USERNAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)auth.UserName ?? DBNull.Value,30);
-            dyParam.Add(UserSpParams.PARAMETER_PASSWORD, OracleDbType.Varchar2, ParameterDirection.Input, (object)auth.Password ?? DBNull.Value,1000);
+            dyParam.Add(UserSpParams.PARAMETER_PASSWORD, OracleDbType.Varchar2, ParameterDirection.Input, (object)Encryption.EncryptPassword(auth.Password) ?? DBNull.Value,1000);
             dyParam.Add(UserSpParams.PARAMETER_LANG_ID, OracleDbType.Int64, ParameterDirection.Input, (object) auth.langId ?? DBNull.Value);
             dyParam.Add(UserSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
             List<User> users = await QueryExecuter.ExecuteQueryAsync<User>(UserSpName.SP_LOGIN_USER, dyParam);
