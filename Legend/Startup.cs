@@ -75,6 +75,8 @@ namespace Legend
       Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Documents")),
                 RequestPath = "/wwwroot/Documents"
             });
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
             app.Use(async (context, next) =>
             {
                 await next();

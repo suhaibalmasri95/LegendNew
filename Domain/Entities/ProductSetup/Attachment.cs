@@ -7,9 +7,9 @@ using System.Text;
 namespace Domain.Entities.ProductSetup
 {
     [DBTableName("ST_ATTCAHMENTS")]
-    public class Atachment : IEntity
+    public class Attachment : IEntity
     {
-        public Atachment()
+        public Attachment()
         {
             ModificationDate = DateTime.Now;
             CreationDate = DateTime.Now;

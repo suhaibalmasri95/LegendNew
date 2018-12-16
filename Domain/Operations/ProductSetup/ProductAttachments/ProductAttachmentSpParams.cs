@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Operations.ProductSetup.ProductWordings
+namespace Domain.Operations.ProductSetup.ProductAttachments
 {
-    public static class ProductWordingSpParams
+   public static class ProductAttachmentSpParams
     {
         public const string PARAMETER_ID = "IN_ID";
         public const string PARAMETER_NAME = "IN_NAME";
         public const string PARAMETER_NAME2 = "IN_NAME2";
-        public const string PARAMETER_DESCRIPTION = "IN_DESCRIPTION";
-        public const string PARAMETER_DESCRIPTION2 = "IN_DESCRIPTION2";
-        public const string PARAMETER_LOC_TYPE = "IN_LOC_TYPE";
         public const string PARAMETER_STATUS = "IN_STATUS";
         public const string PARAMETER_STATUS_DATE = "IN_STATUS_DATE";
+        public const string PARAMETER_ATT_LEVEL = "IN_ATT_LEVEL";
+        public const string PARAMETER_IS_REQUIRED = "IN_IS_REQUIRED";
         public const string PARAMETER_ATT_ID = "IN_ATT_ID";
         public const string PARAMETER_ST_PRD_ID = "IN_ST_PRD_ID";
         public const string PARAMETER_ST_PRDT_ID = "IN_ST_PRDT_ID";

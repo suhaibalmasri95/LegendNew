@@ -6,10 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-namespace Domain.Operations.ProductSetup.ProductWordingDetails
+
+namespace Domain.Operations.ProductSetup.ProductAttachments
 {
-   public class UpdateProdWordDetails : Domain.Entities.ProductSetup.ProductWordingDetails, IUpdate
+   public class DeleteProductAttachment : Domain.Entities.ProductSetup.ProductAttachment, IDelete
     {
+ 
         public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -18,7 +20,7 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
                 return validationResult;
             }
 
-            return await DbProdWordDetailSetup.AddUpdateMode(this);
+            return await DbDeleteProdAttachment.DeleteProductAttachmentAsync(this);
 
         }
 
@@ -27,7 +29,7 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<UpdateProdWordDetails>
+        public class Validation : AbstractValidator<DeleteProductAttachment>
         {
             public Validation()
             {

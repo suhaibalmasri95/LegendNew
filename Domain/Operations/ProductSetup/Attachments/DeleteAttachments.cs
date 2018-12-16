@@ -1,15 +1,21 @@
 ﻿using Common.Extensions;
 using Common.Interfaces;
+using Common.Operations;
 using Common.Validations;
 using FluentValidation;
+using Infrastructure.DB;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
-namespace Domain.Operations.ProductSetup.ProductWordingDetails
+
+namespace Domain.Operations.ProductSetup.Attachments
 {
-   public class UpdateProdWordDetails : Domain.Entities.ProductSetup.ProductWordingDetails, IUpdate
+  public  class DeleteAttachments : Domain.Entities.ProductSetup.Attachment, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -18,7 +24,7 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
                 return validationResult;
             }
 
-            return await DbProdWordDetailSetup.AddUpdateMode(this);
+            return await DbDeleteAttachmentSetup.DeleteAttachmentsAsync(IDs);
 
         }
 
@@ -27,7 +33,7 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<UpdateProdWordDetails>
+        public class Validation : AbstractValidator<DeleteAttachments>
         {
             public Validation()
             {

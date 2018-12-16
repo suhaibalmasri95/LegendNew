@@ -6,9 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-namespace Domain.Operations.ProductSetup.ProductWordingDetails
+
+namespace Domain.Operations.ProductSetup.Attachments
 {
-   public class UpdateProdWordDetails : Domain.Entities.ProductSetup.ProductWordingDetails, IUpdate
+   public class UpdateAttachment : Domain.Entities.ProductSetup.Attachment, IUpdate
     {
         public async Task<IDTO> ExecuteAsync()
         {
@@ -18,7 +19,7 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
                 return validationResult;
             }
 
-            return await DbProdWordDetailSetup.AddUpdateMode(this);
+            return await DbAttachmentSetup.AddUpdateMode(this);
 
         }
 
@@ -27,7 +28,7 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<UpdateProdWordDetails>
+        public class Validation : AbstractValidator<UpdateAttachment>
         {
             public Validation()
             {

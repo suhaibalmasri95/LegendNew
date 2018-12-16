@@ -2,14 +2,13 @@
 using Common.Interfaces;
 using Common.Validations;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-namespace Domain.Operations.ProductSetup.ProductWordingDetails
+
+namespace Domain.Operations.ProductSetup.ProductReports
 {
-   public class UpdateProdWordDetails : Domain.Entities.ProductSetup.ProductWordingDetails, IUpdate
+    public class DeleteProductReports : Domain.Entities.ProductSetup.ProductReport, IDelete
     {
+        public long[] IDs;
         public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -18,7 +17,7 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
                 return validationResult;
             }
 
-            return await DbProdWordDetailSetup.AddUpdateMode(this);
+            return await DbDeleteProductReport.DeleteProductReportsAsync(IDs);
 
         }
 
@@ -27,7 +26,7 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<UpdateProdWordDetails>
+        public class Validation : AbstractValidator<DeleteProductReports>
         {
             public Validation()
             {

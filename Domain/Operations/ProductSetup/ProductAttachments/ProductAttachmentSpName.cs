@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Operations.ProductSetup.ProductAttachment
+namespace Domain.Operations.ProductSetup.ProductAttachments
 {
     public static class ProductAttachmentSpName
     {

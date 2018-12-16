@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Operations.ProductSetup.Attachment
+namespace Domain.Operations.ProductSetup.Attachments
 {
-    public static class AttachmentParams
+   public static class AttachmentSpName
     {
         public static readonly string SP_INSERT_ATTACHMENT = "DBPK_ORG.INS_ST_ATTCAHMENTS";
         public static readonly string SP_UPADTE_ATTACHMENT = "DBPK_ORG.UPD_ST_ATTCAHMENTS";
