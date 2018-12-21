@@ -24,5 +24,6 @@ namespace Common.Controllers
             exist,
            
         }
+        public long ID;
     }
 }
