@@ -75,8 +75,21 @@ namespace Legend
       Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Documents")),
                 RequestPath = "/wwwroot/Documents"
             });
-            app.UseCors(x => x.WithOrigins("http://localhost:4200")
-               .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
+            app.Use(async (context, next) =>
+            {
+                await next();
+                if(context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                 }
+            });
+
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
         }

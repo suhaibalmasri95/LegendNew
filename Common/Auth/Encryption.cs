@@ -16,7 +16,8 @@ namespace Common.Auth
             {
                 FinalString += bt.ToString("x2");
             }
-            return FinalString.ToUpper();
+            string encrypted = FinalString.ToUpper();
+            return encrypted;
         }
     }
 }

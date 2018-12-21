@@ -1,5 +1,6 @@
 ﻿using Common.Interfaces;
 using Infrastructure.Attributes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,6 +27,9 @@ namespace Domain.Entities.Organization
         public string text => Name;
         [DBFiledName("")]
         public long? value => ID;
+       
+          
+
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
         [DBFiledName("GroupRelationID")]
@@ -62,7 +66,8 @@ namespace Domain.Entities.Organization
         public List<Menu> children { get; set; }
         [DBFiledName("")]
         public Menu Parent { get; set; }
-      
-        
-    }
+        [DBFiledName("")]
+        [JsonProperty(PropertyName = "checked")]
+        public bool isChecked { get; set; } = false;
+}
 }

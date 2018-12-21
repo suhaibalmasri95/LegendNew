@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "Legend\API.csproj", "{D7CB8A5E-76F1-4951-A55D-C404390650F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "Legend\API.csproj", "{D7CB8A5E-76F1-4951-A55D-C404390650F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{18E25115-7FB0-49B5-A9EC-3DEA34BFF27E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{18E25115-7FB0-49B5-A9EC-3DEA34BFF27E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{CB6ECE6B-96CA-42BD-8106-4C3211F13C59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{CB6ECE6B-96CA-42BD-8106-4C3211F13C59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{A080AF80-E6DF-45DB-99A1-F9401D829AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{A080AF80-E6DF-45DB-99A1-F9401D829AFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
