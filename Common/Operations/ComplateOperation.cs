@@ -9,5 +9,6 @@ namespace Common.Operations
     {
         public string message;
         public T Data;
+        public long? ID;
     }
 }
