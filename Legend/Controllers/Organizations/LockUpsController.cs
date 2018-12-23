@@ -78,13 +78,17 @@ namespace API.Controllers.Organizations
             GetLockUps operation = new GetLockUps();
             operation.ID = ID;
             operation.MajorCode = MajorCode;
-            operation.MinorCode = MinorCode;
+     
             operation.LockUpID = LockupParentID;
 
             if (languageID.HasValue)
                 operation.LangID = languageID;
             else
                 operation.LangID = 1;
+            if (MinorCode.HasValue)
+                operation.MinorCode = MinorCode;
+            else
+                operation.MinorCode = 0;
             var result = operation.QueryAsync().Result;
             if (result is ValidationsOutput)
             {
@@ -93,6 +97,32 @@ namespace API.Controllers.Organizations
             else
             {
               
+                return Ok((List<Lockup>)result);
+            }
+        }
+        [Route("GetLockUps")]
+        [HttpGet]
+        public IActionResult GetLockUps(long? ID, long? MajorCode, long? MinorCode, long? LockupParentID, long? languageID = 1)
+        {
+            GetLockUps operation = new GetLockUps();
+            operation.ID = ID;
+            operation.MajorCode = MajorCode;
+            operation.MinorCode = MinorCode;
+            operation.LockUpID = LockupParentID;
+
+            if (languageID.HasValue)
+                operation.LangID = languageID;
+            else
+                operation.LangID = 1;
+        
+            var result = operation.QueryAsync().Result;
+            if (result is ValidationsOutput)
+            {
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
+            }
+            else
+            {
+
                 return Ok((List<Lockup>)result);
             }
         }

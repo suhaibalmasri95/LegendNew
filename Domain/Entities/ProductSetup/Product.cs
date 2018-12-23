@@ -48,6 +48,10 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("EXPIRY_DATE")]
         public DateTime ExpiryDate { get; set; }
         [DBFiledName("LOCK_INDV_GROUP")]
-        public long LockIndvGroup { get; set; }
+        public long? LockIndvGroup { get; set; }
+        [DBFiledName("ST_COM_ID")]
+        public long? CompanyID { get; set; }
+        [DBFiledName("FIN_CST_ID")]
+        public long? FCustomerID { get; set; }
     }
 }
