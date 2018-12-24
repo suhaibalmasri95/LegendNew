@@ -53,5 +53,7 @@ namespace Domain.Entities.ProductSetup
         public long MaxExcess { get; set; }
         [DBFiledName("EXCESS_FROM")]
         public long ExcessFrom { get; set; }
+        [DBFiledName("ST_SUB_LOB_DESC")]
+        public string SubjectTypeDesc { get; set; }
     }
 }
