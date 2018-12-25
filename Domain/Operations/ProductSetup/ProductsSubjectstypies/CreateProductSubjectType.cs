@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Operations.ProductSetup.ProductsSubjectstypies
 {
-    public class CreateProductSibjectType  : ProductSubjectType, ICreate
+    public class CreateProductSubjectType  : ProductSubjectType, ICreate
     {
         public async Task<IDTO> ExecuteAsync()
         {

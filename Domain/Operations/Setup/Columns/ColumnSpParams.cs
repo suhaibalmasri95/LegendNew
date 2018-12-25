@@ -25,6 +25,7 @@ namespace Domain.Operations.Setup.Columns
         public static readonly string PARAMETER_REF_TABLE_NAME = "IN_RFE_TABLE_NAME";
         public static readonly string PARAMETER_REF_MAJOR_CODE = "IN_REF_MAJOR_CODE";
         public static readonly string PARAMETER_REF_COL_DETAILS= "IN_REF_COL_DT_ID";
+        public static readonly string PARAMETER_REF_EXECLUDED_COM_TYPE= "IN_EXECLUDE_COM_TYPE";
         public static readonly string PARAMETER_REF_SELECT = "IN_REF_SELECT";
         public static readonly string PARAMETER_LANG_ID = "IN_LANG";
     }

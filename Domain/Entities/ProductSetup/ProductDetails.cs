@@ -49,5 +49,7 @@ namespace Domain.Entities.ProductSetup
         public long? SubLineOfBusniess { get; set; }
         [DBFiledName("ST_PRD_ID")]
         public long? ProductID { get; set; }
+        [DBFiledName("ST_SUB_LOB_DESC")]
+        public string SubjectTypeDesc { get; set; }
     }
 }

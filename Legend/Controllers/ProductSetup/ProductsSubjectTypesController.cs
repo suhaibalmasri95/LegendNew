@@ -19,7 +19,7 @@ namespace API.Controllers.ProductSetup
       
             [Route("Create")]
             [HttpPost]
-            public IApiResult Create(CreateProductSibjectType operation)
+            public IApiResult Create(CreateProductSubjectType operation)
             {
                 var result = operation.ExecuteAsync().Result;
                 if (result is ValidationsOutput)

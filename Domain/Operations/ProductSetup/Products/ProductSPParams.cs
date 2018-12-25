@@ -22,5 +22,7 @@ namespace Domain.Operations.ProductSetup.Products
         public static readonly string PARAMETER_LOCK_INDV_GROUPE = "IN_LOCK_INDV_GROUP";
         public static readonly string PARAMETER_REF_SELECT = "IN_REF_SELECT";
         public static readonly string PARAMETER_LANG_ID = "IN_LANG";
+        public static readonly string PARAMETER_COMPANY_ID = "ST_COM_ID";
+        public static readonly string PARAMETER_FIN_CUSTOMER_ID = "FIN_CST_ID ";
     }
 }

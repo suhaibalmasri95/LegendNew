@@ -16,10 +16,7 @@ namespace API.Controllers.ProductSetup
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        [Route("api/[controller]")]
-        [ApiController]
-        public class Controller : ControllerBase
-        {
+     
             [Route("Create")]
             [HttpPost]
             public IApiResult Create(CreateProduct operation)
@@ -100,7 +97,7 @@ namespace API.Controllers.ProductSetup
                     return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
                 }
             }
-        }
+        
 
     }
 }

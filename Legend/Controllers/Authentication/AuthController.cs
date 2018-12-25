@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities.Authentication;
 using Domain.Entities.Organization;
+using Domain.Operations.Organization.Companies;
 using Domain.Operations.Organization.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -33,13 +34,15 @@ namespace API.Controllers.Authentication
                 auth.langId = 1;
             }
             var operation = loginOperation.Login(auth).Result;
-
+            Company userCompany = new Company();
             var userList = (List<User>)operation;
             if(userList.Count>0)
             {
                 var user = userList[0];
-        
-            
+                GetCompany company = new GetCompany();
+                company.ID = user.CompanyID;
+                var companies = ((List<Company>)company.QueryAsync().Result);
+                userCompany = companies[0];
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(configuration.GetSection("AppSettings:Token").Value);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -57,7 +60,7 @@ namespace API.Controllers.Authentication
             var tokenString = tokenHandler.WriteToken(token);
 
             user.Password = "";
-            return Ok(new { tokenString, user });
+            return Ok(new { tokenString, user, userCompany });
         }
             else
             {
