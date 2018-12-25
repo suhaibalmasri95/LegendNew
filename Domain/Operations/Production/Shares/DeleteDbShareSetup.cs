@@ -1,37 +1,37 @@
-﻿using Common.Interfaces;
-using Common.Operations;
-using Domain.Entities.Production;
-using Infrastructure.DB;
-using Oracle.ManagedDataAccess.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Interfaces;
+using Common.Operations;
+using Domain.Entities.Production;
+using Infrastructure.DB;
+using Oracle.ManagedDataAccess.Client;
 
-namespace Domain.Operations.Production.Risks
+namespace Domain.Operations.Production.Shares
 {
-   public static class DeleteDbRiskSetup
+    class DeleteDbShareSetup
     {
-        public async static Task<IDTO> DeleteRiskAsync(Risk risk)
+        public async static Task<IDTO> DeleteShareAsync(Share share)
         {
             OracleDynamicParameters oracleParams = new OracleDynamicParameters();
             ComplateOperation<int> complate = new ComplateOperation<int>();
             var dyParam = new OracleDynamicParameters();
-            dyParam.Add(RiskSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)risk.ID ?? DBNull.Value);
-            if (await NonQueryExecuter.ExecuteNonQueryAsync(RiskSpName.SP_DELETE_RISK, dyParam) == -1)
+            dyParam.Add(SharesSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)share.ID ?? DBNull.Value);
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(SharesSpName.SP_DELETE_SHARE, dyParam) == -1)
                 complate.message = "Operation Successed";
             else
                 complate.message = "Operation Failed";
             return complate;
         }
 
-        public async static Task<IDTO> DeleteRiskAsync(long[] IDs)
+        public async static Task<IDTO> DeleteShareAsync(long[] IDs)
         {
 
             ComplateOperation<int> complate = new ComplateOperation<int>();
 
-            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(Risk), IDs)) == -1)
+            if (await NonQueryExecuter.ExecuteNonQueryAsync(MultiDeleteFormater.Format(typeof(Share), IDs)) == -1)
                 complate.message = "Operation Successed";
             else
                 complate.message = "Operation Failed";
