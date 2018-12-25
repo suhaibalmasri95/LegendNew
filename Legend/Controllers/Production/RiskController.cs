@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Controllers;
 using Common.Interfaces;
-using Common.Operations;
-using Common.Validations;
-using Domain.Entities.Production;
-using Domain.Operations.Production.Documents;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Domain.Operations.Production.Risks;
+using Common.Validations;
+using Common.Controllers;
+using Common.Operations;
+using Domain.Entities.Production;
 
 namespace API.Controllers.Production
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DocumentsController : ControllerBase
+    public class RiskController : ControllerBase
     {
         [Route("Create")]
         [HttpPost]
-        public IApiResult Create(CreateDocument operation)
+        public IApiResult Create(CreateRisk operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -34,7 +34,7 @@ namespace API.Controllers.Production
 
         [Route("Update")]
         [HttpPost]
-        public IApiResult Update(UpdateDocument operation)
+        public IApiResult Update(UpdateRisk operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -49,11 +49,12 @@ namespace API.Controllers.Production
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? langId)
+        public IActionResult Load(long? ID, long? UWDocumentID, long? langId)
         {
-            GetDocument operation = new GetDocument();
+            GetRisk operation = new GetRisk();
             operation.ID = ID;
-         
+            operation.UwDocumentID = UWDocumentID;
+
             if (langId.HasValue)
                 operation.LangID = langId;
             else
@@ -66,12 +67,12 @@ namespace API.Controllers.Production
             }
             else
             {
-                return Ok((List<Document>)result);
+                return Ok((List<Risk>)result);
             }
         }
         [Route("Delete")]
         [HttpPost]
-        public IApiResult Delete(DeleteDocument operation)
+        public IApiResult Delete(DeleteRisk operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -85,7 +86,7 @@ namespace API.Controllers.Production
         }
         [Route("DeleteMultiple")]
         [HttpPost]
-        public IApiResult DeleteMultiple(DeletesDocument operation)
+        public IApiResult DeleteMultiple(DeletesRisk operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
