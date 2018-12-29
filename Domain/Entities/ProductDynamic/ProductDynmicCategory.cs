@@ -55,7 +55,11 @@ namespace Domain.Entities.ProductDynamic
         [DBFiledName("Columns")]
         public List<ProductDynamicColumn> Columns { get; set; }
         [DBFiledName("Lists")]
-        public List<ProductDynamicColumn> Lists { get; set; }
+        public List<DynamicDdl> Lists { get; set; }
+        [DBFiledName("OriginalList")]
+        public List<DynamicDdl> OriginalList { get; set; }
+        [DBFiledName("ListWithChildren")]
+        public List<DynamicDdl> ListWithChildren { get; set; }
     }
 
 

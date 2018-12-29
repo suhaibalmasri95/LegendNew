@@ -20,16 +20,36 @@ namespace Domain.Operations.Dynamic
             dyParam.Add(DynamicColumnsParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ID ?? DBNull.Value);
             dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ProductID ?? DBNull.Value);
             dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_DETAILS_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ProductDetailID ?? DBNull.Value);
-            dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_COLUMN_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)ColumnType ?? DBNull.Value);
-            dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_ST_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)LineOfBuisness ?? DBNull.Value);
-            dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_ST_SUB_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)SubLineOfBuisness ?? DBNull.Value);
-            dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_ST_CAT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)CategoryID ?? DBNull.Value);
-            dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_EXECLUDE_COL_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)ExecludedColumn ?? DBNull.Value);
-            dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_EXECLUDE_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)UnderWritingDocID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_COLUMN_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)ColumnType ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_ST_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)LineOfBuisness ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_ST_SUB_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)SubLineOfBuisness ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_ST_CAT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)CategoryID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_EXECLUDE_COL_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)ExecludedColumn ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_EXECLUDE_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)UnderWritingDocID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_PARENT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ParentID ?? DBNull.Value);
             dyParam.Add(DynamicColumnsParams.PARAMETER_LANG_ID, OracleDbType.Decimal, ParameterDirection.Input, (object)LangID ?? DBNull.Value);
             dyParam.Add(DynamicColumnsParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
 
             return await QueryExecuter.ExecuteQueryAsync<ProductDynamicColumn>(DynamicColumnSpName.SP_LOAD_COLUMNS, dyParam);
+        }
+        public async Task<IEnumerable> QueryDllAsync()
+        {
+            var dyParam = new OracleDynamicParameters();
+
+            dyParam.Add(DynamicColumnsParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ProductID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_PRORDUCT_DETAILS_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ProductDetailID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_COLUMN_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)ColumnType ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_ST_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)LineOfBuisness ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_ST_SUB_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)SubLineOfBuisness ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_ST_CAT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)CategoryID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_EXECLUDE_COL_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)ExecludedColumn ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_EXECLUDE_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)UnderWritingDocID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_PARENT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ParentID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_LANG_ID, OracleDbType.Decimal, ParameterDirection.Input, (object)LangID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
+
+            return await QueryExecuter.ExecuteQueryAsync<DynamicDdl>(DynamicColumnSpName.SP_LOAD_COLUMNS, dyParam);
         }
     }
 }

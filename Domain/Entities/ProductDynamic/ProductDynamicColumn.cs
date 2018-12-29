@@ -1,4 +1,5 @@
 ﻿using Common.Interfaces;
+using Domain.Entities.Organization;
 using Infrastructure.Attributes;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace Domain.Entities.ProductDynamic
         [DBFiledName("LOC_LEVEL")]
         public long? LockUpLevel { get; set; }
         [DBFiledName("ST_PRD_CLO_ID")]
-        public long? ProductColumnID { get; set; }
+        public long? ParentID { get; set; }
         [DBFiledName("ST_PRD_CAT_ID")]
         public long? ProductCategoryID { get; set; }
         [DBFiledName("ST_CAT_ID")]
@@ -81,5 +82,7 @@ namespace Domain.Entities.ProductDynamic
         public long? UnderWritingDocID { get; set; }
         [DBFiledName("ExecludedColumn")]
         public long? ExecludedColumn { get; set; }
+      
+        
     }
 }
