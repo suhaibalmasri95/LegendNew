@@ -6,10 +6,10 @@ using Infrastructure.Attributes;
 
 namespace Domain.Entities.Production
 {
-    [DBTableName("UW_SHARES")]
-    public class Share : IEntity
+    [DBTableName("UW_ATTACHMENTS")]
+    public class Attachment : IEntity
     {
-        public Share()
+        public Attachment()
         {
             CreatedBy = "Admin";
             CreationDate = DateTime.Now;
@@ -25,18 +25,10 @@ namespace Domain.Entities.Production
 
         [DBFiledName("ID")]
         public long? ID { get; set; }
-        [DBFiledName("LOC_SHARE_TYPE")]
-        public long? ShareType { get; set; }
-        [DBFiledName("PRCNT")]
-        public double? Percent { get; set; }
-        [DBFiledName("SHARE_PER")]
-        public double? SharePercent { get; set; }
-        [DBFiledName("AMOUNT")]
-        public double? Amount { get; set; }
-        [DBFiledName("AMOUNT_LC")]
-        public double? AmountLC { get; set; }
-        [DBFiledName("NOTES")]
-        public string Notes { get; set; }
+        [DBFiledName("SERIAL")]
+        public long? Serial { get; set; }
+        [DBFiledName("ATTACHED_PATH")]
+        public string AttachedPath { get; set; }
         [DBFiledName("CREATED_BY")]
         public string CreatedBy { get; set; }
         [DBFiledName("CREATION_DATE")]
@@ -46,14 +38,25 @@ namespace Domain.Entities.Production
         [DBFiledName("MODIFICATION_DATE")]
         public DateTime ModificationDate { get; set; }
         [DBFiledName("UW_DOC_ID")]
-        public long? UwDocumentID { get; set; }
-        [DBFiledName("FIN_CST_ID")]
-        public long? CustomerId { get; set; }
-        [DBFiledName("ST_LOB")]
-        public long? StLOB { get; set; }
-        [DBFiledName("ST_SUB_LOB")]
-        public long? StSubLOB { get; set; }
-        [DBFiledName("DR_CR")]
-        public long? DrCr { get; set; }
+        public long? DocumentID { get; set; }
+        [DBFiledName("UW_RISK_ID")]
+        public long? RiskID { get; set; }
+        [DBFiledName("IS_RECEIVED")]
+        public long? IsReceived { get; set; }
+        [DBFiledName("RECEIVED_DATE")]
+        public DateTime ReceivedDate { get; set; }
+        [DBFiledName("REMARKS")]
+        public string Remarks { get; set; }
+        [DBFiledName("ST_PRD_ATT_ID")]
+        public long? ProductAttachmentID { get; set; }
+        [DBFiledName("CLM_ID")]
+        public long? ClaimID { get; set; }
+        [DBFiledName("LOC_LEVEL")]
+        public long? Level { get; set; }
+
+
+
+
+
     }
 }
