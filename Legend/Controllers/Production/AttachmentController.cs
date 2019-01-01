@@ -72,7 +72,7 @@ namespace API.Controllers.Production
             }
             else
             {
-                return Ok((List<Share>)result);
+                return Ok((List<Attachment>)result);
             }
         }
         [Route("Delete")]
