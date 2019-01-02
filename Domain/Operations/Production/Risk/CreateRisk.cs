@@ -10,31 +10,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Operations.Production.Risks
 {
-    public class CreateRisk : Risk, ICreate
+    public class CreateRisk 
     {
+        public List<Risk> Risks { get; set; }
         public async Task<IDTO> ExecuteAsync()
         {
-            var validationResult = (ValidationsOutput)Validate();
-            if (!validationResult.IsValid)
-            {
-                return validationResult;
-            }
-            return await DBRiskSetup.AddUpdateMode(this);
+          
+        
+            return await DBRiskSetup.AddUpdateMode(Risks);
         }
 
-        public IDTO Validate()
-        {
-            return new Validation().Validate(this).AsDto();
-        }
-
-        public class Validation : AbstractValidator<Risk>
-        {
-            public Validation()
-            {
-             
-
-            }
-        }
+     
 
     }
 }

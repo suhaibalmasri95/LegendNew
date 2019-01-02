@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Common.Interfaces;
+using Domain.Entities.ProductDynamic;
 using Infrastructure.Attributes;
 
 
@@ -164,5 +165,13 @@ namespace Domain.Entities.Production
         public double? GrossAmmount { get; set; }
         [DBFiledName("GROSS_AMOUNT_LC")]
         public double? GrossAmountLc { get; set; }
+        [DBFiledName("DynamicCategories")]
+        public List<ProductDynmicCategory> DynamicCategories { get; set; }
+
+        [DBFiledName("Risks")]
+        public List<Risk> Risks { get; set; }
+        [DBFiledName("share")]
+        public Share share { get; set; }
+        
     }
 }

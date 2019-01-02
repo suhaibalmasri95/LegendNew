@@ -46,13 +46,13 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("ST_SBT_PARENT_ID")]
         public long? SubjectTypeParentID { get; set; }
         [DBFiledName("EXCESS_PER")]
-        public long ExcessPerc { get; set; }
+        public double? ExcessPerc { get; set; }
         [DBFiledName("MIN_EXCESS_AMT")]
-        public long MinExcess { get; set; }
+        public double? MinExcess { get; set; }
         [DBFiledName("MAX_EXCESS_AMT")]
-        public long MaxExcess { get; set; }
+        public double? MaxExcess { get; set; }
         [DBFiledName("EXCESS_FROM")]
-        public long ExcessFrom { get; set; }
+        public long? ExcessFrom { get; set; }
         [DBFiledName("ST_SUB_LOB_DESC")]
         public string SubjectTypeDesc { get; set; }
     }

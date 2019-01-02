@@ -21,6 +21,8 @@ namespace API.Controllers.Production
         [HttpPost]
         public IApiResult Create(CreateRisk operation)
         {
+
+
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {

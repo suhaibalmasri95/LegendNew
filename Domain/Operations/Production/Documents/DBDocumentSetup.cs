@@ -1,6 +1,10 @@
 ﻿using Common.Interfaces;
 using Common.Operations;
 using Domain.Entities.Production;
+using Domain.Operations.Production.Categories;
+using Domain.Operations.Production.Columns;
+using Domain.Operations.Production.Risks;
+using Domain.Operations.Production.Shares;
 using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 using System;
@@ -93,6 +97,69 @@ namespace Domain.Operations.Production.Documents
             {
                 complate.message = message;
                 complate.ID = oracleParams.Get(0);
+                foreach (var item in document.share.customer)
+                {
+                    Share share = new Share();
+                    share.UwDocumentID = complate.ID;
+                    share.SharePercent = 100;
+                    share.Amount = 0;
+                    share.AmountLC = 0;
+                    share.StSubLOB = null;
+                    share.StLOB = null;
+                    share.ShareType = item.shareType;
+                    share.CustomerId = item.CustomerID;
+                  var result  = DBSharesSetup.AddUpdateMode(share);
+
+                   
+                   
+                }
+                foreach (var item2 in document.DynamicCategories)
+                {
+
+                    // map to category
+
+                    if (item2.IsMulitRecords > 0)
+                    {
+                        foreach (var col in item2.Result)
+                        {
+                            var category = AddUpdateCategory.MapToCategory(item2 , null , complate.ID);
+                            var categoryID = await AddUpdateCategory.AddUpdateMode(category);
+                            var id = ((ComplateOperation<int>)categoryID).ID.Value;
+                            foreach (var c in col)
+                            {
+                                c.ID = null;
+                                c.UnderWritingColCatID = id;
+                                c.UnderWritingRiskID = category.RiskID;
+                                c.UnderWritingDocID = category.DocumentID;
+                                c.LineOfBuisness = category.LineOfBusiness;
+                                c.SubLineOfBuisness = category.SubLineOfBusiness;
+                                c.ProductCategoryID = category.ProductCategoryID;
+                                var result = AddUpdateCoulmns.AddUpdateMode(c);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
+                        var categoryID = await AddUpdateCategory.AddUpdateMode(category);
+                        var id = ((ComplateOperation<int>)categoryID).ID.Value;
+                        foreach (var col in item2.ResultList)
+                        {
+                            col.ID = null;
+                            col.UnderWritingColCatID = id;
+                            col.UnderWritingRiskID = category.RiskID;
+                            col.UnderWritingDocID = category.DocumentID;
+                            col.LineOfBuisness = category.LineOfBusiness;
+                            col.SubLineOfBuisness = category.SubLineOfBusiness;
+                            var result = AddUpdateCoulmns.AddUpdateMode(col);
+                        }
+
+
+                    }
+
+
+
+                }
             }
             else
                 complate.message = "Operation Failed";

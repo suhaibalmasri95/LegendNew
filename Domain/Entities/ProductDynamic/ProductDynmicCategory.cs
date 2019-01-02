@@ -60,6 +60,11 @@ namespace Domain.Entities.ProductDynamic
         public List<DynamicDdl> OriginalList { get; set; }
         [DBFiledName("ListWithChildren")]
         public List<DynamicDdl> ListWithChildren { get; set; }
+        [DBFiledName("ResultList")]
+        public List<DynamicDdl> ResultList { get; set; }
+        [DBFiledName("Result")]
+        public List<DynamicDdl[]> Result { get; set; }
+        
     }
 
 

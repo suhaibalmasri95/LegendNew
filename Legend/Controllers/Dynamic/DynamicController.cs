@@ -20,7 +20,7 @@ namespace API.Controllers.Dynamic
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? CategoryID, long? ProductID, long? ProductDetailID, long? CategoryLevel , long? LineOfBuisness, long? SubLineOfBuisness, long? LangID )
+        public IActionResult Load(long? ID,long? DocumentID, long? CategoryID, long? ProductID, long? ProductDetailID, long? CategoryLevel , long? LineOfBuisness, long? SubLineOfBuisness, long? LangID )
         {
 
 
@@ -43,6 +43,7 @@ namespace API.Controllers.Dynamic
             var Categories = (List<ProductDynmicCategory>)result;
             foreach (var item in Categories)
             {
+                item.ResultList = new List<DynamicDdl>();
                 GetDynamicColumns columns = new GetDynamicColumns();
                 columns.CategoryID = item.CategoryID;
                 columns.ProductID = item.ProductID;
@@ -52,7 +53,7 @@ namespace API.Controllers.Dynamic
                 columns.SubLineOfBuisness = item.SubLineOfBuisness;
                 columns.ExecludedColumn = 4;
                 columns.LangID = LangID;
-                item.Columns = (List<ProductDynamicColumn>)columns.QueryAsync().Result;
+                item.Columns = (List<ProductDynamicColumn>)columns.QueryAsyncInsert().Result;
                 GetDynamicColumns dropDownList = new GetDynamicColumns();
                 dropDownList.CategoryID = item.CategoryID;
                 dropDownList.ProductID = item.ProductID;
@@ -62,7 +63,7 @@ namespace API.Controllers.Dynamic
                 dropDownList.SubLineOfBuisness = item.SubLineOfBuisness;
                 dropDownList.ExecludedColumn = null;
                 columns.LangID = LangID;
-                item.Lists = (List<DynamicDdl>)dropDownList.QueryDllAsync().Result;
+                item.Lists = (List<DynamicDdl>)dropDownList.QueryDllAsyncInsert().Result;
                 item.OriginalList = item.Lists.ToList() ;
                 item.ListWithChildren = item.Lists.ToList();
                 foreach (var col in item.Lists)
@@ -189,7 +190,7 @@ namespace API.Controllers.Dynamic
                 }
 
             columns.ParentID = filter.parentID;
-                var result = columns.QueryDllAsync().Result;
+                var result = columns.QueryDllAsyncInsert().Result;
 
                 List<DynamicDdl> list = (List<DynamicDdl>)result;
              
@@ -225,6 +226,7 @@ namespace API.Controllers.Dynamic
     public class FilterClass
     {
         public long parentID { get; set; }
+        public long? DocumentID { get; set; }
         public long MajorCode { get; set; }
         public long MinorCode { get; set; }
         public long? LangID { get; set; }

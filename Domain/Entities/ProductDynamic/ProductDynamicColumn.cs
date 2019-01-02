@@ -55,6 +55,8 @@ namespace Domain.Entities.ProductDynamic
         [DBFiledName("ST_PRDT_ID")]
         public long? ProductDetailID { get; set; }
         [DBFiledName("ST_COL_ID")]
+        public long? ColumnID { get; set; }
+        [DBFiledName("COL_ORDER")]
         public long? ColumnOrder { get; set; }
         [DBFiledName("ST_DIC_ID")]
         public long? Dictionary { get; set; }
@@ -67,7 +69,7 @@ namespace Domain.Entities.ProductDynamic
         [DBFiledName("UW_COL_CAT_ID")]
         public long? UnderWritingColCatID { get; set; }
         [DBFiledName("ST_PRD_COL_ID")]
-        public long? UnderWritingProductColumnID { get; set; }
+        public long? ProductColumnID { get; set; }
         [DBFiledName("VALUE_DATE")]
         public DateTime? ValueDate { get; set; }
         [DBFiledName("VALUE_DATE")]
@@ -82,7 +84,11 @@ namespace Domain.Entities.ProductDynamic
         public long? UnderWritingDocID { get; set; }
         [DBFiledName("ExecludedColumn")]
         public long? ExecludedColumn { get; set; }
-      
-        
+
+
+
+    
+               [DBFiledName("UW_COL_ID")]
+            public long? UwColID { get; set; }
     }
 }

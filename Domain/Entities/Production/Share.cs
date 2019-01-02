@@ -11,8 +11,7 @@ namespace Domain.Entities.Production
     {
         public Share()
         {
-            CreatedBy = "Admin";
-            CreationDate = DateTime.Now;
+            
         }
         [DBFiledName("NAME")]
         public string Name { get; set; }
@@ -55,5 +54,7 @@ namespace Domain.Entities.Production
         public long? StSubLOB { get; set; }
         [DBFiledName("DR_CR")]
         public long? DrCr { get; set; }
+        [DBFiledName("customer")]
+        public List<CustomerShare> customer { get; set; }
     }
 }

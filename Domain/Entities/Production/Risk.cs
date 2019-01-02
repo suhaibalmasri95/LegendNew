@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Common.Interfaces;
+using Domain.Entities.ProductDynamic;
 using Infrastructure.Attributes;
 
 
@@ -79,5 +80,9 @@ namespace Domain.Entities.Production
         public DateTime ModificationDate { get; set; }
         [DBFiledName("UW_RISK_ID")]
         public long? UwRiskID { get; set; }
+
+
+        [DBFiledName("DynamicCategories")]
+        public List<ProductDynmicCategory> DynamicCategory { get; set; }
     }
 }

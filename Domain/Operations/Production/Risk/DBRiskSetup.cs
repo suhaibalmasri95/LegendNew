@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 using Common.Interfaces;
 using Common.Operations;
 using Domain.Entities.Production;
+using Domain.Operations.Production.Categories;
+using Domain.Operations.Production.Columns;
 using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 
 namespace Domain.Operations.Production.Risks
 {
-    class DBRiskSetup
+    public static class DBRiskSetup
     {
-        public async static Task<IDTO> AddUpdateMode(Risk risk)
+        public async static Task<IDTO> AddUpdateMode(List<Risk> risks)
         {
             string SPName = "";
             string message = "";
             OracleDynamicParameters oracleParams = new OracleDynamicParameters();
             ComplateOperation<int> complate = new ComplateOperation<int>();
+            foreach (var risk in risks)
+            {
+
+          
+        
 
             if (risk.ID.HasValue)
             {
@@ -68,10 +75,55 @@ namespace Domain.Operations.Production.Risks
             {
                 complate.message = message;
                 complate.ID = oracleParams.Get(0);
+                foreach (var item in risk.DynamicCategory)
+                {
+
+                    if(item.IsMulitRecords > 0 )
+                    {
+                    foreach (var col in item.Result)
+                    {
+                            var category = AddUpdateCategory.MapToCategory(item, complate.ID, risk.UwDocumentID);
+                            var categoryID = await AddUpdateCategory.AddUpdateMode(category);
+                            var id = ((ComplateOperation<int>)categoryID).ID.Value;
+                            foreach (var c in col)
+                        {
+                                c.ID = null;
+                                c.UnderWritingColCatID = id;
+                            c.UnderWritingRiskID = category.RiskID;
+                            c.UnderWritingDocID = category.DocumentID;
+                            c.LineOfBuisness = category.LineOfBusiness;
+                            c.SubLineOfBuisness = category.SubLineOfBusiness;
+                            c.ProductCategoryID = category.ProductCategoryID;
+                            var result = AddUpdateCoulmns.AddUpdateMode(c);
+                        }
+                    }
+                    }
+                    else
+                    {
+                        var category = AddUpdateCategory.MapToCategory(item, complate.ID, risk.UwDocumentID);
+                        var categoryID = await AddUpdateCategory.AddUpdateMode(category);
+                        var id = ((ComplateOperation<int>)categoryID).ID.Value;
+                        foreach (var col in item.ResultList)
+                        {
+                            col.ID = null;
+                            col.UnderWritingColCatID = id;
+                            col.UnderWritingRiskID = category.RiskID;
+                            col.UnderWritingDocID = category.DocumentID;
+                            col.LineOfBuisness = category.LineOfBusiness;
+                            col.SubLineOfBuisness = category.SubLineOfBusiness;
+
+                            var result = AddUpdateCoulmns.AddUpdateMode(col);
+                        }
+
+
+                    }
+                
+                }
+                // insert category
             }
             else
                 complate.message = "Operation Failed";
-
+            }
             return complate;
         }
     }

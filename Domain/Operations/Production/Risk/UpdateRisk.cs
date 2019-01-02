@@ -12,14 +12,16 @@ namespace Domain.Operations.Production.Risks
 {
    public class UpdateRisk : Risk, IUpdate
     {
+        public List<Risk> Risks { get; set; }
         public async Task<IDTO> ExecuteAsync()
         {
+          
             var validationResult = (ValidationsOutput)Validate();
             if (!validationResult.IsValid)
             {
                 return validationResult;
             }
-            return await DBRiskSetup.AddUpdateMode(this);
+            return await DBRiskSetup.AddUpdateMode(Risks);
         }
 
         public IDTO Validate()
