@@ -18,6 +18,7 @@ namespace Domain.Operations.ProductSetup.ProductAttachments
             dyParam.Add(ProductAttachmentSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ID ?? DBNull.Value);
             dyParam.Add(ProductAttachmentSpParams.PARAMETER_ST_PRD_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ProductId ?? DBNull.Value);
             dyParam.Add(ProductAttachmentSpParams.PARAMETER_ST_PRDT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ProductDetailId ?? DBNull.Value);
+            dyParam.Add(ProductAttachmentSpParams.PARAMETER_ATT_LEVEL, OracleDbType.Int64, ParameterDirection.Input, (object)this.AttachmentLevel ?? DBNull.Value); 
             dyParam.Add(ProductAttachmentSpParams.PARAMETER_LANG_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.LangID ?? DBNull.Value);
             dyParam.Add(ProductAttachmentSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Common.Interfaces;
 using Common.Operations;
 using Domain.Entities.Production;
+using Domain.Operations.Others;
 using Infrastructure.DB;
 using Oracle.ManagedDataAccess.Client;
 
@@ -15,12 +16,15 @@ namespace Domain.Operations.Production.Attachments
     {
         public async static Task<IDTO> AddUpdateMode(Attachment attachment)
         {
+            
+          
             string SPName = "";
             string message = "";
             OracleDynamicParameters oracleParams = new OracleDynamicParameters();
             ComplateOperation<int> complate = new ComplateOperation<int>();
+         
 
-            if (attachment.ID.HasValue)
+                if (attachment.ID.HasValue)
             {
                 oracleParams.Add(AttachmentsSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)attachment.ID ?? DBNull.Value);
 
@@ -34,9 +38,10 @@ namespace Domain.Operations.Production.Attachments
                 message = "Inserted Successfully";
             }
 
-            oracleParams.Add(AttachmentsSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)attachment.ID ?? DBNull.Value);
             oracleParams.Add(AttachmentsSpParams.PARAMETER_SERIAL, OracleDbType.Int64, ParameterDirection.Input, (object)attachment.Serial ?? DBNull.Value);
-            oracleParams.Add(AttachmentsSpParams.PARAMETER_ATTACHED_PATH, OracleDbType.Varchar2, ParameterDirection.Input, (object)attachment.AttachedPath ?? DBNull.Value);
+            attachment.FullPath = GenerateFiles.FilePath(attachment.Path, attachment.Type);
+            oracleParams.Add(AttachmentsSpParams.PARAMETER_ATTACHED_PATH, OracleDbType.Varchar2, ParameterDirection.Input, (object)attachment.FullPath ?? DBNull.Value);
+          
             oracleParams.Add(AttachmentsSpParams.PARAMETER_CREATED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)attachment.CreatedBy ?? DBNull.Value);
             oracleParams.Add(AttachmentsSpParams.PARAMETER_CREATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)attachment.CreationDate ?? DBNull.Value);
             oracleParams.Add(AttachmentsSpParams.PARAMETER_MODIFIED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)attachment.ModifiedBy ?? DBNull.Value);
@@ -55,9 +60,26 @@ namespace Domain.Operations.Production.Attachments
             {
                 complate.message = message;
                 complate.ID = oracleParams.Get(0);
-            }
-            else
-                complate.message = "Operation Failed";
+                if (attachment.File != null)
+                {
+                    if(attachment.DocumentID.HasValue) {
+                    bool inserted =await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.DocumentID.ToString());
+                    }
+                    if (attachment.DocumentID.HasValue)
+                    {
+                        bool inserted = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.RiskID.ToString());
+                    }
+                    if (attachment.DocumentID.HasValue)
+                    {
+                        bool inserted = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.ClaimID.ToString());
+                    }
+                }
+
+                }
+                else
+                    complate.message = "Operation Failed";
+            
+        
 
             return complate;
         }

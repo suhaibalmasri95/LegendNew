@@ -1,5 +1,6 @@
 ﻿using Common.Interfaces;
 using Infrastructure.Attributes;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,7 +34,7 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("ATT_LEVEL")]
         public long? AttachmentLevel { get; set; }
         [DBFiledName("IS_REQUIRED")]
-        public Int32? IsRequired { get; set; }
+        public Int16? IsRequired { get; set; }
 
         [DBFiledName("ST_ATT_ID")]
         public long? AttachmentID { get; set; }
@@ -45,6 +46,7 @@ namespace Domain.Entities.ProductSetup
         public long? LineOfBusiness { get; set; }
         [DBFiledName("ST_SUB_LOB")]
         public long? SubLineOfBusiness { get; set; }
-
+        [DBFiledName("file")]
+        public IFormFile File { get; set; }
     }
 }

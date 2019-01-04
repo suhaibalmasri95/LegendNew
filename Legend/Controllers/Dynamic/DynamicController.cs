@@ -52,6 +52,7 @@ namespace API.Controllers.Dynamic
                 columns.LineOfBuisness = item.LineOfBuisness;
                 columns.SubLineOfBuisness = item.SubLineOfBuisness;
                 columns.ExecludedColumn = 4;
+                columns.ProductColumnID = null;
                 columns.LangID = LangID;
                 item.Columns = (List<ProductDynamicColumn>)columns.QueryAsyncInsert().Result;
                 GetDynamicColumns dropDownList = new GetDynamicColumns();
@@ -62,6 +63,7 @@ namespace API.Controllers.Dynamic
                 dropDownList.LineOfBuisness = item.LineOfBuisness;
                 dropDownList.SubLineOfBuisness = item.SubLineOfBuisness;
                 dropDownList.ExecludedColumn = null;
+                dropDownList.ProductColumnID = null;
                 columns.LangID = LangID;
                 item.Lists = (List<DynamicDdl>)dropDownList.QueryDllAsyncInsert().Result;
                 item.OriginalList = item.Lists.ToList() ;

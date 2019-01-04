@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Common.Interfaces;
+using Domain.Entities.ProductSetup;
 using Infrastructure.Attributes;
+using Microsoft.AspNetCore.Http;
 
 namespace Domain.Entities.Production
 {
@@ -11,8 +13,7 @@ namespace Domain.Entities.Production
     {
         public Attachment()
         {
-            CreatedBy = "Admin";
-            CreationDate = DateTime.Now;
+          
         }
         [DBFiledName("NAME")]
         public string Name { get; set; }
@@ -54,7 +55,16 @@ namespace Domain.Entities.Production
         [DBFiledName("LOC_LEVEL")]
         public long? Level { get; set; }
 
-
+        [DBFiledName("type")]
+        public string Type { get; set; }
+        [DBFiledName("Path")]
+        public string Path { get; set; }
+        [DBFiledName("FullPath")]
+        public string FullPath { get; set; }
+        [DBFiledName("attachments")]
+        public ProductAttachment attachments { get; set; }
+        [DBFiledName("attachments")]
+        public IFormFile File { get; set; }
 
 
 

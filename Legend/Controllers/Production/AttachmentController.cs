@@ -10,6 +10,9 @@ using Common.Validations;
 using Common.Controllers;
 using Common.Operations;
 using Domain.Entities.Production;
+using Domain.Entities.ProductSetup;
+using Attachment = Domain.Entities.Production.Attachment;
+using Microsoft.Extensions.Configuration;
 
 namespace API.Controllers.Production
 {
@@ -17,10 +20,16 @@ namespace API.Controllers.Production
     [ApiController]
     public class AttachmentController : ControllerBase
     {
-        [Route("Create")]
-        [HttpPost]
-        public IApiResult Create(CreateAttachment operation)
+        private readonly IConfiguration configuration;
+        public AttachmentController(IConfiguration configuration)
         {
+            this.configuration = configuration;
+        }
+        [Route("Create")]
+        [HttpPost] 
+        public IApiResult Create([FromForm]CustomObject obj)
+        {
+            CreateAttachment operation = convertCustomerObjectToAttachment(obj);
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
@@ -103,5 +112,67 @@ namespace API.Controllers.Production
                 return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
             }
         }
+
+        public CreateAttachment convertCustomerObjectToAttachment(CustomObject obj)
+        {
+            CreateAttachment attachmentToReturn = new CreateAttachment();
+
+            attachmentToReturn.CreatedBy = obj.CreatedBy;
+            attachmentToReturn.Remarks = obj.Remarks;
+            attachmentToReturn.Type = obj.Type;
+            attachmentToReturn.Path = configuration.GetSection("AttachmentPath:Path").Value;
+            if (!string.IsNullOrEmpty(obj.ProductAttachmentID))
+            {
+                attachmentToReturn.ProductAttachmentID = Convert.ToInt64(obj.ProductAttachmentID);
+            }
+            if (!string.IsNullOrEmpty(obj.DocumentID))
+            {
+                attachmentToReturn.DocumentID = Convert.ToInt64(obj.DocumentID);
+            }
+            if (!string.IsNullOrEmpty(obj.CreationDate))
+            {
+                attachmentToReturn.CreationDate = DateTime.Now;
+            }
+            if (!string.IsNullOrEmpty(obj.Serial))
+            {
+                attachmentToReturn.Serial = Convert.ToInt64(obj.Serial);
+            }
+            if (!string.IsNullOrEmpty(obj.IsReceived))
+            {
+                attachmentToReturn.IsReceived = Convert.ToInt64(obj.IsReceived);
+            }
+            if (!string.IsNullOrEmpty(obj.ReceivedDate))
+            {
+                attachmentToReturn.ReceivedDate = DateTime.Now;
+            }
+            if (!string.IsNullOrEmpty(obj.ClaimID))
+            {
+                attachmentToReturn.ClaimID = Convert.ToInt64(obj.ClaimID);
+            }
+            if (!string.IsNullOrEmpty(obj.Level))
+            {
+                attachmentToReturn.Level = Convert.ToInt64(obj.Level);
+            }
+            attachmentToReturn.File = obj.File;
+
+            return attachmentToReturn;
+        }
+    }
+
+    public class CustomObject
+    {
+        public string DocumentID { get; set; }
+        public string CreationDate { get; set; }
+        public string Type { get; set; }
+        public string Serial { get; set; }
+        public string RiskID { get; set; }
+        public string IsReceived { get; set; }
+        public string ReceivedDate { get; set; }
+        public string Remarks { get; set; }
+        public string ClaimID { get; set; }
+        public string Level { get; set; }
+        public string CreatedBy { get; set; }
+        public string ProductAttachmentID { get; set; }
+        public IFormFile File { get; set; }
     }
 }

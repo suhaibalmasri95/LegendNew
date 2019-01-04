@@ -48,12 +48,13 @@ namespace API.Controllers.ProductSetup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? ProductID,long? ProductDetailID,long? langId)
+        public IActionResult Load(long? ID, long? ProductID,long? ProductDetailID, long?  AttachmentLevel, long? langId)
         {
             GetProductAttachments operation = new GetProductAttachments();
             operation.ID = ID;
             operation.ProductId = ProductID;
             operation.ProductDetailId = ProductDetailID;
+            operation.AttachmentLevel = AttachmentLevel;
             if (langId.HasValue)
                 operation.LangID = langId;
             else
