@@ -19,15 +19,15 @@ namespace Domain.Operations.Production.Risks
         {
             string SPName = "";
             string message = "";
-            OracleDynamicParameters oracleParams = new OracleDynamicParameters();
             ComplateOperation<int> complate = new ComplateOperation<int>();
             foreach (var risk in risks)
             {
 
-          
-        
 
-            if (risk.ID.HasValue)
+                OracleDynamicParameters oracleParams = new OracleDynamicParameters();
+             
+
+                if (risk.ID.HasValue)
             {
                 oracleParams.Add(RiskSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)risk.ID ?? DBNull.Value);
 

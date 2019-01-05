@@ -65,11 +65,11 @@ namespace Domain.Operations.Production.Attachments
                     if(attachment.DocumentID.HasValue) {
                     bool inserted =await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.DocumentID.ToString());
                     }
-                    if (attachment.DocumentID.HasValue)
+                    if (attachment.RiskID.HasValue)
                     {
                         bool inserted = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.RiskID.ToString());
                     }
-                    if (attachment.DocumentID.HasValue)
+                    if (attachment.ClaimID.HasValue)
                     {
                         bool inserted = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.ClaimID.ToString());
                     }
