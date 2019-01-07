@@ -59,5 +59,7 @@ namespace Domain.Operations.Financial.Customers
         public const string PARAMETER_Y_COORDINATES = "IN_Y_COORDINATES";
         public const string PARAMETER_LOGO = "IN_LOGO";
         public const string PARAMETER_LOC_CUST_TYPE = "IN_LOC_CUST_TYPE";
+        public const string PARAMETER_CUSTOMER_NO_OR_NAME = " IN_CUST_NO_OR_NAME";
+       
     }
 }

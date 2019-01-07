@@ -21,6 +21,8 @@ namespace Domain.Entities.Financial
         public long? ID { get; set; }
         [DBFiledName("CUSTOMER_NO")]
         public string CustomerNo { get; set; }
+        [DBFiledName("customerNoOrName")]
+        public string CustomerNoOrName { get; set; }
 
         [DBFiledName("LOC_TITLE")]
         public long? LockUpTitle { get; set; }

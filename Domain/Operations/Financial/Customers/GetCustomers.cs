@@ -27,6 +27,8 @@ namespace Domain.Operations.Financial.Customers
             dyParam.Add(CustomerSpParams.PARAMETER_EMAIL, OracleDbType.Varchar2, ParameterDirection.Input, (object)Email ?? DBNull.Value);
             dyParam.Add(CustomerSpParams.PARAMETER_ST_COM_ID, OracleDbType.Decimal, ParameterDirection.Input, (object)CompanyID ?? DBNull.Value);
             dyParam.Add(CustomerSpParams.PARAMETER_LOC_CUST_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)CustomerType ?? DBNull.Value);
+            dyParam.Add(CustomerSpParams.PARAMETER_REF_NO, OracleDbType.Varchar2, ParameterDirection.Input, (object)ReferenceNo ?? DBNull.Value);
+            dyParam.Add(CustomerSpParams.PARAMETER_CUSTOMER_NO_OR_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)CustomerNoOrName ?? DBNull.Value);
             dyParam.Add(CustomerSpParams.PARAMETER_LANG_ID, OracleDbType.Decimal, ParameterDirection.Input, (object)LangID ?? DBNull.Value);
             dyParam.Add(CustomerSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
 

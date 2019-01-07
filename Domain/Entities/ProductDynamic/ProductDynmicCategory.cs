@@ -53,7 +53,7 @@ namespace Domain.Entities.ProductDynamic
         [DBFiledName("ST_SUB_LOB")]
         public long? SubLineOfBuisness { get; set; }
         [DBFiledName("Columns")]
-        public List<ProductDynamicColumn> Columns { get; set; }
+        public List<DynamicDdl> Columns { get; set; }
         [DBFiledName("Lists")]
         public List<DynamicDdl> Lists { get; set; }
         [DBFiledName("OriginalList")]
@@ -64,7 +64,10 @@ namespace Domain.Entities.ProductDynamic
         public List<DynamicDdl> ResultList { get; set; }
         [DBFiledName("Result")]
         public List<DynamicDdl[]> Result { get; set; }
+        [DBFiledName("childsData")]
+        public List<DynamicDdl> childsData { get; set; }
         
+
     }
 
 

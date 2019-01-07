@@ -43,6 +43,7 @@ namespace API.Controllers.Dynamic
             var Categories = (List<ProductDynmicCategory>)result;
             foreach (var item in Categories)
             {
+                item.childsData = new List<DynamicDdl>();
                 item.ResultList = new List<DynamicDdl>();
                 GetDynamicColumns columns = new GetDynamicColumns();
                 columns.CategoryID = item.CategoryID;
@@ -51,40 +52,15 @@ namespace API.Controllers.Dynamic
                 columns.ColumnType = null;
                 columns.LineOfBuisness = item.LineOfBuisness;
                 columns.SubLineOfBuisness = item.SubLineOfBuisness;
-                columns.ExecludedColumn = 4;
-                columns.ProductColumnID = null;
+                // columns.ExecludedColumn = 4;
+               //  columns.ProductColumnID = null;
                 columns.LangID = LangID;
-                item.Columns = (List<ProductDynamicColumn>)columns.QueryAsyncInsert().Result;
-                GetDynamicColumns dropDownList = new GetDynamicColumns();
-                dropDownList.CategoryID = item.CategoryID;
-                dropDownList.ProductID = item.ProductID;
-                dropDownList.ProductDetailID = item.ProductDetailID;
-                dropDownList.ColumnType = 4;
-                dropDownList.LineOfBuisness = item.LineOfBuisness;
-                dropDownList.SubLineOfBuisness = item.SubLineOfBuisness;
-                dropDownList.ExecludedColumn = null;
-                dropDownList.ProductColumnID = null;
-                columns.LangID = LangID;
-                item.Lists = (List<DynamicDdl>)dropDownList.QueryDllAsyncInsert().Result;
-                item.OriginalList = item.Lists.ToList() ;
-                item.ListWithChildren = item.Lists.ToList();
-                foreach (var col in item.Lists)
+                item.Columns = (List<DynamicDdl>)columns.QueryAsyncInsert().Result;
+              
+                foreach (var col in item.Columns)
                 {
-                    col.ChildrenIds = new List<long>();
-                    if(col.ChildCounts > 0 && col.ParentID.HasValue)
-                    {
-                        foreach (var child in item.ListWithChildren)
-                        {
-                            if (child.ParentID == col.ID) { 
-                                col.ChildrenIds.Add(child.ID.Value);
-                                item.OriginalList.Remove(child);
-                            }
-                        }
-                       
-                    }
-                    else if(col.ChildCounts > 0 && !col.ParentID.HasValue)
-                    {
-                        if (col.MajorCode.HasValue)
+                                          
+                      if (col.MajorCode.HasValue)
                         {
                             GetLockUps lockups = new GetLockUps();
                             lockups.LangID = LangID;
@@ -94,68 +70,9 @@ namespace API.Controllers.Dynamic
 
 
                         }
-                        foreach (var child in item.ListWithChildren)
-                        {
-                           
-                            if (child.ParentID == col.ID) { 
-                                col.ChildrenIds.Add(child.ID.Value);
-                                item.OriginalList.Remove(child);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (col.MajorCode.HasValue)
-                        {
-                            GetLockUps lockups = new GetLockUps();
-                            lockups.LangID = LangID;
-                            lockups.MajorCode = (long)col.MajorCode;
-
-                            col.LockUps = (List<Lockup>)lockups.QueryAsync().Result;
-
-
-                        }
-                        if (!item.OriginalList.Contains(col))
-                        item.OriginalList.Add(col);
-
-                     
-                    }
-                  
-                    /*if(col.ChildCounts > 0) { 
-                    
-                        // get children
-                        col.ChildrenList =  
-                        if (col.MajorCode.HasValue)
-                        {
-                            GetLockUps lockups = new GetLockUps();
-                            lockups.LangID = LangID;
-                            lockups.MajorCode =(long) col.MajorCode;
-
-                            col.LockUps = (List<Lockup>)lockups.QueryAsync().Result;
-
-                         
-                        }
-                        
-
-                        col.ChildrenList = item.Lists.Where(p => p.ParentID == col.ID).ToList();
-
-                        item.OriginalList = item.OriginalList.Except(col.ChildrenList).ToList();
-
-                        item.ListWithChildren.Add(col);
-                        
-                    }
-                    else {
-                        GetLockUps lockups = new GetLockUps();
-                        lockups.LangID = LangID;
-                        lockups.MajorCode = (long)col.MajorCode;
-
-                        col.LockUps = (List<Lockup>)lockups.QueryAsync().Result;
-                        item.OriginalList.Add(col);
-                    }*/
+                      
+                 
                 }
-                item.ListWithChildren = null;
-                item.Lists = null;
-
             }
 
 
@@ -171,6 +88,76 @@ namespace API.Controllers.Dynamic
             }
 
         }
+
+        [Route("LoadUpdate")]
+        [HttpGet]
+        public IActionResult LoadUpdate( long? DocumentID,long? RiskID, long? ProductID,  long? LangID)
+        {
+
+
+          
+            GetDynamicColumns dropDownList = new GetDynamicColumns();
+
+            dropDownList.ProductID = ProductID;
+            dropDownList.UnderWritingDocID = DocumentID;
+            dropDownList.UnderWritingRiskID = RiskID;
+          
+         
+           
+            if (LangID.HasValue)
+            {
+             
+                dropDownList.LangID = LangID;
+            }
+            else
+            {
+                LangID = 1;
+             
+                dropDownList.LangID = 1;
+            }
+      
+
+          
+            var dropDownlistResult = dropDownList.QueryDllAsyncUpdate().Result;
+
+            var List = (List<DynamicDdl>)dropDownlistResult;
+            foreach (var col in List)
+                {
+
+
+
+
+
+                    if (col.MajorCode.HasValue)
+                    {
+                        GetLockUps lockups = new GetLockUps();
+                        lockups.LangID = LangID;
+                        lockups.MajorCode = (long)col.MajorCode;
+
+                        col.LockUps = (List<Lockup>)lockups.QueryAsync().Result;
+
+
+                    }
+
+
+
+
+
+                }
+                
+
+            
+
+
+
+
+         
+                return Ok(List);
+            
+
+        }
+
+
         [Route("LoadChild")]
         [HttpGet]
         public IActionResult LoadChild( [FromQuery]FilterClass filter)

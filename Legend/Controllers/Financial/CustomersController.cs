@@ -18,12 +18,16 @@ namespace API.Controllers.Financial
 
         [Route("getPolicyHolders")]
         [HttpGet]
-        public IActionResult getCustomer(string Name, string CusNo, long? languageID, long? CustomerType)
+        public IActionResult getCustomer(string Name,string custOrName, string CusNo,string email,string mobile,string nationID, long? languageID, long? CustomerType)
         {
             GetCustomers operation = new GetCustomers();
             operation.Name = Name;
+            operation.Email = email;
+            operation.Mobile = mobile;
+            operation.ReferenceNo = nationID;
             operation.CustomerNo = CusNo;
             operation.CustomerType = CustomerType;
+            operation.CustomerNoOrName = custOrName;
             if (languageID.HasValue)
                 operation.LangID = languageID;
             else

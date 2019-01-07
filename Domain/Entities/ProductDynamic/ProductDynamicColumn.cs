@@ -72,7 +72,7 @@ namespace Domain.Entities.ProductDynamic
         public long? ProductColumnID { get; set; }
         [DBFiledName("VALUE_DATE")]
         public DateTime? ValueDate { get; set; }
-        [DBFiledName("VALUE_DATE")]
+        [DBFiledName("VALUE_AMOUNT")]
         public double? ValueAmount { get; set; }
         [DBFiledName("VALUE_DESC")]
         public string ValueDesc  { get; set; }

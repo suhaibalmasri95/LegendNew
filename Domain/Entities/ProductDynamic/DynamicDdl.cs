@@ -25,5 +25,6 @@ namespace Domain.Entities.ProductDynamic
 
         [DBFiledName("childrenIDS")]
         public List<long> ChildrenIds { get; set; }
+
     }
 }
