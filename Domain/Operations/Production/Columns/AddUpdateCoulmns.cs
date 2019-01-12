@@ -13,7 +13,7 @@ namespace Domain.Operations.Production.Columns
 {
     public static class AddUpdateCoulmns
     {
-        public async static Task<IDTO> AddUpdateMode(ProductDynamicColumn column)
+        public async static Task<IDTO> AddUpdateMode(ProductDynamicColumn column )
         {
             string SPName = "";
             string message = "";
@@ -22,7 +22,7 @@ namespace Domain.Operations.Production.Columns
 
             if (column.UwColID.HasValue)
             {
-                oracleParams.Add(ColumnsSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)column.ID ?? DBNull.Value);
+                oracleParams.Add(ColumnsSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)column.UwColID ?? DBNull.Value);
                 SPName = ColumsSpName.SP_UPADTE_COLUMNS;
                 message = "Updated Successfully";
             }

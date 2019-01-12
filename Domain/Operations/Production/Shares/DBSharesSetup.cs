@@ -11,7 +11,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace Domain.Operations.Production.Shares
 {
-    class DBSharesSetup
+   public static class DBSharesSetup
     {
         public async static Task<IDTO> AddUpdateMode(Share share)
         {
@@ -44,7 +44,7 @@ namespace Domain.Operations.Production.Shares
             oracleParams.Add(SharesSpParams.PARAMETER_CREATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)share.CreationDate ?? DBNull.Value);
             oracleParams.Add(SharesSpParams.PARAMETER_MODIFIED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)share.ModifiedBy ?? DBNull.Value);
             oracleParams.Add(SharesSpParams.PARAMETER_MODIFICATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)share.ModificationDate ?? DBNull.Value);
-            oracleParams.Add(SharesSpParams.PARAMETER_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)share.UwDocumentID ?? DBNull.Value);
+            oracleParams.Add(SharesSpParams.PARAMETER_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)share.DocumentID ?? DBNull.Value);
             oracleParams.Add(SharesSpParams.PARAMETER_FIN_CST_ID, OracleDbType.Int64, ParameterDirection.Input, (object)share.CustomerId ?? DBNull.Value);
             oracleParams.Add(SharesSpParams.PARAMETER_ST_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)share.StLOB ?? DBNull.Value);
             oracleParams.Add(SharesSpParams.PARAMETER_ST_SUB_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)share.StSubLOB ?? DBNull.Value);

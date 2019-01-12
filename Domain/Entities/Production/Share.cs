@@ -25,9 +25,11 @@ namespace Domain.Entities.Production
         [DBFiledName("ID")]
         public long? ID { get; set; }
         [DBFiledName("LOC_SHARE_TYPE")]
-        public long? ShareType { get; set; }
+        public long? LocShareType { get; set; }
         [DBFiledName("PRCNT")]
         public double? Percent { get; set; }
+        [DBFiledName("ComissionPercent")]
+        public double? CommissionPercent => Percent;
         [DBFiledName("SHARE_PER")]
         public double? SharePercent { get; set; }
         [DBFiledName("AMOUNT")]
@@ -45,7 +47,7 @@ namespace Domain.Entities.Production
         [DBFiledName("MODIFICATION_DATE")]
         public DateTime ModificationDate { get; set; }
         [DBFiledName("UW_DOC_ID")]
-        public long? UwDocumentID { get; set; }
+        public long? DocumentID { get; set; }
         [DBFiledName("FIN_CST_ID")]
         public long? CustomerId { get; set; }
         [DBFiledName("ST_LOB")]
@@ -54,6 +56,9 @@ namespace Domain.Entities.Production
         public long? StSubLOB { get; set; }
         [DBFiledName("DR_CR")]
         public long? DrCr { get; set; }
+        [DBFiledName("LOC_SHARE_TYPE_DESC")] 
+        public string ShareType{ get; set; }
+        
         [DBFiledName("customer")]
         public List<CustomerShare> customer { get; set; }
     }

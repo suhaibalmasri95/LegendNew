@@ -25,7 +25,7 @@ namespace Domain.Operations.Production.Attachments
             parameters.Add(AttachmentsSpParams.PARAMETER_LANG_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.LangID ?? DBNull.Value);
             parameters.Add(AttachmentsSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
 
-            return await QueryExecuter.ExecuteQueryAsync<Risk>(AttachmentsSpName.SP_LOAD_ATTACHMENT, parameters);
+            return await QueryExecuter.ExecuteQueryAsync<Attachment>(AttachmentsSpName.SP_LOAD_ATTACHMENT, parameters);
         }
     }
 }

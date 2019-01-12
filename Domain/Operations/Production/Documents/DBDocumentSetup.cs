@@ -1,6 +1,8 @@
 ﻿using Common.Interfaces;
 using Common.Operations;
 using Domain.Entities.Production;
+using Domain.Operations.Financial.Customers;
+using Domain.Operations.Production.Attachments;
 using Domain.Operations.Production.Categories;
 using Domain.Operations.Production.Columns;
 using Domain.Operations.Production.Risks;
@@ -97,22 +99,88 @@ namespace Domain.Operations.Production.Documents
             {
                 complate.message = message;
                 complate.ID = oracleParams.Get(0);
-                foreach (var item in document.share.customer)
+
+                if(!document.UpdateMode)
                 {
+                    Attachment atacchment = new Attachment();
+                    atacchment.DocumentID = complate.ID;
+                    atacchment.Level = document.DocumentType;
+                    atacchment.CreatedBy = document.CreatedBy;
+                    atacchment.CreationDate = document.CreationDate;
+                    var attachmentResult = AutoAddAttachment.AutoAdd(atacchment);
+                }
+
+                if (document.NewCustomer.ID.HasValue)
+                {
+                    var customerResult = AddUpdateCustomer.AddUpdateMode(document.NewCustomer, false);
                     Share share = new Share();
-                    share.UwDocumentID = complate.ID;
+                    share.DocumentID = complate.ID;
                     share.SharePercent = 100;
                     share.Amount = 0;
                     share.AmountLC = 0;
                     share.StSubLOB = null;
                     share.StLOB = null;
-                    share.ShareType = item.shareType;
-                    share.CustomerId = item.CustomerID;
-                  var result  = DBSharesSetup.AddUpdateMode(share);
+                    share.LocShareType = 1;
+                    share.CustomerId = document.NewCustomer.ID;
+                    share.CreatedBy = document.CreatedBy;
+                    share.CreationDate = document.CreationDate;
+                    var result = DBSharesSetup.AddUpdateMode(share);
 
-                   
-                   
+                    Share share2 = new Share();
+                    share2.DocumentID = complate.ID;
+                    share2.SharePercent = 100;
+                    share2.Amount = 0;
+                    share2.AmountLC = 0;
+                    share2.StSubLOB = null;
+                    share2.StLOB = null;
+                    share2.LocShareType = 2;
+                    share2.CustomerId = document.NewCustomer.ID;
+                    share2.CreatedBy = document.CreatedBy;
+                    share2.CreationDate = document.CreationDate;
+                    var result2 = DBSharesSetup.AddUpdateMode(share2);
+                    // check if has bene
+                    foreach (var item in document.share.customer)
+                    {
+                        Share customerShare = new Share();
+                        customerShare.DocumentID = complate.ID;
+                        customerShare.SharePercent = 100;
+                        customerShare.Amount = 0;
+                        customerShare.AmountLC = 0;
+                        customerShare.Percent = item.Commision;
+                        customerShare.StSubLOB = null;
+                        customerShare.StLOB = null;
+                        customerShare.LocShareType = item.shareType;
+                        customerShare.CustomerId = item.CustomerID;
+                        var shhareResult = DBSharesSetup.AddUpdateMode(customerShare);
+
+
+
+                    }
                 }
+                else
+                {
+                    var customerResult = await AddUpdateCustomer.AddUpdateMode(document.NewCustomer, true);
+                    var CustomerID = ((ComplateOperation<int>)customerResult).ID.Value;
+              
+                    foreach (var item in document.share.customer)
+                    {
+                        Share customerShare = new Share();
+                        customerShare.DocumentID = complate.ID;
+                        customerShare.SharePercent = 100;
+                        customerShare.Percent = item.Commision;
+                        customerShare.Amount = 0;
+                        customerShare.AmountLC = 0;
+                        customerShare.StSubLOB = null;
+                        customerShare.StLOB = null;
+                        customerShare.LocShareType = item.shareType;
+                        customerShare.CustomerId = item.CustomerID;
+                        var shhareResult = DBSharesSetup.AddUpdateMode(customerShare);
+
+
+
+                    }
+                }
+               
                 foreach (var item2 in document.DynamicCategories)
                 {
 
@@ -122,12 +190,21 @@ namespace Domain.Operations.Production.Documents
                     {
                         foreach (var col in item2.Result)
                         {
+                            if(document.UpdateMode) {
+
+                                foreach (var c in col)
+                                {
+                                  
+                                    var result = AddUpdateCoulmns.AddUpdateMode(c);
+                                }
+                            }
+                            else { 
                             var category = AddUpdateCategory.MapToCategory(item2 , null , complate.ID);
                             var categoryID = await AddUpdateCategory.AddUpdateMode(category);
                             var id = ((ComplateOperation<int>)categoryID).ID.Value;
                             foreach (var c in col)
                             {
-                                c.ID = null;
+                               
                                 c.UnderWritingColCatID = id;
                                 c.UnderWritingRiskID = category.RiskID;
                                 c.UnderWritingDocID = category.DocumentID;
@@ -135,6 +212,7 @@ namespace Domain.Operations.Production.Documents
                                 c.SubLineOfBuisness = category.SubLineOfBusiness;
                                 c.ProductCategoryID = category.ProductCategoryID;
                                 var result = AddUpdateCoulmns.AddUpdateMode(c);
+                            }
                             }
                         }
                     }

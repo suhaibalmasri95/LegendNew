@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Common.Interfaces;
+using Domain.Entities.Financial;
 using Domain.Entities.ProductDynamic;
 using Infrastructure.Attributes;
 
@@ -172,6 +173,11 @@ namespace Domain.Entities.Production
         public List<Risk> Risks { get; set; }
         [DBFiledName("share")]
         public Share share { get; set; }
-        
+        [DBFiledName("NewCustomer")]
+        public Customer  NewCustomer { get; set; }
+
+        [DBFiledName("UpdateMode")]
+        public bool UpdateMode { get; set; }
+
     }
 }

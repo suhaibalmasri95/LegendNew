@@ -18,14 +18,14 @@ namespace Domain.Operations.Production.Shares
             var parameters = new OracleDynamicParameters();
             parameters.Add(SharesSpParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ID ?? DBNull.Value);
             parameters.Add(SharesSpParams.PARAMETER_LOC_SHARE_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)this.ShareType ?? DBNull.Value);
-            parameters.Add(SharesSpParams.PARAMETER_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.UwDocumentID ?? DBNull.Value);
+            parameters.Add(SharesSpParams.PARAMETER_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.DocumentID ?? DBNull.Value);
             parameters.Add(SharesSpParams.PARAMETER_FIN_CST_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.CustomerId ?? DBNull.Value);
             parameters.Add(SharesSpParams.PARAMETER_ST_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)this.StLOB ?? DBNull.Value);
             parameters.Add(SharesSpParams.PARAMETER_ST_SUB_LOB, OracleDbType.Int64, ParameterDirection.Input, (object)this.StSubLOB ?? DBNull.Value);
             parameters.Add(SharesSpParams.PARAMETER_LANG_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.LangID ?? DBNull.Value);
             parameters.Add(SharesSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
 
-            return await QueryExecuter.ExecuteQueryAsync<Risk>(SharesSpName.SP_LOAD_SHARE, parameters);
+            return await QueryExecuter.ExecuteQueryAsync<Share>(SharesSpName.SP_LOAD_SHARE, parameters);
         }
     }
 }

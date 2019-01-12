@@ -53,8 +53,8 @@ namespace API.Controllers.Production
         {
             GetShare operation = new GetShare();
             operation.ID = ID;
-            operation.ShareType = ShareType;
-            operation.UwDocumentID = UWDocumentID;
+            operation.LocShareType = ShareType;
+            operation.DocumentID = UWDocumentID;
             operation.CustomerId = CustomerId;
             operation.StLOB = StLOB;
             operation.StSubLOB = StSubLOB;

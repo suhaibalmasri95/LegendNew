@@ -7,7 +7,7 @@ using System.Text;
 namespace Domain.Entities.Financial
 {
 
-    [DBTableName("ST_MENUS")]
+    [DBTableName("FIN_CUSTOMERS")]
     public class Customer : IEntity
     {
         [DBFiledName("NAME")]
@@ -113,5 +113,10 @@ namespace Domain.Entities.Financial
         public string Logo { get; set; }
         [DBFiledName("LOC_CUST_TYPE")]
         public long? CustomerType { get; set; }
+
+        [DBFiledName("AddUpdate")]
+        public bool AddUpdate { get; set; }
+        [DBFiledName("ShareType")]
+        public Int64? ShareType { get; set; }
     }
 }
