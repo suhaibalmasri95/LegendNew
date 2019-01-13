@@ -45,7 +45,7 @@ namespace Domain.Entities.Production
         [DBFiledName("IS_RECEIVED")]
         public long? IsReceived { get; set; }
         [DBFiledName("RECEIVED_DATE")]
-        public DateTime ReceivedDate { get; set; }
+        public DateTime? ReceivedDate { get; set; }
         [DBFiledName("REMARKS")]
         public string Remarks { get; set; }
         [DBFiledName("ST_PRD_ATT_ID")]

@@ -34,7 +34,7 @@ namespace Domain.Operations.Production.Shares
                 message = "Inserted Successfully";
             }
 
-            oracleParams.Add(SharesSpParams.PARAMETER_LOC_SHARE_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)share.ShareType ?? DBNull.Value);
+            oracleParams.Add(SharesSpParams.PARAMETER_LOC_SHARE_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)share.LocShareType ?? DBNull.Value);
             oracleParams.Add(SharesSpParams.PARAMETER_PRCNT, OracleDbType.Decimal, ParameterDirection.Input, (object)share.Percent ?? DBNull.Value);
             oracleParams.Add(SharesSpParams.PARAMETER_SHARE_PER, OracleDbType.Decimal, ParameterDirection.Input, (object)share.SharePercent ?? DBNull.Value);
             oracleParams.Add(SharesSpParams.PARAMETER_AMOUNT, OracleDbType.Decimal, ParameterDirection.Input, (object)share.Amount ?? DBNull.Value);

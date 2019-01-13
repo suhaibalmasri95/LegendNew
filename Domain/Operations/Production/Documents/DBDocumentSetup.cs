@@ -107,6 +107,7 @@ namespace Domain.Operations.Production.Documents
                     atacchment.Level = document.DocumentType;
                     atacchment.CreatedBy = document.CreatedBy;
                     atacchment.CreationDate = document.CreationDate;
+                    atacchment.ReceivedDate = null;
                     var attachmentResult = AutoAddAttachment.AutoAdd(atacchment);
                 }
 
@@ -161,7 +162,31 @@ namespace Domain.Operations.Production.Documents
                 {
                     var customerResult = await AddUpdateCustomer.AddUpdateMode(document.NewCustomer, true);
                     var CustomerID = ((ComplateOperation<int>)customerResult).ID.Value;
-              
+                    Share share = new Share();
+                    share.DocumentID = complate.ID;
+                    share.SharePercent = 100;
+                    share.Amount = 0;
+                    share.AmountLC = 0;
+                    share.StSubLOB = null;
+                    share.StLOB = null;
+                    share.LocShareType = 1;
+                    share.CustomerId = CustomerID;
+                    share.CreatedBy = document.CreatedBy;
+                    share.CreationDate = document.CreationDate;
+                    var result = DBSharesSetup.AddUpdateMode(share);
+
+                    Share share2 = new Share();
+                    share2.DocumentID = complate.ID;
+                    share2.SharePercent = 100;
+                    share2.Amount = 0;
+                    share2.AmountLC = 0;
+                    share2.StSubLOB = null;
+                    share2.StLOB = null;
+                    share2.LocShareType = 2;
+                    share2.CustomerId = CustomerID;
+                    share2.CreatedBy = document.CreatedBy;
+                    share2.CreationDate = document.CreationDate;
+                    var result2 = DBSharesSetup.AddUpdateMode(share2);
                     foreach (var item in document.share.customer)
                     {
                         Share customerShare = new Share();

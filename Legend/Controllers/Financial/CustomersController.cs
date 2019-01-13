@@ -73,7 +73,7 @@ namespace API.Controllers.Financial
                 // insert customer as policy holder 
                 var policyHolderResult = AddUpdateCustomerType.AddUpdateMode(policyHolder);
                 }
-                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
             }
         }
 
