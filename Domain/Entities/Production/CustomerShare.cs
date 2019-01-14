@@ -9,6 +9,7 @@ namespace Domain.Entities.Production
         public long? CustomerID { get; set; }
         public long? shareType { get; set; }
         public double? Commision { get; set; }
+        public long? ShareID { get; set; }
     
     }
 }

@@ -21,6 +21,8 @@ namespace API.Controllers.Production
         [HttpPost]
         public IApiResult Create(CreateShare operation)
         {
+            // check if the customer has type if not add it then add it on share
+             // check if the document contain more than one policy holder ben then allow update share type 
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {

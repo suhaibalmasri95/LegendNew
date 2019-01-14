@@ -59,6 +59,8 @@ namespace Domain.Entities.Production
         [DBFiledName("LOC_SHARE_TYPE_DESC")] 
         public string ShareType{ get; set; }
         
+        [DBFiledName("CUSTOMER_NO")]
+        public string CustomerNo { get; set; }
         [DBFiledName("customer")]
         public List<CustomerShare> customer { get; set; }
     }
