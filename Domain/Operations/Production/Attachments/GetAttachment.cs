@@ -27,5 +27,17 @@ namespace Domain.Operations.Production.Attachments
 
             return await QueryExecuter.ExecuteQueryAsync<Attachment>(AttachmentsSpName.SP_LOAD_ATTACHMENT, parameters);
         }
+        public async Task<IEnumerable> QueryFull()
+        {
+            var parameters = new OracleDynamicParameters();
+            parameters.Add(AttachmentsSpParams.PARAMETER_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.DocumentID ?? DBNull.Value);
+            parameters.Add(AttachmentsSpParams.PARAMETER_UW_RISK_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.RiskID ?? DBNull.Value);
+            parameters.Add(AttachmentsSpParams.PARAMETER_CLM_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ClaimID ?? DBNull.Value);
+            parameters.Add(AttachmentsSpParams.PARAMETER_LOC_LEVEL, OracleDbType.Int64, ParameterDirection.Input, (object)this.Level ?? DBNull.Value);
+            parameters.Add(AttachmentsSpParams.PARAMETER_LANG_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.LangID ?? DBNull.Value);
+            parameters.Add(AttachmentsSpParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
+
+            return await QueryExecuter.ExecuteQueryAsync<AttachmentProdSetup>(AttachmentsSpName.SP_LOAD_ATTACHMENT_FULL, parameters);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Domain.Operations.Others
     public  static class GenerateFiles
     {
       
-        public  static async System.Threading.Tasks.Task<bool> InsertFileAsync(IFormFile File, string path , string documentID)
+        public  static async System.Threading.Tasks.Task<string> InsertFileAsync(IFormFile File, string path , string documentID)
         {
           
           
@@ -32,6 +32,7 @@ namespace Domain.Operations.Others
                         {
                             await File.CopyToAsync(stream);
                         }
+                        return path + imagepath;
                     }
                     else
                     {
@@ -46,6 +47,7 @@ namespace Domain.Operations.Others
                         {
                             await File.CopyToAsync(stream);
                         }
+                        return path + imagepath;
                     }
 
                 } else
@@ -65,6 +67,7 @@ namespace Domain.Operations.Others
                         {
                             await File.CopyToAsync(stream);
                         }
+                        return path + imagepath;
                     }
                     else
                     {
@@ -79,6 +82,7 @@ namespace Domain.Operations.Others
                         {
                             await File.CopyToAsync(stream);
                         }
+                        return path + imagepath;
                     }
                 }
 
@@ -88,10 +92,11 @@ namespace Domain.Operations.Others
             }
             catch (Exception e)
             {
+                return "";
                 Console.WriteLine("The process failed: {0}", e.ToString());
             }
 
-            return true;
+            
         }
 
         public static string FilePath(string path , string attachmentType)

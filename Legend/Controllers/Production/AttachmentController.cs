@@ -84,6 +84,32 @@ namespace API.Controllers.Production
                 return Ok((List<Attachment>)result);
             }
         }
+        [Route("LoadAttachment")]
+        [HttpGet]
+        public IActionResult LoadAttachment(long? DocumentID, long? RiskID,  long? ClaimID, long? Level, long? langId)
+        {
+            GetAttachment operation = new GetAttachment();
+            operation.DocumentID = DocumentID;
+            operation.RiskID = RiskID;
+            operation.ClaimID = ClaimID;
+            operation.Level = Level;
+
+
+            if (langId.HasValue)
+                operation.LangID = langId;
+            else
+                operation.LangID = 1;
+
+            var result = operation.QueryFull().Result;
+            if (result is ValidationsOutput)
+            {
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
+            }
+            else
+            {
+                return Ok((List<AttachmentProdSetup>)result);
+            }
+        }
         [Route("Delete")]
         [HttpPost]
         public IApiResult Delete(DeleteAttachment operation)
@@ -117,10 +143,15 @@ namespace API.Controllers.Production
         {
             CreateAttachment attachmentToReturn = new CreateAttachment();
 
+            attachmentToReturn.ModifiedBy = obj.CreatedBy;
             attachmentToReturn.CreatedBy = obj.CreatedBy;
             attachmentToReturn.Remarks = obj.Remarks;
             attachmentToReturn.Type = obj.Type;
             attachmentToReturn.Path = configuration.GetSection("AttachmentPath:Path").Value;
+            if(!string.IsNullOrEmpty(obj.ID))
+            {
+                attachmentToReturn.ID = Convert.ToInt64(obj.ID);
+            }
             if (!string.IsNullOrEmpty(obj.ProductAttachmentID))
             {
                 attachmentToReturn.ProductAttachmentID = Convert.ToInt64(obj.ProductAttachmentID);
@@ -129,21 +160,19 @@ namespace API.Controllers.Production
             {
                 attachmentToReturn.DocumentID = Convert.ToInt64(obj.DocumentID);
             }
-            if (!string.IsNullOrEmpty(obj.CreationDate))
-            {
-                attachmentToReturn.CreationDate = DateTime.Now;
-            }
+          
             if (!string.IsNullOrEmpty(obj.Serial))
             {
                 attachmentToReturn.Serial = Convert.ToInt64(obj.Serial);
             }
-            if (!string.IsNullOrEmpty(obj.IsReceived))
+            if (obj.IsReceived == "true")
             {
-                attachmentToReturn.IsReceived = Convert.ToInt64(obj.IsReceived);
+                attachmentToReturn.IsReceived = 1;
             }
-            if (!string.IsNullOrEmpty(obj.ReceivedDate))
+            if (obj.File != null )
             {
-                attachmentToReturn.ReceivedDate = DateTime.Now;
+                attachmentToReturn.IsReceived = 1;
+                attachmentToReturn.File = obj.File;
             }
             if (!string.IsNullOrEmpty(obj.ClaimID))
             {
@@ -153,7 +182,9 @@ namespace API.Controllers.Production
             {
                 attachmentToReturn.Level = Convert.ToInt64(obj.Level);
             }
-            attachmentToReturn.File = obj.File;
+            attachmentToReturn.ReceivedDate = DateTime.Now;
+            attachmentToReturn.ModificationDate = DateTime.Now;
+          
 
             return attachmentToReturn;
         }
@@ -161,6 +192,7 @@ namespace API.Controllers.Production
 
     public class CustomObject
     {
+        public string ID { get; set; }
         public string DocumentID { get; set; }
         public string CreationDate { get; set; }
         public string Type { get; set; }

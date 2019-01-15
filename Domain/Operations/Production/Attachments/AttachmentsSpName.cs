@@ -14,6 +14,8 @@ namespace Domain.Operations.Production.Attachments
 
         public const string SP_LOAD_ATTACHMENT = "DBPK_UW.LOAD_UW_ATTACHMENTS";
 
+        public const string SP_LOAD_ATTACHMENT_FULL = "DBPK_UW.LOAD_UW_ATTACHMENTS_FULL";
+
         public const string SP_AUTO_INSERT_ATTACHMENT = "DBPK_UW.INS_UW_ATTACHMENTS_AUTO";
     }
 }

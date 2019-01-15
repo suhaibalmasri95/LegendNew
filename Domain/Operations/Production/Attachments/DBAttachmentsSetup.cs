@@ -40,6 +40,26 @@ namespace Domain.Operations.Production.Attachments
 
             oracleParams.Add(AttachmentsSpParams.PARAMETER_SERIAL, OracleDbType.Int64, ParameterDirection.Input, (object)attachment.Serial ?? DBNull.Value);
             attachment.FullPath = GenerateFiles.FilePath(attachment.Path, attachment.Type);
+            if (attachment.File != null)
+            {
+                string path = "";
+                if (attachment.DocumentID.HasValue)
+                {
+                     path = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.DocumentID.ToString());
+                }
+                if (attachment.RiskID.HasValue)
+                {
+                     path = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.RiskID.ToString());
+                }
+                if (attachment.ClaimID.HasValue)
+                {
+                     path = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.ClaimID.ToString());
+                }
+                attachment.FullPath = path;
+            } else
+            {
+                attachment.FullPath = "";
+            }
             oracleParams.Add(AttachmentsSpParams.PARAMETER_ATTACHED_PATH, OracleDbType.Varchar2, ParameterDirection.Input, (object)attachment.FullPath ?? DBNull.Value);
           
             oracleParams.Add(AttachmentsSpParams.PARAMETER_CREATED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)attachment.CreatedBy ?? DBNull.Value);
@@ -60,20 +80,7 @@ namespace Domain.Operations.Production.Attachments
             {
                 complate.message = message;
                 complate.ID = oracleParams.Get(0);
-                if (attachment.File != null)
-                {
-                    if(attachment.DocumentID.HasValue) {
-                    bool inserted =await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.DocumentID.ToString());
-                    }
-                    if (attachment.RiskID.HasValue)
-                    {
-                        bool inserted = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.RiskID.ToString());
-                    }
-                    if (attachment.ClaimID.HasValue)
-                    {
-                        bool inserted = await GenerateFiles.InsertFileAsync(attachment.File, attachment.FullPath, attachment.ClaimID.ToString());
-                    }
-                }
+             
 
                 }
                 else
