@@ -19,12 +19,12 @@ namespace Domain.Operations.Others
                 // Determine whether the directory exists.
                 if (Directory.Exists(path))
                 {
-                    path = path+ "/" + documentID;
+                    path = path+ "/" + documentID + "/";
                     if (Directory.Exists(path))
                     {
                         string ext = Path.GetExtension(File.FileName);
                         string imagepath = Path.GetFileNameWithoutExtension(File.FileName) + ext.ToString();
-
+                        imagepath = imagepath.Trim();
                         var fileToSave = Path.Combine(path,
                                imagepath);
 
@@ -39,7 +39,7 @@ namespace Domain.Operations.Others
                         DirectoryInfo dr = Directory.CreateDirectory(path);
                         string ext = Path.GetExtension(File.FileName);
                         string imagepath = Path.GetFileNameWithoutExtension(File.FileName) + ext.ToString();
-
+                        imagepath= imagepath.Trim();
                         var fileToSave = Path.Combine(path,
                                imagepath);
 
@@ -53,13 +53,13 @@ namespace Domain.Operations.Others
                 } else
                 {
                     DirectoryInfo di = Directory.CreateDirectory(path);
-                    path = path + "/" + documentID;
+                    path = path + "/" + documentID + "/";
                     if (Directory.Exists(path))
                     {
                       
                         string ext = Path.GetExtension(File.FileName);
                         string imagepath = Path.GetFileNameWithoutExtension(File.FileName) + ext.ToString();
-
+                        imagepath = imagepath.Trim();
                         var fileToSave = Path.Combine(path,
                                imagepath);
 
@@ -74,7 +74,7 @@ namespace Domain.Operations.Others
                         DirectoryInfo dr = Directory.CreateDirectory(path);
                         string ext = Path.GetExtension(File.FileName);
                         string imagepath = Path.GetFileNameWithoutExtension(File.FileName) + ext.ToString();
-
+                        imagepath = imagepath.Trim();
                         var fileToSave = Path.Combine(path,
                                imagepath);
 

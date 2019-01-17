@@ -216,7 +216,7 @@ namespace Domain.Operations.Production.Documents
                               
                                 foreach (var c in col)
                                 {
-                                    if (c.UnderWritingColCatID.HasValue ) {
+                                    if (c.UwColID .HasValue ) {
                                         var result = AddUpdateCoulmns.AddUpdateMode(c);
                                     }
                                     else
@@ -229,32 +229,7 @@ namespace Domain.Operations.Production.Documents
                                     }
                                     
                                 }
-                                if(newCloumns.Count > 0)
-                                {
-                                    
-                                       
-                                        foreach (var newCol in newCloumns)
-                                    {
-                                        var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
-                                        var categoryID = await AddUpdateCategory.AddUpdateMode(category);
-                                        var id = ((ComplateOperation<int>)categoryID).ID.Value;
-
-                                        foreach (var item in newCol)
-                                        {
-                                            item.UnderWritingColCatID = id;
-                                            item.UnderWritingRiskID = category.RiskID;
-                                            item.UnderWritingDocID = category.DocumentID;
-                                            item.LineOfBuisness = category.LineOfBusiness;
-                                            item.SubLineOfBuisness = category.SubLineOfBusiness;
-                                            item.ProductCategoryID = category.ProductCategoryID;
-                                            var result = AddUpdateCoulmns.AddUpdateMode(item);
-                                        }
-
-                                            
-                                        }
-                                    
-                                   
-                                }
+                                
                               
                             }
                             else { 
@@ -274,6 +249,32 @@ namespace Domain.Operations.Production.Documents
                             }
                             }
                         }
+                            if (newCloumns.Count > 0)
+                            {
+
+
+                                foreach (var newCol in newCloumns)
+                                {
+                                    var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
+                                    var categoryID = await AddUpdateCategory.AddUpdateMode(category);
+                                    var id = ((ComplateOperation<int>)categoryID).ID.Value;
+
+                                    foreach (var item in newCol)
+                                    {
+                                        item.UnderWritingColCatID = id;
+                                        item.UnderWritingRiskID = category.RiskID;
+                                        item.UnderWritingDocID = category.DocumentID;
+                                        item.LineOfBuisness = category.LineOfBusiness;
+                                        item.SubLineOfBuisness = category.SubLineOfBusiness;
+                                        item.ProductCategoryID = category.ProductCategoryID;
+                                        var result = AddUpdateCoulmns.AddUpdateMode(item);
+                                    }
+
+
+                                }
+
+
+                            }
                         }
                     }
                     else
