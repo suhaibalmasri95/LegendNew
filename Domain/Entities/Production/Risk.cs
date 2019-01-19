@@ -84,5 +84,7 @@ namespace Domain.Entities.Production
 
         [DBFiledName("DynamicCategories")]
         public List<ProductDynmicCategory> DynamicCategory { get; set; }
+        [DBFiledName("UpdateMode")]
+        public bool UpdateMode { get; set; }
     }
 }

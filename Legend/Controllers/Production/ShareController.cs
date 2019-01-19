@@ -10,6 +10,8 @@ using Common.Validations;
 using Common.Controllers;
 using Common.Operations;
 using Domain.Entities.Production;
+using Domain.Operations.Financial.CustomerTypes;
+using Domain.Entities.Financial;
 
 namespace API.Controllers.Production
 {
@@ -22,16 +24,50 @@ namespace API.Controllers.Production
         public IApiResult Create(CreateShare operation)
         {
             // check if the customer has type if not add it then add it on share
-             // check if the document contain more than one policy holder ben then allow update share type 
-            var result = operation.ExecuteAsync().Result;
-            if (result is ValidationsOutput)
+            // check if the document contain more than one policy holder ben then allow update share type 
+            GetCustomerTypes customerTypes = new GetCustomerTypes();
+            customerTypes.CustomerID = operation.CustomerId;
+            var typesResult=customerTypes.QueryAsync().Result;
+            var types = (List <CustomerType>) typesResult;
+           int index = types.FindIndex(item => item.LocCustomerType == operation.LocShareType);
+           if(index>= 0 )
             {
-                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                var result = operation.ExecuteAsync().Result;
+                if (result is ValidationsOutput)
+                {
+                    return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                }
+                else
+                {
+                    return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
+                }
             }
             else
             {
-                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
+              
+                    CustomerType policyHolder = new CustomerType();
+
+                policyHolder.CustomerID = operation.CustomerId;
+                    policyHolder.LocCustomerType = operation.LocShareType;
+                    policyHolder.CreatedBy = operation.CreatedBy;
+                    policyHolder.CreationDate = operation.CreationDate;
+                    // insert customer as policy holder 
+                    var policyHolderResult = AddUpdateCustomerType.AddUpdateMode(policyHolder);
+                var result = operation.ExecuteAsync().Result;
+                if (result is ValidationsOutput)
+                {
+                    return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+                }
+                else
+                {
+                    return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
+                }
+
             }
+
+        
+          
+          
         }
 
         [Route("Update")]

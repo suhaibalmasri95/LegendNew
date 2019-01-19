@@ -178,6 +178,10 @@ namespace API.Controllers.Production
             {
                 attachmentToReturn.ClaimID = Convert.ToInt64(obj.ClaimID);
             }
+            if (!string.IsNullOrEmpty(obj.RiskID))
+            {
+                attachmentToReturn.RiskID = Convert.ToInt64(obj.RiskID);
+            }
             if (!string.IsNullOrEmpty(obj.Level))
             {
                 attachmentToReturn.Level = Convert.ToInt64(obj.Level);

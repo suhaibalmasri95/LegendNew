@@ -18,7 +18,8 @@ namespace Domain.Entities.ProductDynamic
         public List<DynamicDdl> Original { get; set; }
         [DBFiledName("Lockups")]
         public List<Lockup> LockUps { get; set; }
-
+        [DBFiledName("OrginalLockUp")]
+        public List<Lockup> OrginalLockUp { get; set; }
         [DBFiledName("CHILDS_COUNT")]
         public decimal? ChildCounts { get; set; }
 

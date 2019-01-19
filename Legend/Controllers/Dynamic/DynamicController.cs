@@ -67,6 +67,11 @@ namespace API.Controllers.Dynamic
                             lockups.MajorCode = (long)col.MajorCode;
 
                             col.LockUps = (List<Lockup>)lockups.QueryAsync().Result;
+                        if(col.ParentID.HasValue)
+                        {
+                            col.OrginalLockUp = col.LockUps;
+                            col.LockUps = new List<Lockup>();
+                        }
 
 
                         }
@@ -136,8 +141,12 @@ namespace API.Controllers.Dynamic
 
                         col.LockUps = (List<Lockup>)lockups.QueryAsync().Result;
 
-
+                    if (col.ParentID.HasValue)
+                    {
+                        col.OrginalLockUp = col.LockUps;
+                        col.LockUps = new List<Lockup>();
                     }
+                }
 
 
 

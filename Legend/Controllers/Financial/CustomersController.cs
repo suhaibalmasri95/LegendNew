@@ -63,16 +63,7 @@ namespace API.Controllers.Financial
             }
             else
             {
-                if(operation.ShareType.HasValue) { 
-                CustomerType policyHolder = new CustomerType();
-                   
-                policyHolder.CustomerID = ((ComplateOperation<int>)result).ID.Value;
-                policyHolder.LocCustomerType = operation.ShareType;
-                policyHolder.CreatedBy = operation.CreatedBy;
-                policyHolder.CreationDate = operation.CreationDate;
-                // insert customer as policy holder 
-                var policyHolderResult = AddUpdateCustomerType.AddUpdateMode(policyHolder);
-                }
+              
                 return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
             }
         }

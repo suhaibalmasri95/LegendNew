@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Interfaces;
 using Common.Operations;
+using Domain.Entities.ProductDynamic;
 using Domain.Entities.Production;
+using Domain.Operations.Production.Attachments;
 using Domain.Operations.Production.Categories;
 using Domain.Operations.Production.Columns;
 using Infrastructure.DB;
@@ -25,7 +27,7 @@ namespace Domain.Operations.Production.Risks
 
 
                 OracleDynamicParameters oracleParams = new OracleDynamicParameters();
-             
+                List<DynamicDdl[]> newCloumns = new List<DynamicDdl[]>();
 
                 if (risk.ID.HasValue)
             {
@@ -75,52 +77,119 @@ namespace Domain.Operations.Production.Risks
             {
                 complate.message = message;
                 complate.ID = oracleParams.Get(0);
-                foreach (var item in risk.DynamicCategory)
-                {
+                    if (!risk.UpdateMode)
+                    {
+                        Attachment atacchment = new Attachment();
+                        atacchment.RiskID = complate.ID;
+                        atacchment.Level = 3;
+                        atacchment.CreatedBy = risk.CreatedBy;
+                        atacchment.CreationDate = risk.CreationDate;
+                        atacchment.ReceivedDate = null;
+                        var attachmentResult = AutoAddAttachment.AutoAdd(atacchment);
+                    }
+                    foreach (var item2 in risk.DynamicCategory)
+                    {
 
-                    if(item.IsMulitRecords > 0 )
-                    {
-                    foreach (var col in item.Result)
-                    {
-                            var category = AddUpdateCategory.MapToCategory(item, complate.ID, risk.UwDocumentID);
+                        // map to category
+
+                        if (item2.IsMulitRecords > 0)
+                        {
+                            if (item2.Result != null)
+                            {
+                                foreach (var col in item2.Result)
+                                {
+                                    if (risk.UpdateMode)
+                                    {
+
+                                        foreach (var c in col)
+                                        {
+                                            if (c.UwColID.HasValue)
+                                            {
+                                                var result = AddUpdateCoulmns.AddUpdateMode(c);
+                                            }
+                                            else
+                                            {
+                                                if (!newCloumns.Contains(col))
+                                                {
+                                                    newCloumns.Add(col);
+                                                }
+
+                                            }
+
+                                        }
+
+
+                                    }
+                                    else
+                                    {
+                                        var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
+                                        var categoryID = await AddUpdateCategory.AddUpdateMode(category);
+                                        var id = ((ComplateOperation<int>)categoryID).ID.Value;
+                                        foreach (var c in col)
+                                        {
+
+                                            c.UnderWritingColCatID = id;
+                                            c.UnderWritingRiskID = category.RiskID;
+                                            c.UnderWritingDocID = category.DocumentID;
+                                            c.LineOfBuisness = category.LineOfBusiness;
+                                            c.SubLineOfBuisness = category.SubLineOfBusiness;
+                                            c.ProductCategoryID = category.ProductCategoryID;
+                                            var result = AddUpdateCoulmns.AddUpdateMode(c);
+                                        }
+                                    }
+                                }
+                                if (newCloumns.Count > 0)
+                                {
+
+
+                                    foreach (var newCol in newCloumns)
+                                    {
+                                        var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
+                                        var categoryID = await AddUpdateCategory.AddUpdateMode(category);
+                                        var id = ((ComplateOperation<int>)categoryID).ID.Value;
+
+                                        foreach (var item in newCol)
+                                        {
+                                            item.UnderWritingColCatID = id;
+                                            item.UnderWritingRiskID = category.RiskID;
+                                            item.UnderWritingDocID = category.DocumentID;
+                                            item.LineOfBuisness = category.LineOfBusiness;
+                                            item.SubLineOfBuisness = category.SubLineOfBusiness;
+                                            item.ProductCategoryID = category.ProductCategoryID;
+                                            var result = AddUpdateCoulmns.AddUpdateMode(item);
+                                        }
+
+
+                                    }
+
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
                             var categoryID = await AddUpdateCategory.AddUpdateMode(category);
                             var id = ((ComplateOperation<int>)categoryID).ID.Value;
-                            foreach (var c in col)
-                        {
-                                c.ID = null;
-                                c.UnderWritingColCatID = id;
-                            c.UnderWritingRiskID = category.RiskID;
-                            c.UnderWritingDocID = category.DocumentID;
-                            c.LineOfBuisness = category.LineOfBusiness;
-                            c.SubLineOfBuisness = category.SubLineOfBusiness;
-                            c.ProductCategoryID = category.ProductCategoryID;
-                            var result = AddUpdateCoulmns.AddUpdateMode(c);
-                        }
-                    }
-                    }
-                    else
-                    {
-                        var category = AddUpdateCategory.MapToCategory(item, complate.ID, risk.UwDocumentID);
-                        var categoryID = await AddUpdateCategory.AddUpdateMode(category);
-                        var id = ((ComplateOperation<int>)categoryID).ID.Value;
-                        foreach (var col in item.ResultList)
-                        {
-                            col.ID = null;
-                            col.UnderWritingColCatID = id;
-                            col.UnderWritingRiskID = category.RiskID;
-                            col.UnderWritingDocID = category.DocumentID;
-                            col.LineOfBuisness = category.LineOfBusiness;
-                            col.SubLineOfBuisness = category.SubLineOfBusiness;
+                            foreach (var col in item2.ResultList)
+                            {
+                                col.ID = null;
+                                col.UnderWritingColCatID = id;
+                                col.UnderWritingRiskID = category.RiskID;
+                                col.UnderWritingDocID = category.DocumentID;
+                                col.LineOfBuisness = category.LineOfBusiness;
+                                col.SubLineOfBuisness = category.SubLineOfBusiness;
+                                var result = AddUpdateCoulmns.AddUpdateMode(col);
+                            }
 
-                            var result = AddUpdateCoulmns.AddUpdateMode(col);
+
                         }
 
 
+
                     }
-                
+                    // insert category
                 }
-                // insert category
-            }
             else
                 complate.message = "Operation Failed";
             }
