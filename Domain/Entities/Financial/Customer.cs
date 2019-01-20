@@ -53,23 +53,23 @@ namespace Domain.Entities.Financial
         [DBFiledName("ST_CTY_ID")]
         public long? CityID { get; set; }
         [DBFiledName("STATUS_DATE")]
-        public DateTime StatusDate { get; set; }
+        public DateTime? StatusDate { get; set; }
         [DBFiledName("LOC_GENDER")]
         public long? LockUpGender { get; set; }
         [DBFiledName("BIRTH_DATE")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         [DBFiledName("REF_NO")]
         public string ReferenceNo { get; set; }
         [DBFiledName("REF_EFF_DATE")]
-        public DateTime RefEffectiveDate { get; set; }
+        public DateTime? RefEffectiveDate { get; set; }
         [DBFiledName("REF_EXP_DATE")]
-        public DateTime RefExpiryDate { get; set; }
+        public DateTime? RefExpiryDate { get; set; }
         [DBFiledName("LOC_TAX_TYPE")]
         public long? LockUpTaxType { get; set; }
         [DBFiledName("TAX_NO")]
         public string TaxNo { get; set; }
         [DBFiledName("START_DATE")]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         [DBFiledName("IBAN")]
         public string Iban { get; set; }
         [DBFiledName("ST_BNK_ID")]
