@@ -82,7 +82,7 @@ namespace API.Controllers.ProductSetup
             GetProductsDetails operation = new GetProductsDetails();
             GetProductQuestionears questionears = new GetProductQuestionears();
             
-            operation.ProductID = productID;
+            operation.ID = productDetailedID;
 
             if (langId.HasValue)
             {

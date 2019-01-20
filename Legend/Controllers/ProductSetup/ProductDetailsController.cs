@@ -155,9 +155,9 @@ namespace API.Controllers.ProductSetup
         [HttpGet]
         public IActionResult LoadSubjectType(long? langId, long? productDetailID)
         {
-            GetProductSubjectTypies operation = new GetProductSubjectTypies();
+            GetProductsDetails operation = new GetProductsDetails();
             GetSubjectTypies subjectTyoe = new GetSubjectTypies();
-            operation.ProductDetailsID = productDetailID;
+            operation.ID = productDetailID;
 
             if (langId.HasValue)
             {
@@ -173,7 +173,7 @@ namespace API.Controllers.ProductSetup
 
             var result = operation.QueryAsync().Result;
             var subject = subjectTyoe.QueryAsync().Result;
-            var productSubjectTypes = (List<ProductSubjectType>)result;
+            var productSubjectTypes = (List<ProductDetails>)result;
             var SubjectsTypes = (List<SubjectType>)subject;
             List<SubjectType> RelatedSubject = new List<SubjectType>();
             List<SubjectType> UnRelatedSubject = new List<SubjectType>();
