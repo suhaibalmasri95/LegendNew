@@ -82,7 +82,7 @@ namespace API.Controllers.Financial
             else
             {
 
-                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
             }
         }
 
