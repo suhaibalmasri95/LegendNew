@@ -69,5 +69,22 @@ namespace API.Controllers.Financial
         }
 
 
+        [Route("CreateCustomerType")]
+        [HttpPost]
+        public IApiResult CreateCustomerType(CreateCustomerType operation)
+        {
+            var result = operation.ExecuteAsync().Result;
+
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
+            }
+        }
+
     }
 }
