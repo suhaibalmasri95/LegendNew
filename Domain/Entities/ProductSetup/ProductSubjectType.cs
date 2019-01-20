@@ -11,10 +11,7 @@ namespace Domain.Entities.ProductSetup
     {
         public ProductSubjectType()
         {
-            ModificationDate = DateTime.Now;
-            CreationDate = DateTime.Now;
-            CreateBy = "Admin";
-            ModifiedBy = "Admin";
+           
         }
         [DBPrimaryKey]
         [DBFiledName("ID")]

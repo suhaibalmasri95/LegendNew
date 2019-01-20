@@ -9,14 +9,7 @@ namespace Domain.Entities.ProductSetup
     [DBTableName("ST_UW_PRD_DETAILS")]
     public class ProductDetails : IEntity
     {
-        public ProductDetails()
-        {
-            ModificationDate = DateTime.Now;
-            CreationDate = DateTime.Now;
-            CreateBy = "Admin";
-            ModifiedBy = "Admin";
-            StatusDate = DateTime.Now;
-        }
+       
 
         [DBPrimaryKey]
         [DBFiledName("ID")]

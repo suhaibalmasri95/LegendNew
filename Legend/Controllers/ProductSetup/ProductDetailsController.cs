@@ -8,6 +8,7 @@ using Common.Validations;
 using Domain.Entities.ProductSetup;
 using Domain.Entities.Setup;
 using Domain.Operations.ProductSetup.ProductsDetails;
+using Domain.Operations.ProductSetup.ProductsSubjectstypies;
 using Domain.Operations.Setup.SubBusiness;
 using Domain.Operations.Setup.SubjectTypies;
 using Microsoft.AspNetCore.Http;
@@ -154,9 +155,9 @@ namespace API.Controllers.ProductSetup
         [HttpGet]
         public IActionResult LoadSubjectType(long? langId, long? productDetailID)
         {
-            GetProductsDetails operation = new GetProductsDetails();
+            GetProductSubjectTypies operation = new GetProductSubjectTypies();
             GetSubjectTypies subjectTyoe = new GetSubjectTypies();
-            operation.ID = productDetailID;
+            operation.ProductDetailsID = productDetailID;
 
             if (langId.HasValue)
             {
@@ -172,7 +173,7 @@ namespace API.Controllers.ProductSetup
 
             var result = operation.QueryAsync().Result;
             var subject = subjectTyoe.QueryAsync().Result;
-            var ProductDetails = (List<ProductDetails>)result;
+            var productSubjectTypes = (List<ProductSubjectType>)result;
             var SubjectsTypes = (List<SubjectType>)subject;
             List<SubjectType> RelatedSubject = new List<SubjectType>();
             List<SubjectType> UnRelatedSubject = new List<SubjectType>();
@@ -180,7 +181,7 @@ namespace API.Controllers.ProductSetup
             if (SubjectsTypes.Count > 0)
             {
 
-                foreach (var prod in ProductDetails)
+                foreach (var prod in productSubjectTypes)
                 {
                     foreach (var item in SubjectsTypes)
                     {
