@@ -153,75 +153,57 @@ namespace API.Controllers.ProductSetup
         }
         [Route("LoadSubjectType")]
         [HttpGet]
-        public IActionResult LoadSubjectType(long? langId, long? productDetailID)
+        public IActionResult LoadSubjectType(long? langId, long? productDetailID , long? LineOfBusiness , long? SubLine )
         {
-            GetProductsDetails operation = new GetProductsDetails();
-            GetSubjectTypies subjectTyoe = new GetSubjectTypies();
-            operation.ID = productDetailID;
+           
+            GetSubjectTypies subjectType = new GetSubjectTypies();
+            GetProductSubjectTypies prodSubjectTypes = new GetProductSubjectTypies();
+         
+            prodSubjectTypes.ProductDetailsID = productDetailID;
 
+            prodSubjectTypes.LineOfBusniess = LineOfBusiness;
             if (langId.HasValue)
             {
-                operation.LangID = langId;
-                subjectTyoe.LangID = langId;
+            
+                subjectType.LangID = langId;
+                prodSubjectTypes.LangID = langId;
             }
             else
-            {
-                operation.LangID = 1;
-                subjectTyoe.LangID = 1;
+            { 
+                subjectType.LangID = 1;
+                prodSubjectTypes.LangID = 1;
             }
 
 
-            var result = operation.QueryAsync().Result;
-            var subject = subjectTyoe.QueryAsync().Result;
-            var productSubjectTypes = (List<ProductDetails>)result;
-            var SubjectsTypes = (List<SubjectType>)subject;
-            List<SubjectType> RelatedSubject = new List<SubjectType>();
+       
+          
+            List<ProductSubjectType> RelatedSubject = new List<ProductSubjectType>();
             List<SubjectType> UnRelatedSubject = new List<SubjectType>();
 
-            if (SubjectsTypes.Count > 0)
+          
+
+              
+                subjectType.LineOfBusniessID = LineOfBusiness;
+                var subject = subjectType.QueryAsync().Result;
+                var SubjectsTypes = (List<SubjectType>)subject;
+                var productSubjectTypesResult = (List<ProductSubjectType>)prodSubjectTypes.QueryAsync().Result;
+            if (productSubjectTypesResult.Count > 0)
             {
+                RelatedSubject = productSubjectTypesResult.Where(p => SubjectsTypes.Any(s => s.ID == p.SubjectTypeID && (s.SubLineOfBusniessID == SubLine || s.SubLineOfBusniessID == null))).ToList();
+                UnRelatedSubject = SubjectsTypes.Where(s => productSubjectTypesResult.Any(p => p.SubjectTypeID != s.ID &&
+             (s.SubLineOfBusniessID == SubLine || s.SubLineOfBusniessID == null))).ToList();
 
-                foreach (var prod in productSubjectTypes)
-                {
-                    foreach (var item in SubjectsTypes)
-                    {
-                        if (prod.LineOfBusniess == item.LineOfBusniessID && item.SubLineOfBusniessID ==null)
-                        {
-                            bool alreadyExist = RelatedSubject.Contains(item);
-                            bool alreadyExistInSecondList = UnRelatedSubject.Contains(item);
-                            if (!alreadyExist && !alreadyExistInSecondList)
-                            {
-
-                                RelatedSubject.Add(item);
-                            }
-                            else
-                            {
-
-                                RelatedSubject.Add(item);
-                                UnRelatedSubject.Remove(item);
-                            }
-                        }
-                        else if (prod.LineOfBusniess != item.LineOfBusniessID && item.SubLineOfBusniessID == null)
-                        {
-                            bool alreadyExist = RelatedSubject.Contains(item);
-                            bool alreadyExistInFirstList = UnRelatedSubject.Contains(item);
-                            if (!alreadyExist && !alreadyExistInFirstList)
-                            {
-
-                                UnRelatedSubject.Add(item);
-                            }
-                        }
-                    }
-
-                }
+                UnRelatedSubject = UnRelatedSubject.Where(un => !RelatedSubject.Exists(re => un.ID == re.SubjectTypeID)).ToList();
+            } else
+            {
+                UnRelatedSubject = SubjectsTypes.Where(s=> s.SubLineOfBusniessID == SubLine || s.SubLineOfBusniessID == null).ToList();
             }
-            else
+
+
+
+            if (subject is ValidationsOutput)
             {
-                UnRelatedSubject = SubjectsTypes;
-            }
-            if (result is ValidationsOutput)
-            {
-                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)subject).Errors });
             }
             else
             {
@@ -230,7 +212,7 @@ namespace API.Controllers.ProductSetup
 
         }
 
-
+ 
         [Route("Delete")]
         [HttpPost]
         public IApiResult Delete(DeleteProductDetails operation)

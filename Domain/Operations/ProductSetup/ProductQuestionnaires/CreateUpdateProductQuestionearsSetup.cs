@@ -42,7 +42,8 @@ namespace Domain.Operations.ProductSetup.ProductQuestionnaires
             oracleParams.Add(ProductQuestionearsSPParams.PARAMETER_CREATATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)Product.CreationDate ?? DBNull.Value);
             oracleParams.Add(ProductQuestionearsSPParams.PARAMETER_MODIFIED_BY, OracleDbType.Varchar2, ParameterDirection.Input, (object)Product.ModifiedBy ?? DBNull.Value, 20);
             oracleParams.Add(ProductQuestionearsSPParams.PARAMETER_MODIFICATION_DATE, OracleDbType.Date, ParameterDirection.Input, (object)Product.ModificationDate ?? DBNull.Value);
-
+            oracleParams.Add(ProductQuestionearsSPParams.PARAMETER_ST_QUS_ID, OracleDbType.Int64, ParameterDirection.Input, (object)Product.QuestionnaireID ?? DBNull.Value);
+            
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)
                 complate.message = message;
             else

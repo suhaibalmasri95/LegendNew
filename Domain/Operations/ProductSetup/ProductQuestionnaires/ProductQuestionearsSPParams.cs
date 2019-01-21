@@ -17,6 +17,7 @@ namespace Domain.Operations.ProductSetup.ProductQuestionnaires
         public static readonly string PARAMETER_PRODUCT_DETAILS_ID = "IN_ST_PRDT_ID";
         public static readonly string PARAMETER_STATUS = "IN_STATUS";
         public static readonly string PARAMETER_STATUS_DATE = "IN_STATUS_DATE";
+        public static readonly string PARAMETER_ST_QUS_ID = "IN_ST_QUS_ID";
         public static readonly string PARAMETER_REF_SELECT = "IN_REF_SELECT";
         public static readonly string PARAMETER_LANG_ID = "IN_LANG";
     }

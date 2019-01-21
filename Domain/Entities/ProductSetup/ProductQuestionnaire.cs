@@ -11,11 +11,7 @@ namespace Domain.Entities.ProductSetup
     {
         public ProductQuestionnaire()
         {
-            ModificationDate = DateTime.Now;
-            CreationDate = DateTime.Now;
-            CreateBy = "Admin";
-            ModifiedBy = "Admin";
-            StatusDate = DateTime.Now;
+      
         }
         [DBPrimaryKey]
         [DBFiledName("ID")]
@@ -46,5 +42,7 @@ namespace Domain.Entities.ProductSetup
         public long? ProductID { get; set; }
         [DBFiledName("ST_PRDT_ID")]
         public long? ProductDetailedID { get; set; }
+        [DBFiledName("ST_QUS_ID")]
+        public long? QuestionnaireID { get; set; }
     }
 }

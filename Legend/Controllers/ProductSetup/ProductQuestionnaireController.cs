@@ -77,13 +77,14 @@ namespace API.Controllers.ProductSetup
         }
         [Route("LoadRelatedQuestionnaire")]
         [HttpGet]
-        public IActionResult LoadRelatedQuestionnaire(long? langId, long? productID, long? productDetailedID)
+        public IActionResult LoadRelatedQuestionnaire(long? langId, long? productDetailedID, long? LineOfBusiness, long? SubLine)
         {
-            GetProductsDetails operation = new GetProductsDetails();
-            GetProductQuestionears questionears = new GetProductQuestionears();
-            
-            operation.ID = productDetailedID;
 
+            GetProductQuestionears questionears = new GetProductQuestionears();
+            GetQuestionnaire operation = new GetQuestionnaire();
+
+            questionears.ProductDetailedID = productDetailedID;
+            questionears.LineOfBusniess = LineOfBusiness;
             if (langId.HasValue)
             {
                 operation.LangID = langId;
@@ -96,61 +97,31 @@ namespace API.Controllers.ProductSetup
             }
 
 
+            operation.LineOfBusiness = LineOfBusiness;
             var result = operation.QueryAsync().Result;
             var qus = questionears.QueryAsync().Result;
-    
-            var ProductDetails = (List<ProductDetails>)result;
-     
+
+            var questionnaires = (List<Questionnaire>)result;
+
             var productQuestionnaires = (List<ProductQuestionnaire>)qus;
             List<ProductQuestionnaire> RelatedQuestionnaires = new List<ProductQuestionnaire>();
-            List<ProductQuestionnaire> UnRelatedQuestionnaires = new List<ProductQuestionnaire>();
+            List<Questionnaire> UnRelatedQuestionnaires = new List<Questionnaire>();
 
-            if (productQuestionnaires.Count > 0)
-            {
+            if (productQuestionnaires.Count > 0) {
+                RelatedQuestionnaires = productQuestionnaires.Where(p => questionnaires.Any(s => s.ID == p.QuestionnaireID && (s.SubLineOfBusiness == SubLine || s.SubLineOfBusiness == null))).ToList();
 
-                foreach (var prod in ProductDetails)
-                {
-                   
-                        foreach (var item in productQuestionnaires)
-                    {
-                        
+                UnRelatedQuestionnaires = questionnaires.Where(s => productQuestionnaires.Any(p => p.QuestionnaireID != s.ID &&
+              (s.SubLineOfBusiness == SubLine || s.SubLineOfBusiness == null))).ToList();
 
-                     
-                        if (prod.ID == item.ProductDetailedID )
-                        {
-                            bool alreadyExist = RelatedQuestionnaires.Contains(item);
-                            bool alreadyExistInSecondList = UnRelatedQuestionnaires.Contains(item);
-                            if (!alreadyExist && !alreadyExistInSecondList)
-                            {
+                UnRelatedQuestionnaires = UnRelatedQuestionnaires.Where(un => !RelatedQuestionnaires.Exists(re => un.ID == re.QuestionnaireID)).ToList();
 
-                                RelatedQuestionnaires.Add(item);
-                            }
-                            else
-                            {
-
-                                RelatedQuestionnaires.Add(item);
-                                UnRelatedQuestionnaires.Remove(item);
-                            }
-                        }
-                        else 
-                        {
-                            bool alreadyExist = RelatedQuestionnaires.Contains(item);
-                            bool alreadyExistInFirstList = UnRelatedQuestionnaires.Contains(item);
-                            if (!alreadyExist && !alreadyExistInFirstList)
-                            {
-
-                                UnRelatedQuestionnaires.Add(item);
-                            }
-                        }
-                    }
-
-                    
-                }
             }
             else
             {
-                UnRelatedQuestionnaires = productQuestionnaires;
+                UnRelatedQuestionnaires = questionnaires.Where(q => q.SubLineOfBusiness == SubLine || q.SubLineOfBusiness == null).ToList();
+
             }
+
             if (result is ValidationsOutput)
             {
                 return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
