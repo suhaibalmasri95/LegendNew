@@ -99,6 +99,7 @@ namespace Domain.Operations.Dynamic
             dyParam.Add(DynamicColumnsParams.PARAMETER_EXECLUDE_COL_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)ExecludedColumn ?? DBNull.Value);
             dyParam.Add(DynamicColumnsParams.PARAMETER_EXECLUDE_UW_DOC_ID, OracleDbType.Int64, ParameterDirection.Input, (object)UnderWritingDocID ?? DBNull.Value);
             dyParam.Add(DynamicColumnsParams.PARAMETER_PARENT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)ParentID ?? DBNull.Value);
+            dyParam.Add(DynamicColumnsParams.PARAMETER_UW_RISK_ID , OracleDbType.Int64, ParameterDirection.Input, (object)UnderWritingRiskID ?? DBNull.Value);
             dyParam.Add(DynamicColumnsParams.PARAMETER_LANG_ID, OracleDbType.Decimal, ParameterDirection.Input, (object)LangID ?? DBNull.Value);
             dyParam.Add(DynamicColumnsParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
 

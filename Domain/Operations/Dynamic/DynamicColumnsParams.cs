@@ -17,7 +17,7 @@ namespace Domain.Operations.Dynamic
         public const string PARAMETER_EXECLUDE_UW_DOC_ID = "IN_UW_DOC_ID";
         public const string PARAMETER_REF_SELECT = "IN_REF_SELECT";
         public const string PARAMETER_PARENT_ID = "IN_ST_PRD_CLO_ID";
-      
+        public const string PARAMETER_UW_RISK_ID = "IN_UW_RISK_ID";
         public const string PARAMETER_LANG_ID = "IN_LANG";
     }
 }
