@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Operations.Financial.Customers
 {
-    public class CustomerSpName
+    public static class CustomerSpName
     {
           
         public const string SP_INSERT_CUSTOMER = "DBPK_FIN.INS_FIN_CUSTOMERS";

@@ -99,14 +99,14 @@ namespace Domain.Operations.Financial.Customers
                     policyHolder.CreatedBy = customer.CreatedBy;
                     policyHolder.CreationDate = customer.CreationDate;
                     // insert customer as policy holder 
-                    var policyHolderResult = AddUpdateCustomerType.AddUpdateMode(policyHolder);
+                    var policyHolderResult = AddUpdateCustomerContacts.AddUpdateMode(policyHolder);
                     CustomerType ben = new CustomerType();
                     ben.CustomerID = complate.ID;
                     ben.LocCustomerType = 2;
                     ben.CreatedBy = customer.CreatedBy;
                     ben.CreationDate = customer.CreationDate;
                     // insert customer as policy holder 
-                    var benResult = AddUpdateCustomerType.AddUpdateMode(ben);
+                    var benResult = AddUpdateCustomerContacts.AddUpdateMode(ben);
                     complate.message = message;
                     // insert customer as benef
                 }

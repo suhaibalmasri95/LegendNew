@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.Financial.CustomerTypes
+namespace Domain.Operations.Financial.Customer_Contacts
 {
-   public class CreateCustomerType : CustomerType , ICreate
+    public class CreateCustomerContacts : CustomerContact, ICreate
     {
         public async Task<IDTO> ExecuteAsync()
         {
@@ -27,7 +27,7 @@ namespace Domain.Operations.Financial.CustomerTypes
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<CustomerType>
+        public class Validation : AbstractValidator<CustomerContact>
         {
             public Validation()
             {
@@ -35,5 +35,4 @@ namespace Domain.Operations.Financial.CustomerTypes
 
             }
         }
-    }
-}
+    }}

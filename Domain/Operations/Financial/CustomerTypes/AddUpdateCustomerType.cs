@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Operations.Financial.CustomerTypes
 {
-    public class AddUpdateCustomerType
+    public class AddUpdateCustomerContacts
     {
 
         public async static Task<IDTO> AddUpdateMode(CustomerType customerType)

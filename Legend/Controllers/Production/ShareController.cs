@@ -52,7 +52,7 @@ namespace API.Controllers.Production
                     policyHolder.CreatedBy = operation.CreatedBy;
                     policyHolder.CreationDate = operation.CreationDate;
                     // insert customer as policy holder 
-                    var policyHolderResult = AddUpdateCustomerType.AddUpdateMode(policyHolder);
+                    var policyHolderResult = AddUpdateCustomerContacts.AddUpdateMode(policyHolder);
                 var result = operation.ExecuteAsync().Result;
                 if (result is ValidationsOutput)
                 {
