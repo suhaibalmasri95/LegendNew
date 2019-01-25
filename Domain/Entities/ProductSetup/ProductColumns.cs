@@ -4,17 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Entities.Setup
+namespace Domain.Entities.ProductSetup
 {
-    [DBTableName("ST_COLUMNS")]
-    public class Column : IEntity
+    [DBTableName("ST_PRD_COLUMNS")]
+    public class ProductColumns : IEntity
     {
-        public Column() {
-            CreateBy = "Admin";
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            ModifiedBy = "Admin";
-        }
+     
         [DBFiledName("NAME")]
         public string Name { get; set; }
         [DBFiledName("NAME2")]
@@ -55,10 +50,30 @@ namespace Domain.Entities.Setup
         [DBFiledName("RFE_TABLE_NAME")]
         public string RefTableName { get; set; }
         [DBFiledName("REF_MAJOR_CODE")]
-        public string RefMajorCode { get; set; }
+        public long? RefMajorCode { get; set; }
         [DBFiledName("REF_COL_DT_ID")]
-        public string RefColDetailsID { get; set; }
-
-
+        public long? RefColDetailsID { get; set; }
+        [DBFiledName("ST_PRD_CAT_ID")]
+        public long? ProductCategoryID { get; set; }
+        [DBFiledName("ST_PRD_CLO_ID")]
+        public long? PrdColumnID { get; set; }
+        [DBFiledName("ST_COL_ID")]
+        public long? ColumnID { get; set; }
+        [DBFiledName("ST_PRD_ID")]
+        public long? ProductID { get; set; }
+        [DBFiledName("ST_PRDT_ID")]
+        public long? ProductDetailID { get; set; }
+        [DBFiledName("COL_ORDER")]
+        public long? Order { get; set; }
+        [DBFiledName("ST_DIC_ID")]
+        public long? DictionaryID { get; set; }
+        [DBFiledName("ST_DIC_COL_ID")]
+        public long? DictionaryColumnID { get; set; }
+        [DBFiledName("LOC_LEVEL")]
+        public long? LocLevel { get; set; }
+        [DBFiledName("WHERE_COND")]
+        public string WhereCondition { get; set; }
+        [DBFiledName("REF_TABLE ")]
+        public string RefTable { get; set; }
     }
 }

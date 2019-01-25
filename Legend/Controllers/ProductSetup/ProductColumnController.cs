@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
+using Domain.Entities.ProductDynamic;
 using Domain.Entities.ProductSetup;
-using Domain.Operations.ProductSetup.Products;
+using Domain.Operations.Dynamic;
+using Domain.Operations.ProductSetup.ProductColumns;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,12 +16,11 @@ namespace API.Controllers.ProductSetup
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductColumnController : ControllerBase
     {
-
         [Route("Create")]
         [HttpPost]
-        public IApiResult Create(CreateProduct operation)
+        public IApiResult Create(CreateProductColumn operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -34,7 +35,7 @@ namespace API.Controllers.ProductSetup
 
         [Route("Update")]
         [HttpPost]
-        public IApiResult Update(UpdateProduct operation)
+        public IApiResult Update(CreateProductColumn operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -49,29 +50,35 @@ namespace API.Controllers.ProductSetup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? langId, string Name)
+        public IActionResult Load(long? ID, long? CategoryID, long? ProductID, long? ProductDetailID,
+            long? ColumnType, long? LineOfBusniess, long? SubLineOfBusniess, long? langId)
         {
-            GetProducts operation = new GetProducts();
-            operation.ID = ID;
-            operation.Name = Name;
+            GetDynamicColumns columns = new GetDynamicColumns();
+            columns.ID = ID;
+            columns.ProductID = ProductID;
+            columns.CategoryID = CategoryID;
+            columns.ProductDetailID = ProductDetailID;
+            columns.ColumnType = ColumnType;
+            columns.LineOfBuisness = LineOfBusniess;
+            columns.SubLineOfBuisness = SubLineOfBusniess;
             if (langId.HasValue)
-                operation.LangID = langId;
+                columns.LangID = langId;
             else
-                operation.LangID = 1;
+                columns.LangID = 1;
 
-            var result = operation.QueryAsync().Result;
+            var result = columns.QueryAsyncInsert().Result;
             if (result is ValidationsOutput)
             {
                 return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
             }
             else
             {
-                return Ok((List<Product>)result);
+                return Ok((List<DynamicDdl>)result);
             }
         }
         [Route("Delete")]
         [HttpPost]
-        public IApiResult Delete(DeleteProduct operation)
+        public IApiResult Delete(DeleteProductColumn operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -85,7 +92,7 @@ namespace API.Controllers.ProductSetup
         }
         [Route("DeleteMultiple")]
         [HttpPost]
-        public IApiResult DeleteMultiple(DeleteProducts operation)
+        public IApiResult DeleteMultiple(DeleteProductColumns operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -97,7 +104,5 @@ namespace API.Controllers.ProductSetup
                 return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
             }
         }
-
-
     }
 }

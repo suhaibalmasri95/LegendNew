@@ -13,9 +13,10 @@ namespace Infrastructure.DB
         {
             List<DTO> result = null;
             IDataReader dataReader = null;
+            var connection = new DbConnection().GetConnection();
             try
             {
-                var connection = new DbConnection().GetConnection();
+               
                 if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
@@ -30,6 +31,7 @@ namespace Infrastructure.DB
             }
             catch (Exception ex)
             {
+                connection.Close();
                 throw ex;
             }
 

@@ -6,7 +6,7 @@ using Common.Controllers;
 using Common.Interfaces;
 using Common.Validations;
 using Domain.Entities.ProductSetup;
-using Domain.Operations.ProductSetup.Products;
+using Domain.Operations.ProductSetup.ProductValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,12 +14,11 @@ namespace API.Controllers.ProductSetup
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductValidationController : ControllerBase
     {
-
         [Route("Create")]
         [HttpPost]
-        public IApiResult Create(CreateProduct operation)
+        public IApiResult Create(CreateProductValidation operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -34,7 +33,7 @@ namespace API.Controllers.ProductSetup
 
         [Route("Update")]
         [HttpPost]
-        public IApiResult Update(UpdateProduct operation)
+        public IApiResult Update(CreateProductValidation operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -49,11 +48,17 @@ namespace API.Controllers.ProductSetup
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? langId, string Name)
+        public IActionResult Load(long? ID, long? ColumnID, long? ProductID, long? ProductDetailID,
+            long? LocValidType, long? CategoryID,  long? langId)
         {
-            GetProducts operation = new GetProducts();
+            GetValidations operation = new GetValidations();
             operation.ID = ID;
-            operation.Name = Name;
+            operation.ProductID = ProductID;
+            operation.CategoryID = CategoryID;
+            operation.ProductDetailID = ProductDetailID;
+            operation.LocValidType = LocValidType;
+            operation.ColumnID = ColumnID;
+           
             if (langId.HasValue)
                 operation.LangID = langId;
             else
@@ -66,12 +71,12 @@ namespace API.Controllers.ProductSetup
             }
             else
             {
-                return Ok((List<Product>)result);
+                return Ok((List<ProductColumnValidation>)result);
             }
         }
         [Route("Delete")]
         [HttpPost]
-        public IApiResult Delete(DeleteProduct operation)
+        public IApiResult Delete(DeleteProductValidation operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -85,7 +90,7 @@ namespace API.Controllers.ProductSetup
         }
         [Route("DeleteMultiple")]
         [HttpPost]
-        public IApiResult DeleteMultiple(DeleteProducts operation)
+        public IApiResult DeleteMultiple(DeleteProductValidations operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -97,7 +102,5 @@ namespace API.Controllers.ProductSetup
                 return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
             }
         }
-
-
     }
 }

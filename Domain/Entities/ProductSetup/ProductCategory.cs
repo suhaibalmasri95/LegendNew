@@ -4,19 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Entities.Setup
+namespace Domain.Entities.ProductSetup
 {
-    [DBTableName("ST_COLUMNS_CATGORY")]
-    public class Category : IEntity
+    
+         [DBTableName("ST_PRD_COLUMNS_CATGORY")]
+    public class ProductCategory : IEntity
     {
-        public Category()
-        {
-            ModificationDate = DateTime.Now;
-            CreationDate = DateTime.Now;
-            CreateBy = "Admin";
-            ModifiedBy = "Admin";
-            StatusDate = DateTime.Now;
-        }
         [DBPrimaryKey]
         [DBFiledName("ID")]
         public long? ID { get; set; }
@@ -50,5 +43,18 @@ namespace Domain.Entities.Setup
         public long? CategoryLevel { get; set; }
         [DBFiledName("IS_MULTI_RECORDS")]
         public Int16? MultiRecord { get; set; }
+
+        [DBFiledName("ST_CAT_ID")]
+        public long? CategoryID { get; set; }
+        [DBFiledName("ST_PRD_ID")]
+        public long? ProductID { get; set; }
+        [DBFiledName("ST_PRDT_ID")]
+        public long? ProductDetailID { get; set; }
+        [DBFiledName("COL_ORDER")]
+        public long? Order { get; set; }
+        [DBFiledName("ST_DIC_ID")]
+        public long? DictionaryID { get; set; }
+
     }
+
 }

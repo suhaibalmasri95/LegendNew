@@ -35,8 +35,8 @@ namespace Domain.Operations.Setup.Categories
             }
             oracleParams.Add(CategorySpParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Name ?? DBNull.Value, 1000);
             oracleParams.Add(CategorySpParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Name2 ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_LABLE, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Label ?? DBNull.Value, 1000);
-            oracleParams.Add(CategorySpParams.PARAMETER_LABLE2, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Label2 ?? DBNull.Value, 1000);
+            oracleParams.Add(CategorySpParams.PARAMETER_LABLE, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Lable ?? DBNull.Value, 1000);
+            oracleParams.Add(CategorySpParams.PARAMETER_LABLE2, OracleDbType.Varchar2, ParameterDirection.Input, (object)category.Lable2 ?? DBNull.Value, 1000);
             oracleParams.Add(CategorySpParams.PARAMETER_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)category.Status ?? DBNull.Value);
             oracleParams.Add(CategorySpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)category.StatusDate ?? DBNull.Value);
             oracleParams.Add(CategorySpParams.PARAMETER_LINE_OF_BUSNIESS, OracleDbType.Int64, ParameterDirection.Input, (object)category.LineOfBusniess ?? DBNull.Value);

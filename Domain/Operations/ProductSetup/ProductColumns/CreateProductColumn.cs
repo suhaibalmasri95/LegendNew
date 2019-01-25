@@ -1,16 +1,15 @@
 ﻿using Common.Extensions;
 using Common.Interfaces;
 using Common.Validations;
-using Domain.Entities.ProductSetup;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Operations.ProductSetup.ProductsDetails
+namespace Domain.Operations.ProductSetup.ProductColumns
 {
-   public class DeleteProductDetail : ProductDetails, IDelete
+   public class CreateProductColumn : Domain.Entities.ProductSetup.ProductColumns, ICreate
     {
         public async Task<IDTO> ExecuteAsync()
         {
@@ -19,8 +18,9 @@ namespace Domain.Operations.ProductSetup.ProductsDetails
             {
                 return validationResult;
             }
-            return await DBProductDetailsDeletionSetup.DeleteProductDetailsAsync(this);
-          
+
+            return await AddUpdateMode.AddUpdate(this);
+
         }
 
         public IDTO Validate()
@@ -28,10 +28,11 @@ namespace Domain.Operations.ProductSetup.ProductsDetails
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<ProductDetails>
+        public class Validation : AbstractValidator<Domain.Entities.ProductSetup.ProductColumns>
         {
             public Validation()
             {
+
             }
         }
     }

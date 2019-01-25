@@ -215,7 +215,7 @@ namespace API.Controllers.ProductSetup
  
         [Route("Delete")]
         [HttpPost]
-        public IApiResult Delete(DeleteProductDetails operation)
+        public IApiResult Delete(DeleteProductDetail operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)

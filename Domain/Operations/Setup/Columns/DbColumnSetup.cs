@@ -36,8 +36,8 @@ namespace Domain.Operations.Setup.Columns
             }
             oracleParams.Add(ColumnSpParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)column.Name ?? DBNull.Value, 1000);
             oracleParams.Add(ColumnSpParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)column.Name2 ?? DBNull.Value, 1000);
-            oracleParams.Add(ColumnSpParams.PARAMETER_LABLE, OracleDbType.Varchar2, ParameterDirection.Input, (object)column.Label ?? DBNull.Value, 1000);
-            oracleParams.Add(ColumnSpParams.PARAMETER_LABLE2, OracleDbType.Varchar2, ParameterDirection.Input, (object)column.Label2 ?? DBNull.Value, 1000);
+            oracleParams.Add(ColumnSpParams.PARAMETER_LABLE, OracleDbType.Varchar2, ParameterDirection.Input, (object)column.Lable ?? DBNull.Value, 1000);
+            oracleParams.Add(ColumnSpParams.PARAMETER_LABLE2, OracleDbType.Varchar2, ParameterDirection.Input, (object)column.Lable2 ?? DBNull.Value, 1000);
             oracleParams.Add(ColumnSpParams.PARAMETER_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)column.Status ?? DBNull.Value);
             oracleParams.Add(ColumnSpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)column.StatusDate ?? DBNull.Value);
             oracleParams.Add(ColumnSpParams.PARAMETER_COLUMN_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)column.ColumnType ?? DBNull.Value);

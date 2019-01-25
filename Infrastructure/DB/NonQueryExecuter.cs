@@ -12,9 +12,10 @@ namespace Infrastructure.DB
         public static async Task<int> ExecuteNonQueryAsync(string SPName, OracleDynamicParameters Params)
         {
             int result = 0;
+            var connection = new DbConnection().GetConnection();
             try
             {
-                var connection = new DbConnection().GetConnection();
+    
                 if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
@@ -28,6 +29,7 @@ namespace Infrastructure.DB
             }
             catch (Exception ex)
             {
+                connection.Close();
                 throw ex;
             }
 
@@ -35,10 +37,12 @@ namespace Infrastructure.DB
         }
         public static async Task<int> ExecuteNonQueryAsync(string sql)
         {
+
             int result = 0;
+            var connection = new DbConnection().GetConnection();
             try
             {
-                var connection = new DbConnection().GetConnection();
+               
                 if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
@@ -52,6 +56,7 @@ namespace Infrastructure.DB
             }
             catch (Exception ex)
             {
+                connection.Close();
                 throw ex;
             }
 

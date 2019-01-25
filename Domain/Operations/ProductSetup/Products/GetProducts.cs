@@ -17,6 +17,7 @@ namespace Domain.Operations.ProductSetup.Products
         {
             var parameters = new OracleDynamicParameters();
             parameters.Add(ProductSPParams.PARAMETER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.ID ?? DBNull.Value);
+            parameters.Add(ProductSPParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)this.Name ?? DBNull.Value);
             parameters.Add(ProductSPParams.PARAMETER_LANG_ID, OracleDbType.Int64, ParameterDirection.Input, (object)this.LangID ?? DBNull.Value);
             parameters.Add(ProductSPParams.PARAMETER_REF_SELECT, OracleDbType.RefCursor, ParameterDirection.Output);
             return await QueryExecuter.ExecuteQueryAsync<Product>(ProductSPName.SP_LOAD_PRODUCT, parameters);
