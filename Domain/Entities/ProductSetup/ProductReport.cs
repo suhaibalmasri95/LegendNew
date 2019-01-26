@@ -54,7 +54,7 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("REP_LEVEL")]
         public long? ReportLevel { get; set; }
         [DBFiledName("IS_REQUIRED")]
-        public Int32? IsRequired { get; set; }
+        public Int16? IsRequired { get; set; }
         [DBFiledName("ST_REP_CODE")]
         public string ReportCode { get; set; }
         [DBFiledName("CREATED_BY")]

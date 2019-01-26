@@ -14,7 +14,7 @@ namespace Domain.Entities.ProductSetup
         public ProductAttachment()
         {
          
-            StatusDate = DateTime.Now;
+           
        
       
         }
