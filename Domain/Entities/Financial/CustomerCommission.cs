@@ -37,13 +37,13 @@ namespace Domain.Entities.Financial
         public long? FinGlID { get; set; }
 
         [DBFiledName("COMM_PERC")]
-        public decimal? ComissionPercentage { get; set; }
+        public double? ComissionPercentage { get; set; }
 
         [DBFiledName("COMM_AMOUNT")]
-        public decimal? CommissionAmount { get; set; }
+        public double? CommissionAmount { get; set; }
 
         [DBFiledName("COMM_AMOUNT_LC")]
-        public decimal? CommissionAmountLc { get; set; }
+        public double? CommissionAmountLc { get; set; }
 
         [DBFiledName("ST_PRD_ID")]
         public long? ProductId { get; set; }

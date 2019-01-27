@@ -33,8 +33,8 @@ namespace Domain.Operations.ProductSetup.ProductWordingDetails
             }
 
             oracleParams.Add(ProductWordDetailSpParams.PARAMETER_SERIAL, OracleDbType.Int64, ParameterDirection.Input, (object)wording.Serial ?? DBNull.Value, 500);
-            oracleParams.Add(ProductWordDetailSpParams.PARAMETER_DESCRIPTION, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Name ?? DBNull.Value, 4000);
-            oracleParams.Add(ProductWordDetailSpParams.PARAMETER_DESCRIPTION2, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Name2 ?? DBNull.Value, 4000);
+            oracleParams.Add(ProductWordDetailSpParams.PARAMETER_DESCRIPTION, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Description ?? DBNull.Value, 4000);
+            oracleParams.Add(ProductWordDetailSpParams.PARAMETER_DESCRIPTION2, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Description2 ?? DBNull.Value, 4000);
             oracleParams.Add(ProductWordDetailSpParams.PARAMETER_WORD_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)wording.WordType ?? DBNull.Value);
             oracleParams.Add(ProductWordDetailSpParams.PARAMETER_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)wording.Status ?? DBNull.Value);
             oracleParams.Add(ProductWordDetailSpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)wording.StatusDate ?? DBNull.Value);

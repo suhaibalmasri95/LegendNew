@@ -113,5 +113,40 @@ namespace API.Controllers.Financial
                 return Ok((List<CustomerType>)result);
             }
         }
+
+
+        [Route("DeleteCustomerType")]
+        [HttpPost]
+        public IApiResult DeleteCustomerType(DeleteCustomerType operation)
+        {
+            var result = operation.ExecuteAsync().Result;
+
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
+
+        [Route("DeleteCustomerTypes")]
+        [HttpPost]
+        public IApiResult DeleteCustomerTypes(DeleteCustomerTypes operation)
+        {
+            var result = operation.ExecuteAsync().Result;
+
+            if (result is ValidationsOutput)
+            {
+                return new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors };
+            }
+            else
+            {
+
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+            }
+        }
     }
 }

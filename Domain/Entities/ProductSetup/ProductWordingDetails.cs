@@ -9,15 +9,11 @@ namespace Domain.Entities.ProductSetup
     [DBTableName("ST_PRD_WRD_DETAILS")]
     public class ProductWordingDetails : IEntity
     {
-        [DBTableName("ST_PRD_WRD_DETAILS")]
+       
         public ProductWordingDetails()
         {
 
-            StatusDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            CreationDate = DateTime.Now;
-            CreateBy = "Admin";
-            ModifiedBy = "Admin";
+            this.Serial = 1;
 
         }
         [DBFiledName("NAME")]
@@ -54,7 +50,7 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("ST_WORD_ID")]
         public long? WordId { get; set; }
         [DBFiledName("IS_AUTO_ADD")]
-        public long? IsAutoAdd { get; set; }
+        public Int16? IsAutoAdd { get; set; }
         [DBFiledName("ST_SRVCS_ID")]
         public long? ServiceID { get; set; }
         [DBFiledName("CREATED_BY")]

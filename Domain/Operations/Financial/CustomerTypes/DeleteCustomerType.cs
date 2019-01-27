@@ -1,16 +1,18 @@
 ﻿using Common.Extensions;
 using Common.Interfaces;
 using Common.Validations;
+using Domain.Entities.Financial;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-namespace Domain.Operations.Financial.CustomerComission
+
+namespace Domain.Operations.Financial.CustomerTypes
 {
-   public class DeleteCustomerCommissions : Entities.Financial.CustomerCommission, IDelete
+    public class DeleteCustomerType : CustomerType, IDelete
     {
-        public long[] IDs;
+
         public async Task<IDTO> ExecuteAsync()
         {
             var validationResult = (ValidationsOutput)Validate();
@@ -20,7 +22,7 @@ namespace Domain.Operations.Financial.CustomerComission
             }
 
 
-            return await DeleteMode.DeleteCommissions(IDs);
+            return await DeleteMode.DeleteCustomerType(this);
 
         }
 
@@ -29,7 +31,7 @@ namespace Domain.Operations.Financial.CustomerComission
             return new Validation().Validate(this).AsDto();
         }
 
-        public class Validation : AbstractValidator<Entities.Financial.CustomerCommission>
+        public class Validation : AbstractValidator<CustomerType>
         {
             public Validation()
             {

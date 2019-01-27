@@ -37,10 +37,10 @@ namespace Domain.Entities.Financial
         public long? FinGlID { get; set; }
 
         [DBFiledName("COMM_PERC")]
-        public decimal? ComissionPercentage { get; set; }
+        public long? ComissionPercentage { get; set; }
 
         [DBFiledName("LOC_PROVIDER_TYPE")]
-        public decimal? LocProviderTyoe { get; set; }
+        public long? LocProviderTyoe { get; set; }
 
         [DBFiledName("STATUS_DATE")]
         public DateTime? StatuseDate { get; set; }

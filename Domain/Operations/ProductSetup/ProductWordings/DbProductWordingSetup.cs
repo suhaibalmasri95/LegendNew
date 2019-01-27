@@ -35,8 +35,8 @@ namespace Domain.Operations.ProductSetup.ProductWordings
 
             oracleParams.Add(ProductWordingSpParams.PARAMETER_NAME, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Name ?? DBNull.Value, 500);
             oracleParams.Add(ProductWordingSpParams.PARAMETER_NAME2, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Name2 ?? DBNull.Value, 500);
-            oracleParams.Add(ProductWordingSpParams.PARAMETER_DESCRIPTION, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Name ?? DBNull.Value, 4000);
-            oracleParams.Add(ProductWordingSpParams.PARAMETER_DESCRIPTION2, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Name2 ?? DBNull.Value, 4000);
+            oracleParams.Add(ProductWordingSpParams.PARAMETER_DESCRIPTION, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Description ?? DBNull.Value, 4000);
+            oracleParams.Add(ProductWordingSpParams.PARAMETER_DESCRIPTION2, OracleDbType.Varchar2, ParameterDirection.Input, (object)wording.Description2 ?? DBNull.Value, 4000);
             oracleParams.Add(ProductWordingSpParams.PARAMETER_LOC_TYPE, OracleDbType.Int64, ParameterDirection.Input, (object)wording.LockUpType ?? DBNull.Value);
             oracleParams.Add(ProductWordingSpParams.PARAMETER_STATUS, OracleDbType.Int64, ParameterDirection.Input, (object)wording.Status ?? DBNull.Value);
             oracleParams.Add(ProductWordingSpParams.PARAMETER_STATUS_DATE, OracleDbType.Date, ParameterDirection.Input, (object)wording.StatusDate ?? DBNull.Value);
