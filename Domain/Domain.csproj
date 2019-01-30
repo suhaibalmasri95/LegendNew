@@ -27,4 +27,11 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Operations\Production\Installment\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Operations\Production\Covers %28copy%29\UpdateCover.cs" />
+    <Compile Remove="Operations\Production\Covers\UpdateCover.cs" />
+  </ItemGroup>
 </Project>

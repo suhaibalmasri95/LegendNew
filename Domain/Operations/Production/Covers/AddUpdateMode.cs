@@ -13,7 +13,7 @@ namespace Domain.Operations.Production.Covers
 {
    public static class AddUpdateMode
     {
-        public async static Task<IDTO> AddUpdate(Cover cover)
+        public async static Task<IDTO>  AddUpdate(Cover cover)
         {
             string SPName = "";
             string message = "";

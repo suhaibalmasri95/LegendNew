@@ -25,7 +25,7 @@ namespace Domain.Entities.Production
         [DBFiledName("LOC_CHARG_TYPE")]
         public long? ChargeType { get; set; }
         [DBFiledName("EXPIRY_DATE")]
-        public long? ExpiryDate { get; set; }
+        public DateTime? ExpiryDate { get; set; }
         [DBFiledName("EXRATE")]
         public double? Exrate { get; set; }
         [DBFiledName("GROSS_AMOUNT")]
@@ -82,7 +82,7 @@ namespace Domain.Entities.Production
         public string Notes { get; set; }
 
         [DBFiledName("ST_PRD_CALC_ID")]
-        public DateTime? ProductCalcID { get; set; }
+        public long? ProductCalcID { get; set; }
         [DBFiledName("ST_CUR_CODE")]
         public string CurrencyCode { get; set; }
 

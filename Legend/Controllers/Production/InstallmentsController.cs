@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Controllers;
 using Common.Interfaces;
+using Common.Validations;
+using Domain.Entities.Production;
+using Domain.Operations.Production.Documents;
+using Domain.Operations.Production.Installments;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Domain.Operations.Production.Risks;
-using Common.Validations;
-using Common.Controllers;
-using Common.Operations;
-using Domain.Entities.Production;
 
 namespace API.Controllers.Production
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RiskController : ControllerBase
+    public class InstallmentsController : ControllerBase
     {
+
+
+
+
+
         [Route("Create")]
         [HttpPost]
-        public IApiResult Create(CreateRisk operation)
+        public IApiResult Create(CreateInstallment operation)
         {
-
-
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
             {
@@ -30,13 +33,14 @@ namespace API.Controllers.Production
             }
             else
             {
-                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
+
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
             }
         }
 
         [Route("Update")]
         [HttpPost]
-        public IApiResult Update(UpdateRisk operation)
+        public IApiResult Update(CreateInstallment operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -51,13 +55,12 @@ namespace API.Controllers.Production
 
         [Route("Load")]
         [HttpGet]
-        public IActionResult Load(long? ID, long? UWDocumentID, string Name , long? Serial,long? langId)
+        public IActionResult Load(long? ID,long? DocumentId, long? langId)
         {
-            GetRisk operation = new GetRisk();
+            GetInstallments operation = new GetInstallments();
             operation.ID = ID;
-            operation.UwDocumentID = UWDocumentID;
-            operation.Serial = Serial;
-            operation.Name = Name;
+    
+            operation.DocumentID = DocumentId;
 
             if (langId.HasValue)
                 operation.LangID = langId;
@@ -71,12 +74,47 @@ namespace API.Controllers.Production
             }
             else
             {
-                return Ok((List<Risk>)result);
+                return Ok((List<Installment>)result);
+            }
+        }
+
+
+
+        [Route("test")]
+        [HttpGet]
+        public IActionResult test()
+        {
+            CreateInstallment operation = new CreateInstallment();
+          
+
+            operation.DocumentID = 201;
+            operation.CommissionAmount = 1.2;
+            operation.CommissionAmountLc = 1.3;
+            operation.CreationDate = DateTime.Now;
+            operation.CreatedBy = "admin";
+            operation.DueDate = DateTime.Now;
+            operation.Exrate = 1.2;
+            operation.FeesAmount = 1.0;
+            operation.FeesAmountLC = 1.2;
+            operation.GrossAmount = 1.3;
+            operation.GrossAmountLc = 1.4;
+            operation.Percent = 1.4;
+
+         
+
+            var result = operation.ExecuteAsync().Result;
+            if (result is ValidationsOutput)
+            {
+                return Ok(new ApiResult<List<ValidationItem>>() { Data = ((ValidationsOutput)result).Errors });
+            }
+            else
+            {
+                return Ok((List<Cover>)result);
             }
         }
         [Route("Delete")]
         [HttpPost]
-        public IApiResult Delete(DeleteRisk operation)
+        public IApiResult Delete(DeleteInstallment operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)
@@ -90,7 +128,7 @@ namespace API.Controllers.Production
         }
         [Route("DeleteMultiple")]
         [HttpPost]
-        public IApiResult DeleteMultiple(DeletesRisk operation)
+        public IApiResult DeleteMultiple(DeleteInstallments operation)
         {
             var result = operation.ExecuteAsync().Result;
             if (result is ValidationsOutput)

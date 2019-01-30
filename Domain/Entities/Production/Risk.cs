@@ -86,5 +86,11 @@ namespace Domain.Entities.Production
         public List<ProductDynmicCategory> DynamicCategory { get; set; }
         [DBFiledName("UpdateMode")]
         public bool UpdateMode { get; set; }
+
+
+        [DBFiledName("ST_LOB")]
+        public long? LineOfBusiness => StLOB;
+        [DBFiledName("ST_SUB_LOB")]
+        public long? SubLineOfBusiness => StSubLOB;
     }
 }

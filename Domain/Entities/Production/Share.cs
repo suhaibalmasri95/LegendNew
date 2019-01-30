@@ -15,6 +15,8 @@ namespace Domain.Entities.Production
         }
         [DBFiledName("NAME")]
         public string Name { get; set; }
+        [DBFiledName("AgentName")]
+        public string AgentName => Name;
         [DBFiledName("NAME2")]
         public string Name2 { get; set; }
         [DBFiledName("LangID")]
@@ -30,10 +32,15 @@ namespace Domain.Entities.Production
         public double? Percent { get; set; }
         [DBFiledName("ComissionPercent")]
         public double? CommissionPercent => Percent;
+        [DBFiledName("ComissionPercent")]
+        public double? Commission => Percent;
         [DBFiledName("SHARE_PER")]
         public double? SharePercent { get; set; }
         [DBFiledName("AMOUNT")]
         public double? Amount { get; set; }
+        [DBFiledName("CommissionAMOUNT")]
+        public double? CommissionAmount => Amount;
+
         [DBFiledName("AMOUNT_LC")]
         public double? AmountLC { get; set; }
         [DBFiledName("NOTES")]
@@ -63,5 +70,11 @@ namespace Domain.Entities.Production
         public string CustomerNo { get; set; }
         [DBFiledName("customer")]
         public List<CustomerShare> customer { get; set; }
+
+
+        [DBFiledName("ST_LOB")]
+        public long? LineOfBusiness => StLOB;
+        [DBFiledName("SubLineOfBusiness")]
+        public long? SubLineOfBusiness => StSubLOB;
     }
 }
