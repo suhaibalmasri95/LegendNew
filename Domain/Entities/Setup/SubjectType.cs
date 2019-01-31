@@ -49,5 +49,10 @@ namespace Domain.Entities.Setup
         public string ModifiedBy { get; set; }
         [DBFiledName("MODIFICATION_DATE")]
         public DateTime ModificationDate { get; set; }
+
+        [DBFiledName("LOB_DESC")]
+        public string LineOfBusniessDesc { get; set; }
+        [DBFiledName("SUB_LOB_DESC")]
+        public string SubLineOfBusniessDesc { get; set; }
     }
 }

@@ -31,11 +31,11 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("MODIFIED_BY")]
         public string ModifiedBy { get; set; }
         [DBFiledName("MODIFICATION_DATE")]
-        public DateTime ModificationDate { get; set; }
+        public DateTime? ModificationDate { get; set; }
         [DBFiledName("EFFECTIVE_DATE")]
         public DateTime EffectiveDate { get; set; }
         [DBFiledName("EXPIRY_DATE")]
-        public DateTime ExpiryDate { get; set; }
+        public DateTime? ExpiryDate { get; set; }
         [DBFiledName("ST_LOB")]
         public long? LineOfBusniess { get; set; }
         [DBFiledName("ST_SUB_LOB")]
@@ -43,6 +43,6 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("ST_PRD_ID")]
         public long? ProductID { get; set; }
         [DBFiledName("ST_SUB_LOB_DESC")]
-        public string SubjectTypeDesc { get; set; }
+        public string SubLineDesc { get; set; }
     }
 }

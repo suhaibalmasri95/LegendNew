@@ -50,7 +50,18 @@ namespace Domain.Entities.ProductSetup
         public double? MaxExcess { get; set; }
         [DBFiledName("EXCESS_FROM")]
         public long? ExcessFrom { get; set; }
-        [DBFiledName("ST_SUB_LOB_DESC")]
+        [DBFiledName("ST_SBT_ID_DESC")]
         public string SubjectTypeDesc { get; set; }
+        [DBFiledName("ST_LOB_DESC")]
+        public string LineOfBusniessDesc { get; set; }
+        [DBFiledName("ST_SUB_LOB_DESC")]
+        public string SubLineOfBusniessDesc { get; set; }
+     
+        [DBFiledName("ST_PRD_ID_DESC")]
+        public string ProductDesc { get; set; }
+        [DBFiledName("ST_PRDT_ID_DESC")]
+        public string SubjectTypeParentDesc { get; set; }
+       
+
     }
 }

@@ -48,8 +48,12 @@ namespace Domain.Operations.ProductSetup.Products
             oracleParams.Add(ProductSPParams.PARAMETER_COMPANY_ID, OracleDbType.Int64, ParameterDirection.Input, (object)Product.CompanyID ?? DBNull.Value);
             oracleParams.Add(ProductSPParams.PARAMETER_FIN_CUSTOMER_ID, OracleDbType.Int64, ParameterDirection.Input, (object)Product.FCustomerID ?? DBNull.Value);
 
+
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)
+            {
+                complate.ID = oracleParams.Get(0);
                 complate.message = message;
+            }
             else
                 complate.message = "Operation Failed";
 

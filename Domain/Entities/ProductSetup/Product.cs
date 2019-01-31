@@ -11,11 +11,7 @@ namespace Domain.Entities.ProductSetup
     {
         public Product()
         {
-            ModificationDate = DateTime.Now;
-            CreationDate = DateTime.Now;
-            CreateBy = "Admin";
-            ModifiedBy = "Admin";
-            StatusDate = DateTime.Now;
+         
         }
 
         [DBPrimaryKey]
@@ -42,11 +38,11 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("MODIFIED_BY")]
         public string ModifiedBy { get; set; }
         [DBFiledName("MODIFICATION_DATE")]
-        public DateTime ModificationDate { get; set; }
+        public DateTime? ModificationDate { get; set; }
         [DBFiledName("EFFECTIVE_DATE")]
-        public DateTime EffectiveDate { get; set; }
+        public DateTime? EffectiveDate { get; set; }
         [DBFiledName("EXPIRY_DATE")]
-        public DateTime ExpiryDate { get; set; }
+        public DateTime? ExpiryDate { get; set; }
         [DBFiledName("LOCK_INDV_GROUP")]
         public long? LockIndvGroup { get; set; }
         [DBFiledName("ST_COM_ID")]

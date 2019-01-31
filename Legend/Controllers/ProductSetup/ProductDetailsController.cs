@@ -100,7 +100,7 @@ namespace API.Controllers.ProductSetup
             List<SubLineOfBusnies> RelatedSubLine = new List<SubLineOfBusnies>();
             List<SubLineOfBusnies> UnSubLine = new List<SubLineOfBusnies>();
     
-            if (SubLineOfBusiness.Count > 0)
+            if (ProductDetails.Count > 0)
             {
                  
                 foreach (var prod in ProductDetails)
@@ -153,12 +153,12 @@ namespace API.Controllers.ProductSetup
         }
         [Route("LoadSubjectType")]
         [HttpGet]
-        public IActionResult LoadSubjectType(long? langId, long? productDetailID , long? LineOfBusiness , long? SubLine )
+        public IActionResult LoadSubjectType(long? langId, long? productDetailID ,long? ProductID, long? LineOfBusiness , long? SubLine )
         {
            
             GetSubjectTypies subjectType = new GetSubjectTypies();
             GetProductSubjectTypies prodSubjectTypes = new GetProductSubjectTypies();
-         
+            prodSubjectTypes.ProductID = ProductID;
             prodSubjectTypes.ProductDetailsID = productDetailID;
 
             prodSubjectTypes.LineOfBusniess = LineOfBusiness;

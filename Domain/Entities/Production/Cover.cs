@@ -95,7 +95,7 @@ namespace Domain.Entities.Production
         [DBFiledName("MIN_AMOUNT")]
         public double? MinAmount { get; set; }
         [DBFiledName("ST_PRD_CH_ID")]
-        public double? ProductChargeID { get; set; }
+        public long? ProductChargeID { get; set; }
         [DBFiledName("ST_SBT_ID")]
         public long? StSbtId { get; set; }
         [DBFiledName("NUMBER_OF_MEMBERS")]
