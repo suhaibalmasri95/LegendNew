@@ -55,6 +55,20 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("ST_DIC_ID")]
         public long? DictionaryID { get; set; }
 
+        [DBFiledName("ST_CAT_ID_DESC")]
+        public string CategoryDesc { get; set; }
+        [DBFiledName("CAT_LEVEL_DESC")]
+        public string CategoryLevelDesc { get; set; }
+        [DBFiledName("ST_LOB_DESC")]
+        public string LineDesc { get; set; }
+        [DBFiledName("ST_SUB_LOB_DESC")]
+        public string SubLineDesc { get; set; }
+
+        [DBFiledName("IS_MULTI_RECORDS_DESC")]
+        public string IsMultiDesc { get; set; }
+        [DBFiledName("ST_PRD_ID_DESC")]
+        public string ProductDesc { get; set; }
+
     }
 
 }

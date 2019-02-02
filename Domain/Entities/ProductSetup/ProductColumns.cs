@@ -75,5 +75,23 @@ namespace Domain.Entities.ProductSetup
         public string WhereCondition { get; set; }
         [DBFiledName("REF_TABLE ")]
         public string RefTable { get; set; }
+        [DBFiledName("ST_LOB_DESC")]
+        public string LineDesc { get; set; }
+        [DBFiledName("ST_SUB_LOB_DESC")]
+        public string SubLineDesc { get; set; }
+        [DBFiledName("COL_TYPE_DESC")]
+        public string ColumnTypeDesc { get; set; }
+        [DBFiledName("LOC_LEVEL_DESC")]
+        public string LocLevelDesc { get; set; }
+        [DBFiledName("ST_CAT_ID_DESC")]
+        public string CategoryDesc { get; set; }
+        [DBFiledName("ST_PRD_ID_DESC")]
+        public string ProductDesc { get; set; }
+        [DBFiledName("ST_COL_ID_DESC")]
+        public string ColumnDesc { get; set; }
+        [DBFiledName("ST_PRD_CLO_ID_DESC")]
+        public string ProductColumnDesc { get; set; }
+
+
     }
 }

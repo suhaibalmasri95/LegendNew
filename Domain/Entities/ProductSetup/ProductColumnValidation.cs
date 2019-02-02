@@ -64,7 +64,18 @@ namespace Domain.Entities.ProductSetup
         public long? MinValue { get; set; }
         [DBFiledName("CHECK_DUPLICATION")]
         public long? CheckDuplication { get; set; }
-      
+
+        [DBFiledName("DATA_TYPE_DESC")]
+        public string DataTypeDesc { get; set; }
+        [DBFiledName("LOC_VALD_TYPE_DESC")]
+        public string LocTypeDesc { get; set; }
+        [DBFiledName("ST_CAT_ID_DESC")]
+        public string CategoryDesc { get; set; }
+        [DBFiledName("ST_PRD_ID_DESC")]
+        public string ProductDesc { get; set; }
+        [DBFiledName("ST_COL_ID_DESC")]
+        public string ColumnDesc { get; set; }
+
 
     }
 }
