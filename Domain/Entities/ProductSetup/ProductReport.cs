@@ -13,10 +13,9 @@ namespace Domain.Entities.ProductSetup
         public ProductReport()
         {
 
-            StatusDate = DateTime.Now;
+          
             ModificationDate = DateTime.Now;
-            CreationDate = DateTime.Now;
-            CreateBy = "Admin";
+           
             ModifiedBy = "Admin";
 
         }

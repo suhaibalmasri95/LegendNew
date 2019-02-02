@@ -56,7 +56,7 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("LOC_VALD_TYPE")]
         public long? LocValidType { get; set; }
         [DBFiledName("IS_MANDETORY")]
-        public long? IsMandetory { get; set; }
+        public Int16? IsMandetory { get; set; }
         [DBFiledName("MAX_VALUE")]
         public long? MaxValue { get; set; }
 

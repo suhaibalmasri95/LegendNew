@@ -14,6 +14,8 @@ namespace Domain.Entities.ProductSetup
         {
 
             StatusDate = DateTime.Now;
+            Description = "TEST";
+            Description2 = "tes";
 
 
         }

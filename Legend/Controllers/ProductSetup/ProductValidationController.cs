@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Common.Controllers;
 using Common.Interfaces;
+using Common.Operations;
 using Common.Validations;
 using Domain.Entities.ProductSetup;
 using Domain.Operations.ProductSetup.ProductValidation;
@@ -27,7 +28,7 @@ namespace API.Controllers.ProductSetup
             }
             else
             {
-                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success };
+                return new ApiResult<object>() { Status = ApiResult<object>.ApiStatus.Success, ID = ((ComplateOperation<int>)result).ID.Value };
             }
         }
 

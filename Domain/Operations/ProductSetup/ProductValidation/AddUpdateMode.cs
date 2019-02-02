@@ -45,12 +45,15 @@ namespace Domain.Operations.ProductSetup.ProductValidation
             oracleParams.Add(ProductValidationSpParams.PARAMETER_ST_PRD_ID, OracleDbType.Int64, ParameterDirection.Input, (object)productColumns.ProductID ?? DBNull.Value);
             oracleParams.Add(ProductValidationSpParams.PARAMETER_ST_PRDT_ID, OracleDbType.Int64, ParameterDirection.Input, (object)productColumns.ProductDetailID ?? DBNull.Value);
             oracleParams.Add(ProductValidationSpParams.PARAMETER_ST_COL_ID, OracleDbType.Int64, ParameterDirection.Input, (object)productColumns.ColumnID ?? DBNull.Value);
-        
+
 
 
 
             if (await NonQueryExecuter.ExecuteNonQueryAsync(SPName, oracleParams) == -1)
+            {
+                complate.ID = oracleParams.Get(0);
                 complate.message = message;
+            }
             else
                 complate.message = "Operation Failed";
 

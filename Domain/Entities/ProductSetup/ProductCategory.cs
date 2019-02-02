@@ -51,7 +51,7 @@ namespace Domain.Entities.ProductSetup
         [DBFiledName("ST_PRDT_ID")]
         public long? ProductDetailID { get; set; }
         [DBFiledName("COL_ORDER")]
-        public long? Order { get; set; }
+        public Int16? Order { get; set; }
         [DBFiledName("ST_DIC_ID")]
         public long? DictionaryID { get; set; }
 
