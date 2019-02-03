@@ -87,6 +87,7 @@ namespace Domain.Operations.Production.Risks
                         atacchment.ReceivedDate = null;
                         var attachmentResult = AutoAddAttachment.AutoAdd(atacchment);
                     }
+                    if (risk.DynamicCategory !=null) {
                     foreach (var item2 in risk.DynamicCategory)
                     {
 
@@ -187,6 +188,7 @@ namespace Domain.Operations.Production.Risks
 
 
 
+                        }
                     }
                     // insert category
                 }
