@@ -54,5 +54,8 @@ namespace Domain.Entities.Setup
         public string LineOfBusniessDesc { get; set; }
         [DBFiledName("SUB_LOB_DESC")]
         public string SubLineOfBusniessDesc { get; set; }
+        [DBFiledName("SUBJECT_TYPE_DESC")]
+        public string SubjectTypeDesc { get; set; }
+     
     }
 }

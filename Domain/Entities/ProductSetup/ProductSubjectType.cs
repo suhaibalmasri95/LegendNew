@@ -59,9 +59,10 @@ namespace Domain.Entities.ProductSetup
      
         [DBFiledName("ST_PRD_ID_DESC")]
         public string ProductDesc { get; set; }
-        [DBFiledName("ST_PRDT_ID_DESC")]
+        [DBFiledName("ST_SBT_PARENT_ID_DESC")]
         public string SubjectTypeParentDesc { get; set; }
-       
+
+          
 
     }
 }
