@@ -147,6 +147,7 @@ namespace API.Controllers.Production
             attachmentToReturn.CreatedBy = obj.CreatedBy;
             attachmentToReturn.Remarks = obj.Remarks;
             attachmentToReturn.Type = obj.Type;
+            attachmentToReturn.AttachedPath = obj.AttachedPath;
             attachmentToReturn.Path = configuration.GetSection("AttachmentPath:Path").Value;
             if(!string.IsNullOrEmpty(obj.ID))
             {
@@ -210,5 +211,6 @@ namespace API.Controllers.Production
         public string CreatedBy { get; set; }
         public string ProductAttachmentID { get; set; }
         public IFormFile File { get; set; }
+        public string AttachedPath { get; set; }
     }
 }

@@ -58,7 +58,10 @@ namespace Domain.Operations.Production.Attachments
                 attachment.FullPath = path;
             } else
             {
-                attachment.FullPath = "";
+                if(!string.IsNullOrEmpty(attachment.AttachedPath))
+                attachment.FullPath = attachment.AttachedPath;
+                else
+                    attachment.FullPath = "";
             }
             oracleParams.Add(AttachmentsSpParams.PARAMETER_ATTACHED_PATH, OracleDbType.Varchar2, ParameterDirection.Input, (object)attachment.FullPath ?? DBNull.Value);
           

@@ -24,7 +24,7 @@ namespace Domain.Operations.Others
                     {
                         string ext = Path.GetExtension(File.FileName);
                         string imagepath = Path.GetFileNameWithoutExtension(File.FileName) + ext.ToString();
-                        imagepath = imagepath.Trim();
+                        imagepath =Guid.NewGuid().ToString() + imagepath.Trim();
                         var fileToSave = Path.Combine(path,
                                imagepath);
 
@@ -39,7 +39,7 @@ namespace Domain.Operations.Others
                         DirectoryInfo dr = Directory.CreateDirectory(path);
                         string ext = Path.GetExtension(File.FileName);
                         string imagepath = Path.GetFileNameWithoutExtension(File.FileName) + ext.ToString();
-                        imagepath= imagepath.Trim();
+                        imagepath = Guid.NewGuid().ToString() + imagepath.Trim();
                         var fileToSave = Path.Combine(path,
                                imagepath);
 
@@ -59,7 +59,7 @@ namespace Domain.Operations.Others
                       
                         string ext = Path.GetExtension(File.FileName);
                         string imagepath = Path.GetFileNameWithoutExtension(File.FileName) + ext.ToString();
-                        imagepath = imagepath.Trim();
+                        imagepath = Guid.NewGuid().ToString() + imagepath.Trim();
                         var fileToSave = Path.Combine(path,
                                imagepath);
 
@@ -74,7 +74,7 @@ namespace Domain.Operations.Others
                         DirectoryInfo dr = Directory.CreateDirectory(path);
                         string ext = Path.GetExtension(File.FileName);
                         string imagepath = Path.GetFileNameWithoutExtension(File.FileName) + ext.ToString();
-                        imagepath = imagepath.Trim();
+                        imagepath = Guid.NewGuid().ToString() + imagepath.Trim();
                         var fileToSave = Path.Combine(path,
                                imagepath);
 

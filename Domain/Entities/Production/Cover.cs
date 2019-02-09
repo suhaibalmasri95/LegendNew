@@ -11,7 +11,6 @@ namespace Domain.Entities.Production
     {
         [DBFiledName("LangID")]
         public long? LangID { get; set; }
-
         [DBFiledName("ID")]
         public long? ID { get; set; }
         [DBFiledName("SERIAL")]
@@ -61,7 +60,7 @@ namespace Domain.Entities.Production
         [DBFiledName("ANNUAL_LIMIT")]
         public double? AnnualLimit { get; set; }
         [DBFiledName("CASE_LIMIT")]
-        public long? CaseLimit { get; set; }
+        public double? CaseLimit { get; set; }
         [DBFiledName("IS_CANCELED")]
         public Int16? IsCanceled { get; set; }
         [DBFiledName("CREATED_BY")]
@@ -80,12 +79,10 @@ namespace Domain.Entities.Production
         public DateTime? CancelDate { get; set; }
         [DBFiledName("NOTES")]
         public string Notes { get; set; }
-
         [DBFiledName("ST_PRD_CALC_ID")]
         public long? ProductCalcID { get; set; }
         [DBFiledName("ST_CUR_CODE")]
         public string CurrencyCode { get; set; }
-
         [DBFiledName("MANUAL_AMOUNT_LC")]
         public double? ManualAmountLc { get; set; }
         [DBFiledName("MANUAL_AMOUNT")]
@@ -104,6 +101,19 @@ namespace Domain.Entities.Production
         public double? TotalPremiumLc { get; set; }
         [DBFiledName("TOATAL_PREMIUM")]
         public double? TotalPremium { get; set; }
-      
+        [DBFiledName("ST_LOB_DESC")]
+        public String LineOfBusiness { get; set; }
+        [DBFiledName("ST_SUB_LOB_DESC")]
+        public string SubLineOfBusiness { get; set; }
+        [DBFiledName("UW_RISK_ID_DESC")]
+        public String RiskName { get; set; }
+        [DBFiledName("ST_PRD_CH_ID_DESC")]
+        public string CoverName { get; set; }
+
+        [DBFiledName("FeesAmountLc")]
+        public double? FeesAmountLc => ManualAmountLc;
+        [DBFiledName("FeesAmount")]
+        public double? FeesAmount => ManualAmount;
+
     }
 }
