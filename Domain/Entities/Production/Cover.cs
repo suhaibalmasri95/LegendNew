@@ -110,10 +110,10 @@ namespace Domain.Entities.Production
         [DBFiledName("ST_PRD_CH_ID_DESC")]
         public string CoverName { get; set; }
 
-        [DBFiledName("FeeAmountLc")]
+        [DBFiledName("FeesAmountLc")]
         public double? FeeAmountLc => ManualAmountLc;
-        [DBFiledName("FeeAmount")]
-        public double? FeesAmount => ManualAmount;
+        [DBFiledName("FeesAmount")]
+        public double? FeeAmount => ManualAmount;
 
     }
 }

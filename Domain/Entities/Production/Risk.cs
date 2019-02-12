@@ -88,9 +88,9 @@ namespace Domain.Entities.Production
         public bool UpdateMode { get; set; }
 
 
-        [DBFiledName("ST_LOB")]
+        [DBFiledName("ST_LOBsss")]
         public long? LineOfBusiness => StLOB;
-        [DBFiledName("ST_SUB_LOB")]
+        [DBFiledName("ST_SUB_LOsBsss")]
         public long? SubLineOfBusiness => StSubLOB;
     }
 }
