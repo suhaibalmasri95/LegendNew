@@ -123,7 +123,7 @@ namespace Domain.Operations.Production.Risks
                                     }
                                     else
                                     {
-                                        var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
+                                        var category = AddUpdateCategory.MapToCategory(item2, complate.ID , risk.UwDocumentID );
                                         var categoryID = await AddUpdateCategory.AddUpdateMode(category);
                                         var id = ((ComplateOperation<int>)categoryID).ID.Value;
                                         foreach (var c in col)
@@ -145,7 +145,7 @@ namespace Domain.Operations.Production.Risks
 
                                     foreach (var newCol in newCloumns)
                                     {
-                                        var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
+                                        var category = AddUpdateCategory.MapToCategory(item2, complate.ID, risk.UwDocumentID);
                                         var categoryID = await AddUpdateCategory.AddUpdateMode(category);
                                         var id = ((ComplateOperation<int>)categoryID).ID.Value;
 
@@ -169,7 +169,7 @@ namespace Domain.Operations.Production.Risks
                         }
                         else
                         {
-                            var category = AddUpdateCategory.MapToCategory(item2, null, complate.ID);
+                            var category = AddUpdateCategory.MapToCategory(item2, complate.ID, risk.UwDocumentID);
                             var categoryID = await AddUpdateCategory.AddUpdateMode(category);
                             var id = ((ComplateOperation<int>)categoryID).ID.Value;
                             foreach (var col in item2.ResultList)

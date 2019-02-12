@@ -30,6 +30,7 @@ namespace API.Controllers.Dynamic
             operation.ProductID = ProductID;
             operation.CategoryLevel = CategoryLevel;
             operation.LineOfBuisness = LineOfBuisness;
+            operation.ProductDetailID = ProductDetailID;
             operation.SubLineOfBuisness = SubLineOfBuisness;
             if (LangID.HasValue) { 
                 operation.LangID = LangID;
@@ -96,7 +97,7 @@ namespace API.Controllers.Dynamic
 
         [Route("LoadUpdate")]
         [HttpGet]
-        public IActionResult LoadUpdate( long? DocumentID,long? RiskID, long? ProductID,  long? LangID)
+        public IActionResult LoadUpdate( long? DocumentID,long? RiskID, long? ProductID, long? ProductDetailID ,long? LangID)
         {
 
 
@@ -106,7 +107,7 @@ namespace API.Controllers.Dynamic
             dropDownList.ProductID = ProductID;
             dropDownList.UnderWritingDocID = DocumentID;
             dropDownList.UnderWritingRiskID = RiskID;
-          
+            dropDownList.ProductDetailID = ProductDetailID;
          
            
             if (LangID.HasValue)
