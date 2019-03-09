@@ -32,8 +32,10 @@ namespace Domain.Entities.Financial
 
         [DBFiledName("LOC_CUST_TYPE")]
         public long? LocCustomerType { get; set; }
+        [DBFiledName("LOC_CUST_TYPE_DESC")]
+        public string LocCustomerTypeDesc { get; set; }
 
         [DBFiledName("FIN_GL_ID")]
-        public long? FinGlID { get; set; }
+        public string FinGlID { get; set; }
     }
 }

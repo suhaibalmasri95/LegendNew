@@ -29,6 +29,13 @@
 
   <ItemGroup>
     <Folder Include="Operations\Production\Installment\" />
+    <Folder Include="Operations\Production\Pricings\" />
+    <Folder Include="Operations\Production\PricingDetails\" />
+    <Folder Include="Operations\Production\Factors\" />
+    <Folder Include="Operations\Production\FactorDetails\" />
+    <Folder Include="Operations\ProductSetup\Charges\" />
+    <Folder Include="Operations\Production\Dictionaries\" />
+    <Folder Include="Operations\Production\DictionariyColumns\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Operations\Production\Covers %28copy%29\UpdateCover.cs" />

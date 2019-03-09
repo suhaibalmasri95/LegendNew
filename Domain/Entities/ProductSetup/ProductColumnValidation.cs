@@ -21,9 +21,9 @@ namespace Domain.Entities.ProductSetup
     [DBFiledName("ID")]
     public long? ID { get; set; }
 
-    [DBFiledName("LABLE")]
+    [DBFiledName("LABEL")]
     public string Lable { get; set; }
-    [DBFiledName("LABLE2")]
+    [DBFiledName("LABEL2")]
     public string Lable2 { get; set; }
     [DBFiledName("STATUS")]
     public long? Status { get; set; }
